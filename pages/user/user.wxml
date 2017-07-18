@@ -1,0 +1,32 @@
+<!--pages/user/user.wxml-->
+<view class="user-container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view class="userinfo-text"> 
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <rich-text class="likeCount">收藏数量</rich-text>
+    </view>
+   
+  </view>
+  <view class="like-list">
+    <view class="like-item">
+      <image src="../img/1.jpg"></image>
+      <view class="right-content">
+        <text>西红柿土豆炖牛腩</text>
+        <view>牛腩 西红柿 土豆 胡萝卜</view>
+        <view>作者</view>
+        <text>收藏1525</text><text> 点赞999</text>
+      </view>
+    </view>
+    <view class="like-item">
+      <image src="../img/1.jpg"></image>
+      <view class="right-content">
+        <text>西红柿土豆炖牛腩</text>
+        <view>牛腩 西红柿 土豆 胡萝卜</view>
+        <view>作者</view>
+        <text>收藏1525</text><text> 点赞999</text>
+      </view>
+    </view>
+  </view>
+  <view class="endText">——end——</view>
+</view>

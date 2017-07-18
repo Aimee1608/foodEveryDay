@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="section">
+    <input class="search" placeholder="搜索从这里开始" confirm-type="send"/>
+    <image src="../img/search.png"></image>
+  </view>
+  <view class="todayNew">
+    <view class="todayTitle">
+      今日推荐
+    </view>
+    <view class="todayList ">
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+      <view class="todayItem ">
+        <image src="../img/1.jpg"></image>
+        <text>毛豆虾丸汤</text>
+      </view>
+    </view>
+   
+  </view>
+  <view class="loadMore">上拉加载更多</view>
+</view>

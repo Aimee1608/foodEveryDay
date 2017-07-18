@@ -1,0 +1,17 @@
+<!--pages/select/select.wxml-->
+<view class="container">
+  <view class="select-list">
+    <view class="select-item">
+      <view class="select-title">大家都在搜</view>
+      <view class="select-iconList">
+        <text class="select-iconitem">年夜饭</text>
+        <text class="select-iconitem">年饭</text>
+        <text class="select-iconitem">年夜饭</text>
+        <text class="select-iconitem">年地</text>
+        <text class="select-iconitem">年夜饭</text>
+        <text class="select-iconitem">年饭</text>
+        <text class="select-iconitem">年夜饭</text>
+      </view>
+    </view>
+  </view>
+</view>
