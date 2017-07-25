@@ -10,4 +10,6 @@
   box-sizing: border-box;
   background:#F3EBDF;
   font-size:14pt;
+  color:#9B9B9B;
 } 
+

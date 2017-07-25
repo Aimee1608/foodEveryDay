@@ -28,6 +28,7 @@ input.search{
 .todayNew{
   width:100%;
   position: relative;
+  font-size: 13pt;
 }
 .todayTitle{
   width:100%;
@@ -52,8 +53,9 @@ input.search{
 }
 .todayItem{
   width:346rpx;
-  height:360rpx;
+  height:auto;
   padding:14rpx;
+  padding-bottom:0;
   margin-bottom:15rpx;
   box-sizing: border-box;
   text-align: center;
@@ -65,6 +67,12 @@ input.search{
 .todayItem image{
   width:317rpx;
   height:292rpx;
+}
+.todayItem text{
+    width:100%;
+    height:60rpx;
+    line-height: 60rpx;
+    text-align: center;
 }
 .clearFloat{
   clear:both;

@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/select/select",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/detailFood/detailFood"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -12,18 +13,28 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
+    "color": "#ffffff",
+    "selectedColor": "#A37011",
+    "borderStyle": "white",
+    "backgroundColor":"#FFCC66",
     "list": [
       {
+        "selectedIconPath": "pages/img/cai02.png",
+        "iconPath": "pages/img/cai01.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
+        "selectedIconPath": "pages/img/guo02.png",
+        "iconPath": "pages/img/guo01.png",
         "pagePath":"pages/select/select",
         "text":"分类"
       },
       {
+        "selectedIconPath": "pages/img/save02.png",
+        "iconPath": "pages/img/save01.png",
         "pagePath": "pages/user/user",
-        "text": "我的"
+        "text": "收藏"
       }
     ]
   },

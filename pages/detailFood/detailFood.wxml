@@ -1,0 +1,89 @@
+<!--pages/detailFood/detailFood.wxml-->
+<view class="fixed-box">
+    <view class="like"><image src="../img/like01.png"></image>点赞</view>
+    <view class="save"><image src="../img/save01.png"></image>收藏</view>
+</view>
+
+<view class="content">
+  <view class="title-image">
+    <image src="../img/food.png"></image>
+  </view>
+</view>
+<view class="container detail-container">
+  <text class="title-text">香煎辣排骨</text>
+  <view class="food-text">
+    排骨绝对是人见人爱的美味佳肴，丰富的蛋白质、维生素以及骨胶原深受到女性的青睐，不管是红烧，糖醋还是清炒，味道都很赞。
+  </view>
+  <view class="food-time">
+    <view>烹饪难度：<text>一般</text></view>
+    <view>烹饪时间：<text>数小时</text></view>
+  </view>
+  <view class="food-listbox01">
+    <view class="food-list-title">——食材清单——</view>
+    <view class="food-list">
+      <view class="food-item">
+        <text>辣花生</text>
+        <text>50g</text>
+      </view>
+      <view class="food-item">
+        <text>盐</text>
+        <text>200g</text>
+      </view>
+      <view class="food-item">
+        <text>料酒</text>
+        <text>200g</text>
+      </view>
+      <view class="food-item">
+        <text>生抽</text>
+        <text>200g</text>
+      </view>
+      <view class="food-item">
+        <text>黑胡椒</text>
+        <text>200g</text>
+      </view>
+      <view class="food-item">
+        <text>姜蒜</text>
+        <text>200g</text>
+      </view>
+    </view>
+  </view>
+  <view class="way-listbox">
+    <view class="food-list-title">——做法步骤——</view>
+     <view class="way-list">
+      <view class="way-item">
+        <text>1</text>
+        排骨切段，放入锅中焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>2</text>
+        排骨切段，放入锅中焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>3</text>
+        排骨切段，放入锅中焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>4</text>
+        排骨切段，放入锅中焯水撇去浮沫焯水撇去浮沫焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>5</text>
+        排骨切段，放入锅中焯水撇去浮沫焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>6</text>
+        排骨切段，放入锅中焯水撇去浮沫
+      </view>
+      <view class="way-item">
+        <text>7</text>
+        排骨切段，放入锅中焯水撇去浮沫焯水撇去浮沫
+      </view>
+     </view>
+  </view>
+  <view class="little-tip">
+    <view class="food-list-title">——烹饪小窍门——</view>
+    <view class="tip-content">
+        家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊
+    </view>
+  </view>
+</view>

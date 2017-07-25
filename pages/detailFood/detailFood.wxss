@@ -1,0 +1,145 @@
+/* pages/detailFood/detailFood.wxss */
+.title-image{
+  width:100%;
+  height:472rpx;
+  
+}
+.title-image image{
+  width:100%;
+  height:100%;
+}
+.detail-container{
+    background: #F9F5EC;
+    color:#7E5E48;
+}
+.title-text{
+  font-size:18pt;
+  font-weight: bold;
+  padding:25rpx 10rpx;
+  border-top:1px solid #969696;
+  border-bottom:1px solid #969696;
+  margin-top:70rpx;
+  margin-bottom:70rpx;
+}
+.food-text{
+  margin-bottom:70rpx;
+   line-height: 180%;
+   text-align:justify;
+   text-indent:2em;
+     /* text-align-last:justify; */
+}
+.food-time{
+  width:100%;
+  /* line-height: 180%; */
+}
+.food-time view{
+  width:50%;
+  color:#969696;
+  /* line-height: 180%; */
+}
+.food-time view:first-child{
+  float:left;
+}
+.food-time view:last-child{
+  float:right;
+  text-align: right;
+}
+.food-item::after{
+  content:'';
+  display:block;
+  clear:both;
+}
+.food-listbox01{
+  width:100%;
+  height:auto;
+}
+.food-list-title{
+  width:100%;
+  margin:70rpx 0;
+  text-align: center;
+}
+.food-listbox01 .food-item{
+  width:100%;
+  height:88rpx;
+  line-height: 88rpx;
+  border-bottom:1px solid #E2E2E2;
+}
+.food-listbox01 .food-item text:first-child{
+  width:50%;
+  float:left;
+  text-align: left;
+}
+.food-listbox01 .food-item text:last-child{
+  width:50%;
+  float:right;
+  text-align: right;
+}
+.food-listbox01 .food-item::after{
+  content:'';
+  display:block;
+  clear:both;
+}
+
+/***做法步骤***/
+.way-listbox{
+    width:100%;
+    height:auto;
+}
+.way-listbox .way-item{
+    width:100%;
+    line-height: 180%;
+    margin-bottom:50rpx;
+     text-align:justify;
+     position: relative;
+     /* text-indent: 3em; */
+}
+.way-item text{
+    font-size: 24pt;
+    padding-right:10rpx;
+    color:#969696;
+    font-weight: bold;
+    position: relative;
+    top:6rpx;
+}
+/**小窍门**/
+.little-tip{
+    width:100%;
+    height:auto;
+    margin-bottom:120rpx;
+}
+.tip-content{
+    text-indent: 2em;
+    color:#A7A7A7;
+    text-align:justify;
+}
+.fixed-box{
+    width:100%;
+    height:100rpx;
+    line-height: 100rpx;
+    background:#FBC966;
+    position: fixed;
+    bottom:0;
+    left:0;
+    z-index: 100;
+}
+.fixed-box view{
+    width:50%;
+    height:100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    float:left;
+    color:#fff;
+    vertical-align: middle;
+}
+.fixed-box view image{
+    width:48rpx;
+    height:48rpx;
+    padding-right:10rpx;
+    /* vertical-align: middle; */
+    position: relative;
+    top:12rpx;
+
+}
+
+
+

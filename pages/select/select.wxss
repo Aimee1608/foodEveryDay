@@ -14,14 +14,42 @@
   width:100%;
   height:210rpx;
   text-align: center;
+  overflow: hidden;
 }
 .select-iconitem{
-  margin:28rpx;
-  margin-bottom:30rpx;
-  padding:20rpx 40rpx;
+  margin:14rpx;
+  /* margin-bottom:20rpx; */
+  padding:0 30rpx;
   height:70rpx;
+  line-height: 70rpx;
   box-sizing: border-box;
   border-radius: 70rpx;
   color:#7ac873;
   border: 1px solid #7ac873;
+  display:inline-block;
+}
+
+.one-iconList text{
+  color:#7ac873;
+   border: 1px solid #7ac873;
+}
+
+.two-iconList text{
+  color:#FFA995;
+   border: 1px solid #FFA995;
+}
+
+.three-iconList text{
+  color:#A4D9EC;
+  border: 1px solid #A4D9EC;
+}
+
+.four-iconList text{
+  color:#FF9332;
+  border: 1px solid #FF9332;
+}
+
+.five-iconList text{
+  color:#89B7AD;
+  border: 1px solid #89B7AD;
 }
