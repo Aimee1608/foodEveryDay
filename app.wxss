@@ -8,7 +8,7 @@
   /* justify-content: space-between; */
   padding: 20rpx 22rpx;
   box-sizing: border-box;
-  background:#F3EBDF;
+  background:#F9F5EC;
   font-size:14pt;
   color:#9B9B9B;
 } 

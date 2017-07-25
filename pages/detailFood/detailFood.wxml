@@ -11,6 +11,16 @@
 </view>
 <view class="container detail-container">
   <text class="title-text">香煎辣排骨</text>
+  <view class="like-save-count">
+    <view class="like-count">
+        <image src="../img/like02.png"></image>
+        888
+    </view>
+    <view class="save-count">
+        <image src="../img/save02.png"></image>
+        999
+    </view>
+  </view>
   <view class="food-text">
     排骨绝对是人见人爱的美味佳肴，丰富的蛋白质、维生素以及骨胶原深受到女性的青睐，不管是红烧，糖醋还是清炒，味道都很赞。
   </view>
