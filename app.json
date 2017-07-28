@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/select/select",
     "pages/user/user",
-    "pages/detailFood/detailFood"
+    "pages/detailFood/detailFood",
+    "pages/searchList/searchList"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,20 +1,6 @@
 /* pages/user/user.wxss */
-.user-container{
-  width:100%; 
-  min-height:1206rpx;
-   background:#F9F5EC; 
-   display: flex;
-  flex-direction: column;
-}
 .userinfo {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  margin-top:30rpx;
   margin-bottom:30rpx;
-  /* background:#F3EBDF; */
-   /* background:#fff; */
-   /* background:#ffcc66; */
   width:100%;
   align-items: center;
   vertical-align: center;
@@ -24,12 +10,12 @@
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin: 20rpx 20rpx 20rpx 0;
   border-radius: 50%;
 }
 .userinfo-text{
   width:100%;
-  padding-left:168rpx;
+  padding-left:160rpx;
   box-sizing: border-box;
   position: absolute;
   right: 0;
@@ -37,53 +23,13 @@
   transform: translate(0,-50%);
 }
 .userinfo-nickname {
-  color: #aaa;
+  /* color: #aaa; */
   /* padding-left:148rpx; */
   vertical-align: center;
 }
 .likeCount{
-  font-size:11pt;
-}
-.like-list{
-  width:100%;
-}
-.like-list::after{
-  content: '';
-  display: block;
-  clear: both;
-}
-.like-item{
-  width:100%;
-  height:250rpx;
-  padding:28rpx 30rpx;
-  /* background:#F3EBDF; */
-  background:#fff;
-  position: relative;
-   box-sizing: border-box;
-   margin-bottom:20rpx;
-}
-.like-item image{
-  width:250rpx;
-  height:190rpx;
-}
-.right-content{
-  width:100%;
-  height:190rpx;
-  padding-left:310rpx;
-  padding-right:30rpx;
-  box-sizing: border-box;
-  position: absolute;
-  left:0;
-  top:50%;
-  transform: translate(0,-50%);
-}
-.right-content view{
-  width:100%;
-   word-break: break-all;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-     overflow: hidden;
-    -webkit-box-orient: vertical;
+  font-size:10pt;
+  margin-top:14rpx;
 }
 .endText{
   width:100%;

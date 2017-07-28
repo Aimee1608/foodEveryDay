@@ -1,12 +1,8 @@
-<!--pages/user/user.wxml-->
+<!--pages/searchList/searchList.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <view class="userinfo-text"> 
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <view class="likeCount">收藏数量</view>
-    </view>
-   
+  <view class="section">
+    <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="send"/>
+    <image src="../img/search.png"></image>
   </view>
   <view class="like-list">
     <view class="like-item">

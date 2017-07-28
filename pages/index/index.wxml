@@ -1,8 +1,10 @@
 <!--index.wxml-->
 <view class="container">
   <view class="section">
-    <input class="search" placeholder="搜索从这里开始" confirm-type="send"/>
+   <navigator url="/pages/searchList/searchList" hover-class="navigator-hover">
+    <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="send"/>
     <image src="../img/search.png"></image>
+    </navigator>
   </view>
   <view class="todayNew">
     <view class="todayTitle">

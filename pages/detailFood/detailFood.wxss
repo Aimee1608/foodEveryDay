@@ -31,6 +31,8 @@
 .like-save-count image{
     width:30rpx;
     height:30rpx;
+    position: relative;
+    top:5rpx;
 }
 .like-save-count view{
     width:50%;

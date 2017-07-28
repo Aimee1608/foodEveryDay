@@ -12,4 +12,62 @@
   font-size:14pt;
   color:#9B9B9B;
 } 
+view{
+    color:#9b9b9b;
+}
 
+/***收藏列表、搜索列表***/
+.like-list{
+  width:100%;
+}
+.like-list::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.like-item{
+  width:100%;
+  height:240rpx;
+  padding:24rpx;
+   /* background:#F3EBDF;  */
+   background:rgba(255,255,255,0.8);
+   /* border-bottom:1px solid #c3c3c3; */
+  position: relative;
+  box-sizing: border-box;
+   margin-bottom:20rpx;
+}
+.like-item image{
+  width:250rpx;
+  height:100%;
+}
+.right-content view{
+    font-size:10pt;
+    margin-top:17rpx;
+}
+.right-content view:last-child{
+    color:#C3C3C3;
+}
+.right-content text{
+    font-size:10pt;
+    margin-top:17rpx;
+    color:#C3C3C3;
+}
+.right-content{
+  width:100%;
+  height:190rpx;
+  padding-left:298rpx;
+  padding-right:30rpx;
+  box-sizing: border-box;
+  position: absolute;
+  left:0;
+  top:50%;
+  transform: translate(0,-50%);
+}
+.right-content view{
+  width:100%;
+   word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+     overflow: hidden;
+    -webkit-box-orient: vertical;
+}
