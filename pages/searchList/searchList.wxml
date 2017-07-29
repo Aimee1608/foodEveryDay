@@ -1,28 +1,21 @@
 <!--pages/searchList/searchList.wxml-->
 <view class="container">
+<!-- 搜索框 -->
   <view class="section">
     <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="send"/>
     <image src="../img/search.png"></image>
   </view>
-  <view class="like-list">
-    <view class="like-item">
-      <image src="../img/1.jpg"></image>
-      <view class="right-content">
-        <rich-text>西红柿土豆炖牛腩</rich-text>
-        <view>牛腩 西红柿 土豆 胡萝卜 牛腩 西红柿 土豆 胡萝卜</view>
-        <view>作者</view>
-        <text>收藏1525</text><text> 点赞999</text>
-      </view>
-    </view>
-    <view class="like-item">
-      <image src="../img/1.jpg"></image>
-      <view class="right-content">
-        <rich-text>西红柿土豆炖牛腩</rich-text>
-        <view>牛腩 西红柿 土豆 胡萝卜</view>
-        <view>作者</view>
-        <text>收藏1525</text><text> 点赞999</text>
-      </view>
-    </view>
+  <!-- 搜索列表 -->
+  <view class="like-list" >
+   <navigator class="like-item" wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
+        <image src="{{item.imgUrl}}"></image>
+        <view class="right-content">
+            <rich-text>{{item.title}}</rich-text>
+            <view>{{item. material}}</view>
+            <view>{{item.author}}</view>
+            <text>收藏{{item.save}}</text><text> 点赞{{item.like}}</text>
+        </view>
+    </navigator>
   </view>
   <view class="endText">——end——</view>
 </view>

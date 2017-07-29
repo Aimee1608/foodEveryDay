@@ -5,7 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    searchListArr:[
+      {
+        id: 1,
+        imgUrl: '../img/1.jpg',
+        title: '西红柿炖牛腩',
+        material:'牛腩 西红柿 土豆 胡萝卜',
+        author:'小芊',
+        save:888,
+        like:999
+      },
+      {
+        id: 1,
+        imgUrl: '../img/1.jpg',
+        title: '西红柿炖牛腩',
+        material: '牛腩 西红柿 土豆 胡萝卜',
+        author: '小芊',
+        save: 888,
+        like: 999
+      },
+      {
+        id: 1,
+        imgUrl: '../img/1.jpg',
+        title: '西红柿炖牛腩',
+        material: '牛腩 西红柿 土豆 胡萝卜',
+        author: '小芊',
+        save: 888,
+        like: 999
+      },
+      {
+        id: 1,
+        imgUrl: '../img/1.jpg',
+        title: '西红柿炖牛腩',
+        material: '牛腩 西红柿 土豆 胡萝卜',
+        author: '小芊',
+        save: 888,
+        like: 999
+      }
+    ]
   },
 
   /**

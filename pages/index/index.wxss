@@ -12,13 +12,13 @@
   position: relative;
   margin-bottom:20rpx;
 }
-input.search{
-  padding-top:25rpx;
-  padding-right:50rpx;
+view.search{
+  /* padding-top:25rpx; */
+  /* padding-right:50rpx; */
+  width:100%;
+  height:100%;
+  line-height: 100rpx;
    color:#A37011;
-}
-.phcolor{
-    color:#A37011;
 }
 .section image{
   position: absolute;
@@ -29,6 +29,19 @@ input.search{
   height:50rpx;
   opacity: 0.5;
 }
+/***轮播图***/
+.swiper-box{
+  width:100%;
+  height:300rpx;
+}
+.swiper-box navigator{
+  width:100%;
+  height:100%;
+}
+.swiper-box image{
+  width:100%;
+  height:100%;
+}
 /**今日推荐**/
 .todayNew{
   width:100%;
@@ -38,7 +51,7 @@ input.search{
 .todayTitle{
   width:100%;
   text-align: center;
-  margin: 11rpx 0 ;
+  margin: 30rpx 0 20rpx 0 ;
 }
 .todayList{
   width:722rpx;

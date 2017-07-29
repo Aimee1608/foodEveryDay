@@ -1,32 +1,24 @@
 <!--pages/user/user.wxml-->
 <view class="container">
+<!-- 用户信息 -->
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo-text"> 
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <view class="likeCount">收藏数量</view>
-    </view>
-   
+    </view> 
   </view>
-  <view class="like-list">
-    <view class="like-item">
-      <image src="../img/1.jpg"></image>
-      <view class="right-content">
-        <rich-text>西红柿土豆炖牛腩</rich-text>
-        <view>牛腩 西红柿 土豆 胡萝卜 牛腩 西红柿 土豆 胡萝卜</view>
-        <view>作者</view>
-        <text>收藏1525</text><text> 点赞999</text>
-      </view>
+  <!-- 收藏菜品列表 -->
+   <view class="like-list" >
+    <navigator class="like-item" wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
+            <image src="{{item.imgUrl}}"></image>
+            <view class="right-content">
+                <rich-text>{{item.title}}</rich-text>
+                <view>{{item. material}}</view>
+                <view>{{item.author}}</view>
+                <text>收藏{{item.save}}</text><text> 点赞{{item.like}}</text>
+            </view>
+        </navigator>
     </view>
-    <view class="like-item">
-      <image src="../img/1.jpg"></image>
-      <view class="right-content">
-        <rich-text>西红柿土豆炖牛腩</rich-text>
-        <view>牛腩 西红柿 土豆 胡萝卜</view>
-        <view>作者</view>
-        <text>收藏1525</text><text> 点赞999</text>
-      </view>
-    </view>
-  </view>
   <view class="endText">——end——</view>
 </view>

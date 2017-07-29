@@ -169,6 +169,9 @@
     top:12rpx;
 
 }
+.fixed-box view.add{
+    color: #A37011;
+}
 
 
 

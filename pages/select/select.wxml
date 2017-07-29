@@ -1,59 +1,35 @@
 <!--pages/select/select.wxml-->
+<!-- 搜索分类 -->
 <view class="container">
   <view class="select-list">
     <view class="select-item">
       <view class="select-title">大家都在搜</view>
       <view class="select-iconList one-iconList">
-        <text class="select-iconitem">年夜饭</text>
-        <text class="select-iconitem">热门菜谱榜</text>
-        <text class="select-iconitem">汤</text>
-        <text class="select-iconitem">蛋糕</text>
-        <text class="select-iconitem">早餐</text>
-        <text class="select-iconitem">豆腐</text>
+        <navigator class="select-iconitem" wx:for="{{searchNameArr.searchOne}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">肉类</view>
       <view class="select-iconList two-iconList">
-        <text class="select-iconitem">排骨</text>
-        <text class="select-iconitem">虾</text>
-        <text class="select-iconitem">鸡</text>
-        <text class="select-iconitem">牛肉</text>
-        <text class="select-iconitem">鱼</text>
-        <text class="select-iconitem">羊肉</text>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchTwo}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">热门食材</view>
       <view class="select-iconList three-iconList">
-        <text class="select-iconitem">山药</text>
-        <text class="select-iconitem">鸡蛋</text>
-        <text class="select-iconitem">白菜</text>
-        <text class="select-iconitem">藕</text>
-        <text class="select-iconitem">萝卜</text>
-        <text class="select-iconitem">金针菇</text>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchThree}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">流行学做</view>
       <view class="select-iconList four-iconList">
-        <text class="select-iconitem">牛轧糖</text>
-        <text class="select-iconitem">蛋挞</text>
-        <text class="select-iconitem">粥</text>
-        <text class="select-iconitem">凉菜</text>
-        <text class="select-iconitem">披萨</text>
-        <text class="select-iconitem">面条</text>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFour}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">烘焙</view>
       <view class="select-iconList five-iconList">
-        <text class="select-iconitem">威风蛋糕</text>
-        <text class="select-iconitem">曲奇</text>
-        <text class="select-iconitem">蛋糕卷</text>
-        <text class="select-iconitem">布丁</text>
-        <text class="select-iconitem">提拉米苏</text>
-        <text class="select-iconitem">吐司</text>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFive}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
   </view>

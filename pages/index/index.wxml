@@ -2,43 +2,37 @@
 <view class="container">
   <view class="section">
    <navigator url="/pages/searchList/searchList" hover-class="navigator-hover">
-    <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="send"/>
-    <image src="../img/search.png"></image>
+    <view class="search" >搜索从这里开始</view>
+    <image src="../img/search.png"/>
     </navigator>
   </view>
+  <!-- 轮播图片 -->
+  <view class="swiper-box">
+    <swiper indicator-dots="{{swiper.indicatorDots}}" indicator-color="{{swiper.indicatorColor}}" indicator-active-color="{{swiper.indicatorActiveColor}}"
+  autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" circular="{{swiper.s}}">
+      <block wx:for="{{swiper.imgUrls}}">
+        <swiper-item>
+            <navigator  data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
+                <image src="{{item.name}}" class="slide-image" />
+           </navigator>
+        </swiper-item>
+        
+      </block>
+    </swiper>
+  </view>
+  <!-- 今日推荐 -->
   <view class="todayNew">
     <view class="todayTitle">
       今日推荐
     </view>
-    <view class="todayList ">
-      <view class="todayItem ">
-       <navigator url="/pages/detailFood/detailFood" hover-class="navigator-hover">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
+    <view class="todayList " >
+       <navigator class="todayItem " wx:for="{{todayListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
+            <image src="{{item.imgUrl}}"/>
+            <text>{{item.text}}</text>
         </navigator>
-      </view>
-      <view class="todayItem ">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
-      </view>
-      <view class="todayItem ">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
-      </view>
-      <view class="todayItem ">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
-      </view>
-      <view class="todayItem ">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
-      </view>
-      <view class="todayItem ">
-        <image src="../img/1.jpg"></image>
-        <text>毛豆虾丸汤</text>
-      </view>
     </view>
    
   </view>
+  <!-- 上拉加载更多 -->
   <view class="loadMore">上拉加载更多</view>
 </view>

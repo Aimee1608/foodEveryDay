@@ -5,7 +5,64 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    detail:{
+        imgUrl:'../img/food.png',
+        title:'香煎辣排骨',
+        save:888,
+        like:959,
+        foodText:'排骨绝对是人见人爱的美味佳肴，丰富的蛋白质、维生素以及骨胶原深受到女性的青睐，不管是红烧，糖醋还是清炒，味道都很赞。',
+        foodGrade:'一般',
+        foodTime:'60分钟',
+        materialListArr: [
+            {
+             name:'辣花生',
+             count:50
+            },
+            {
+                name: '盐',
+                count: 50
+            },
+            {
+                name: '料酒',
+                count: 50
+            },
+            {
+                name: '生抽',
+                count: 50
+            },
+            {
+                name: '排骨',
+                count: 50
+            },
+            {
+                name: '黑胡椒',
+                count: 50
+            },
+            {
+                name: '姜蒜',
+                count: 50
+            },
+        ],
+        wayListArr:[
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫',
+            '排骨切段，放入锅中焯水撇去浮沫'
+        ],
+        tipContent:'家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊'
+    },
+    addLike:{
+        add:false,
+        url: '../img/like01.png'
+    },
+    addSave:{
+        add: false,
+        url: '../img/save03.png'
+    }
   },
 
   /**
@@ -62,5 +119,44 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  funLike:function(){
+      var add = this.data.addLike.add;
+    //   console.log(add);
+      if(add){
+          this.setData({
+              addLike:{
+                  add:false,
+                  url: '../img/like01.png'
+              }
+          })
+      }else{
+          this.setData({
+              addLike: {
+                  add: true,
+                  url: '../img/like02.png'
+              }
+          })
+      }
+  },
+  funSave: function () {
+      var add = this.data.addSave.add;
+    //   console.log(add);
+      if (add) {
+          this.setData({
+              addSave: {
+                  add: false,
+                  url: '../img/save03.png'
+              }
+          })
+      } else {
+          this.setData({
+              addSave: {
+                  add: true,
+                  url: '../img/save04.png'
+              }
+          })
+      }
   }
+
 })
