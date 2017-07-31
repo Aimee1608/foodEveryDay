@@ -6,6 +6,7 @@ Page({
    */
   data: {
     detail:{
+        id:1,
         imgUrl:'../img/food.png',
         title:'香煎辣排骨',
         save:888,
@@ -52,6 +53,16 @@ Page({
             '排骨切段，放入锅中焯水撇去浮沫',
             '排骨切段，放入锅中焯水撇去浮沫',
             '排骨切段，放入锅中焯水撇去浮沫'
+        ],
+        picListArr: [
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png',
+            '../img/food.png'
         ],
         tipContent:'家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊'
     },

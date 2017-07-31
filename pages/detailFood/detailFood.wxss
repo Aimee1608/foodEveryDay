@@ -130,6 +130,42 @@
     position: relative;
     top:6rpx;
 }
+/***图片分享***/
+.pic-listbox{
+    width:100%;
+    height:auto;
+}
+.pic-listbox .pic-item{
+    width:50%;
+    height:300rpx;
+    float:left;
+    position: relative;
+}
+.pic-item image{
+    width:100%;
+    height:100%;
+    box-sizing: border-box;
+    padding:10rpx;
+}
+.pic-item text{
+    position: absolute;
+    left:20rpx;
+    top:20rpx;
+    width:40rpx;
+    height:40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    background:rgba(255,255,255,0.8);
+    border-radius: 50%;
+    color:#A37011;
+    font-size: 11pt;
+}
+.pic-list::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
 /**小窍门**/
 .little-tip{
     width:100%;

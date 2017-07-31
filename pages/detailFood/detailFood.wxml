@@ -54,6 +54,16 @@
       </view>
      </view>
   </view>
+  <!-- 图片分享 -->
+  <view class="pic-listbox">
+     <view class="food-list-title">——图片分享——</view>
+     <view class="pic-list">
+      <view class="pic-item" wx:for="{{detail.picListArr}}">
+        <text>{{index+1}}</text>
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+  </view>
   <!-- 烹饪小窍门 -->
   <view class="little-tip">
     <view class="food-list-title">——烹饪小窍门——</view>
