@@ -69,6 +69,54 @@ Page({
         id: 1
       }
     ],
+    isLoading:false
   },  //事件处理函数
+  upper: function (e) {
+      console.log(e)
+  },
+  lower: function (e) {
+      console.log(e)
+  },
+  scroll: function (e) {
+      console.log(e)
+  },
+  onReachBottom: function () {
+      var that = this;
+     
+      // Do something when page reach bottom.
+      console.log('circle 下一页');
+    //   wx.showLoading({
+    //       title: '加载中',
+    //   })
+      this.setData({
+          isLoading: true
+      })
+    var timer = setTimeout(function(){
+        console.log(888);
+        that.setData({
+            isLoading:false
+        })
+        clearTimeout(timer);
+    },1000)
+      
+    //   wx.request({
+    //       url: '',
+    //       data: {},
+    //       method: 'GET',
+    //       // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    //       // header: {}, // 设置请求的 header
+    //       success: function (res) {
+    //           // success
+    //       },
+    //       fail: function () {
+    //           // fail
+    //       },
+    //       complete: function () {
+    //           // complete
+    //           wx.hideNavigationBarLoading() //完成停止加载
+    //           wx.stopPullDownRefresh() //停止下拉刷新
+    //       }
+    //   })
+  }
   
 })

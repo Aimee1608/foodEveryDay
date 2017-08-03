@@ -1,8 +1,10 @@
 /**app.wxss**/
 .container {
   /* height: 100%; */
-  min-height:1206rpx;
-  display: flex;
+  /* width:100%; */
+   min-height:1206rpx; 
+  /* height:2412rpx; */
+   display: flex; 
   flex-direction: column;
   align-items: center;
   /* justify-content: space-between; */

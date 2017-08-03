@@ -97,6 +97,10 @@ view.search{
   clear:both;
 }
 
+.loadMore{
+    text-align: center;
+}
+
 
 
 

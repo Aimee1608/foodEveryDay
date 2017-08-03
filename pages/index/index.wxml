@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view  class="container" >
   <view class="section">
    <navigator url="/pages/searchList/searchList" hover-class="navigator-hover">
     <view class="search" >搜索从这里开始</view>
@@ -34,5 +34,6 @@
    
   </view>
   <!-- 上拉加载更多 -->
-  <view class="loadMore">上拉加载更多</view>
+  <view class="loadMore" hidden="{{isLoading}}">上拉加载更多</view>
+  <view class="loadMore" hidden="{{!isLoading}}">加载中...</view>
 </view>

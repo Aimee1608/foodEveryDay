@@ -5,31 +5,31 @@
     <view class="select-item">
       <view class="select-title">大家都在搜</view>
       <view class="select-iconList one-iconList">
-        <navigator class="select-iconitem" wx:for="{{searchNameArr.searchOne}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+        <navigator class="select-iconitem" wx:for="{{searchNameArr.searchOne}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">肉类</view>
       <view class="select-iconList two-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchTwo}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchTwo}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">热门食材</view>
       <view class="select-iconList three-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchThree}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchThree}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">流行学做</view>
       <view class="select-iconList four-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFour}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFour}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
     <view class="select-item">
       <view class="select-title">烘焙</view>
       <view class="select-iconList five-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFive}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+         <navigator class="select-iconitem" wx:for="{{searchNameArr.searchFive}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
   </view>
