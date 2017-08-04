@@ -17,5 +17,10 @@
         </view>
     </navigator>
   </view>
-  <view class="endText">——end——</view>
+  <!-- 上拉加载更多 -->
+  <view hidden="{{noMore}}">
+    <view class="loadMore" hidden="{{isLoading}}">上拉加载更多</view>
+    <view class="loadMore" hidden="{{!isLoading}}">加载中...</view>
+  </view>
+  <view class="loadMore" hidden="{{!noMore}}">没有更多数据</view>
 </view>

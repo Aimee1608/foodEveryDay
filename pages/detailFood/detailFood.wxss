@@ -21,12 +21,26 @@
   margin-top:70rpx;
   margin-bottom:20rpx;
 }
+/**作者**/
+.author{
+     text-align: right;
+     padding-right:20rpx;
+    font-size: 11pt;
+    /* color:#7E5E48; */
+}
+.author image{
+    width:30rpx;
+    height:30rpx;
+    position: relative;
+    top:5rpx;
+}
 /**点赞和收藏数量**/
 .like-save-count{
     width:100%;
     height:50rpx;
     line-height: 50rpx;
      margin-bottom:40rpx;
+     text-align: center;
 }
 .like-save-count image{
     width:30rpx;
@@ -35,9 +49,11 @@
     top:5rpx;
 }
 .like-save-count view{
-    width:50%;
+
+    /* width:33%; */
     height:100%;
-    float:left;
+    display: inline-block;
+    /* float:left; */
     box-sizing: border-box;
     font-size: 12pt;
 }

@@ -5,7 +5,8 @@
     "pages/select/select",
     "pages/user/user",
     "pages/detailFood/detailFood",
-    "pages/searchList/searchList"
+    "pages/searchList/searchList",
+    "pages/addFood/addFood"
   ],
   "window":{
     "backgroundTextStyle":"light",

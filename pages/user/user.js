@@ -45,12 +45,14 @@ Page({
               save: 888,
               like: 999
           }
-      ]
+      ],
+      isLoading: false,//正在加载中
+      noMore: false//是否还有更多数据
   },
   //事件处理函数
   bindViewTap: function () {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../addFood/addFood'
     })
   },
   /**
@@ -115,5 +117,44 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  /**
+   * 上拉加载更多
+   */
+  onReachBottom: function () {
+      if (!this.data.noMore) {
+          var that = this;
+          console.log('circle 下一页');
+          this.setData({
+              isLoading: true
+          })
+          var timer = setTimeout(function () {
+              console.log(888);
+              that.setData({
+                  isLoading: false
+              })
+              clearTimeout(timer);
+          }, 1000)
+      }
+
+
+      //   wx.request({
+      //       url: '',
+      //       data: {},
+      //       method: 'GET',
+      //       // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      //       // header: {}, // 设置请求的 header
+      //       success: function (res) {
+      //           // success
+      //       },
+      //       fail: function () {
+      //           // fail
+      //       },
+      //       complete: function () {
+      //           // complete
+      //           wx.hideNavigationBarLoading() //完成停止加载
+      //           wx.stopPullDownRefresh() //停止下拉刷新
+      //       }
+      //   })
   }
 })

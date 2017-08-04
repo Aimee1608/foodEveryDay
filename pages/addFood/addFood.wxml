@@ -1,0 +1,6 @@
+<!--pages/addFood/addFood.wxml-->
+<view class="container">
+    <view class="bigImg" bindtap="loadBigImg">
+    步骤一：上传主图
+    </view>
+</view>

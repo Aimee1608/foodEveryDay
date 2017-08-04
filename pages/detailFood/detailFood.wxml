@@ -15,8 +15,13 @@
 <view class="container detail-container">
     <!-- 菜品标题 -->
   <text class="title-text">{{detail.title}}</text>
+  
   <!-- 菜品收藏点赞量 -->
   <view class="like-save-count">
+    <view class="author">
+        <image src="../img/tou02.png"></image>
+        {{detail.author}}
+    </view>
     <view class="like-count">
         <image src="../img/like02.png"></image>
         {{detail.like}}

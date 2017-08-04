@@ -69,7 +69,8 @@ Page({
         id: 1
       }
     ],
-    isLoading:false
+    isLoading:false,//正在加载中
+    noMore:true//是否还有更多数据
   },  //事件处理函数
   upper: function (e) {
       console.log(e)
@@ -81,23 +82,21 @@ Page({
       console.log(e)
   },
   onReachBottom: function () {
-      var that = this;
-     
-      // Do something when page reach bottom.
-      console.log('circle 下一页');
-    //   wx.showLoading({
-    //       title: '加载中',
-    //   })
-      this.setData({
-          isLoading: true
-      })
-    var timer = setTimeout(function(){
-        console.log(888);
-        that.setData({
-            isLoading:false
-        })
-        clearTimeout(timer);
-    },1000)
+      if(!this.data.noMore){
+          var that = this;
+          console.log('circle 下一页');
+          this.setData({
+              isLoading: true
+          })
+          var timer = setTimeout(function () {
+              console.log(888);
+              that.setData({
+                  isLoading: false
+              })
+              clearTimeout(timer);
+          }, 1000)
+      }
+      
       
     //   wx.request({
     //       url: '',
