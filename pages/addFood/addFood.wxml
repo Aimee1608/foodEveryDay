@@ -1,15 +1,16 @@
 <!--pages/addFood/addFood.wxml-->
 <view class="container">
     <view class="foodBox bigImg" bindtap="loadBigImg">
-        步骤一：上传主图
-        <image src="../img/food.png"/>
+        上传主图
+        <image class="foodUrl" src="../img/food.png"/>
+        <image class="r-arrow" src="../img/r-arrow.png"></image>
     </view>
     <view class="foodBox title">
-        步骤二：菜名
+        菜名
         <input type='text' placeholder="如鱼香肉丝"/>
     </view>
-     <view class="foodBox title">
-        步骤三：介绍
-        <input type='text' placeholder="如鱼香肉丝"/>
+     <view class="foodBox foodText">
+        介绍
+         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;"  />
     </view>
 </view>
