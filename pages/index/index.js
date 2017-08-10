@@ -87,7 +87,7 @@ Page({
   onLoad: function (options) {
       var that = this;
     wx.request({
-        url:'https://h5php.xingyuanauto.com/food/public/index.php/port/food/focus',
+        url:'https://h5php.xingyuanauto.com/food/public/index.php/port/food/GetFocus',
         method: 'GET',
         // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: {
@@ -106,6 +106,44 @@ Page({
             
         }
     })
+    wx.request({
+        url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/Recommend',
+        method: 'GET',
+        // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+        header: {
+            'content-type': 'application/json'
+        },
+        success: function (res) {
+            // success
+            console.log(res);
+            
+            if(res.data.code==1001){
+                var arr = res.data.data;
+                var ListArr = [];
+                if(arr.length>0){
+                    for (var i = 0; i < arr.length; i++) {
+                        ListArr.push({
+                            imgUrl: arr[i].img,
+                            text: arr[i].name,
+                            id: arr[i].id});
+                    }
+                }
+                
+            }
+            that.setData({
+                todayListArr: ListArr
+            })
+        },
+        fail: function (res) {
+            // fail
+            console.log(res);
+        },
+        complete: function () {
+            // complete
+
+        }
+    })
+
   },
 
   /**
