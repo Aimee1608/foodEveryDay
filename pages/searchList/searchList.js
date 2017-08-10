@@ -51,6 +51,60 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      var that =  this;
+      console.log(options);
+      if (options.keywordsId){
+          wx.request({
+              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/show_list',
+              method: 'POST',
+              data:{'class_id':options.keywordsId},
+              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+              header: {
+                  'content-type': 'application/json'
+              },
+              success: function (res) {
+                  // success
+                  console.log('焦点图', res);
+                  if (res.data.code == 1001) {
+                      var arr = res.data.data;
+                      var ListArr = [];
+                      if (arr.length > 0) {
+                          for (var i = 0; i < arr.length; i++) {
+                              if (arr[i].inventory.length>0){
+                                  var material = [];
+                                  for(var n = 0;n<arr[i].inventory.length;n++){
+                                      material.push(arr[i].inventory[n].food_name);
+                                  }
+                                  material = material.join(' ');
+                              }
+                              ListArr.push({
+                                  id: arr[i].id,
+                                  imgUrl: arr[i].img,
+                                  title: arr[i].name,
+                                  material: material,
+                                  author: arr[i].author,
+                                  save: arr[i].collect!=null?arr[i].collect:0,
+                                  like: arr[i].user_like != null ? arr[i].user_like : 0
+                              });
+                          }
+                          console.log(ListArr);
+                          that.setData({
+                              searchListArr: ListArr
+                          })
+                      }
+
+                  }
+              },
+              fail: function (res) {
+                  // fail
+                  console.log(res);
+              },
+              complete: function () {
+                  // complete
+
+              }
+          })
+      }
   
   },
 

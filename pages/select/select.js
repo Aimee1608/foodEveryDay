@@ -6,146 +6,201 @@ Page({
    */
   data: {
     searchNameArr:
-        {
-            searchOne:[
-                {
-                    id:1,
-                    keywords:'年夜饭'
-                },
-                {
-                    id: 1,
-                    keywords: '热门菜谱榜'
-                },
-                {
-                    id: 1,
-                    keywords: '汤'
-                },
-                {
-                    id: 1,
-                    keywords: '蛋糕'
-                },
-                {
-                    id: 1,
-                    keywords: '早餐'
-                },
-                {
-                    id: 1,
-                    keywords: '豆腐'
-                }
-            ],
-            searchTwo: [
-                {
-                    id: 1,
-                    keywords: '排骨'
-                },
-                {
-                    id: 1,
-                    keywords: '虾'
-                },
-                {
-                    id: 1,
-                    keywords: '鸡'
-                },
-                {
-                    id: 1,
-                    keywords: '牛肉'
-                },
-                {
-                    id: 1,
-                    keywords: '鱼'
-                },
-                {
-                    id: 1,
-                    keywords: '羊肉'
-                }
-            ],
-            searchThree: [
-                {
-                    id: 1,
-                    keywords: '山药'
-                },
-                {
-                    id: 1,
-                    keywords: '鸡蛋'
-                },
-                {
-                    id: 1,
-                    keywords: '白菜'
-                },
-                {
-                    id: 1,
-                    keywords: '藕'
-                },
-                {
-                    id: 1,
-                    keywords: '萝卜'
-                },
-                {
-                    id: 1,
-                    keywords: '金针菇'
-                }
-            ],
-            searchFour: [
-                {
-                    id: 1,
-                    keywords: '牛轧糖'
-                },
-                {
-                    id: 1,
-                    keywords: '蛋挞'
-                },
-                {
-                    id: 1,
-                    keywords: '粥'
-                },
-                {
-                    id: 1,
-                    keywords: '凉菜'
-                },
-                {
-                    id: 1,
-                    keywords: '披萨'
-                },
-                {
-                    id: 1,
-                    keywords: '面条'
-                }
-            ],
-            searchFive: [
-                {
-                    id: 1,
-                    keywords: '威风蛋糕'
-                },
-                {
-                    id: 1,
-                    keywords: '曲奇'
-                },
-                {
-                    id: 1,
-                    keywords: '蛋糕卷'
-                },
-                {
-                    id: 1,
-                    keywords: '布丁'
-                },
-                {
-                    id: 1,
-                    keywords: '提拉米苏'
-                },
-                {
-                    id: 1,
-                    keywords: '吐司'
-                }
-            ]
-        }
-   
+        [
+            
+            {   class_name:'大家都爱搜',
+                classArr:[
+                    {
+                        id:1,
+                        keywords:'年夜饭'
+                    },
+                    {
+                        id: 1,
+                        keywords: '热门菜谱榜'
+                    },
+                    {
+                        id: 1,
+                        keywords: '汤'
+                    },
+                    {
+                        id: 1,
+                        keywords: '蛋糕'
+                    },
+                    {
+                        id: 1,
+                        keywords: '早餐'
+                    },
+                    {
+                        id: 1,
+                        keywords: '豆腐'
+                    }
+                ]
+            }, {
+                class_name: '大家都爱搜',
+                classArr:[
+                    {
+                        id: 1,
+                        keywords: '排骨'
+                    },
+                    {
+                        id: 1,
+                        keywords: '虾'
+                    },
+                    {
+                        id: 1,
+                        keywords: '鸡'
+                    },
+                    {
+                        id: 1,
+                        keywords: '牛肉'
+                    },
+                    {
+                        id: 1,
+                        keywords: '鱼'
+                    },
+                    {
+                        id: 1,
+                        keywords: '羊肉'
+                    }
+                ]
+            }, {
+                    class_name: '大家都爱搜',
+                    classArr: [
+                    {
+                        id: 1,
+                        keywords: '山药'
+                    },
+                    {
+                        id: 1,
+                        keywords: '鸡蛋'
+                    },
+                    {
+                        id: 1,
+                        keywords: '白菜'
+                    },
+                    {
+                        id: 1,
+                        keywords: '藕'
+                    },
+                    {
+                        id: 1,
+                        keywords: '萝卜'
+                    },
+                    {
+                        id: 1,
+                        keywords: '金针菇'
+                    }
+                    ]
+            }, {
+                    class_name: '大家都爱搜',
+                    classArr:[
+                    {
+                        id: 1,
+                        keywords: '牛轧糖'
+                    },
+                    {
+                        id: 1,
+                        keywords: '蛋挞'
+                    },
+                    {
+                        id: 1,
+                        keywords: '粥'
+                    },
+                    {
+                        id: 1,
+                        keywords: '凉菜'
+                    },
+                    {
+                        id: 1,
+                        keywords: '披萨'
+                    },
+                    {
+                        id: 1,
+                        keywords: '面条'
+                    }
+                    ]
+            }, {
+                    class_name: '大家都爱搜',
+                    classArr: [
+                    {
+                        id: 1,
+                        keywords: '威风蛋糕'
+                    },
+                    {
+                        id: 1,
+                        keywords: '曲奇'
+                    },
+                    {
+                        id: 1,
+                        keywords: '蛋糕卷'
+                    },
+                    {
+                        id: 1,
+                        keywords: '布丁'
+                    },
+                    {
+                        id: 1,
+                        keywords: '提拉米苏'
+                    },
+                    {
+                        id: 1,
+                        keywords: '吐司'
+                    }
+                ]
+            }
+        ]
+        
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      var that = this
+      wx.request({
+          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+          method: 'GET',
+          // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          header: {
+              'content-type': 'application/json'
+          },
+          success: function (res) {
+              // success
+              console.log('分类', res);
+              if (res.data.code == 1001) {
+                  var arr = res.data.data;
+                  var ListArr = [];
+                  if (arr.length > 0) {
+                    for (var i = 0; i < arr.length; i++) {
+                      if (arr[i].class_names.length > 0) {
+                          var material = [];
+                          for (var n = 0; n < arr[i].class_names.length; n++) {
+                              material.push({'id':arr[i].class_names[n].id,'keywords':arr[i].class_names[n].class_name});
+                          }
+        
+                      }
+                      ListArr.push({
+                          class_name:arr[i].class_name,
+                          classArr:material
+                      });
+                  }
+                  console.log(ListArr);
+                  that.setData({
+                      searchNameArr: ListArr
+                  })
+                  }
+
+              }
+          },
+          fail: function (res) {
+              // fail
+              console.log(res);
+          },
+          complete: function () {
+              // complete
+
+          }
+      })
   },
 
   /**

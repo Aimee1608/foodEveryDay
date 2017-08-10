@@ -1,11 +1,10 @@
 //index.js
 //获取应用实例
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     motto: 'Hello World',
     swiper:{
-      userInfo: {},
       imgUrls: [
           {
               id:1,
@@ -95,7 +94,24 @@ Page({
         },
         success: function (res) {
             // success
-            console.log(res);
+            console.log('焦点图',res);
+            if(res.data.code==1001){
+                var arr = res.data.data;
+                var ListArr = [];
+                if (arr.length > 0) {
+                    for (var i = 0; i < arr.length; i++) {
+                        ListArr.push({
+                            name: arr[i].img,
+                            id: arr[i].id
+                        });
+                    }
+                    console.log(ListArr);
+                    that.setData({
+                        'swiper.imgUrls': ListArr
+                    })
+                }
+               
+            }
         },
         fail: function (res) {
             // fail
@@ -115,7 +131,7 @@ Page({
         },
         success: function (res) {
             // success
-            console.log(res);
+            console.log('列表',res);
             
             if(res.data.code==1001){
                 var arr = res.data.data;
@@ -209,26 +225,6 @@ Page({
               clearTimeout(timer);
           }, 1000)
       }
-      
-      
-    //   wx.request({
-    //       url: '',
-    //       data: {},
-    //       method: 'GET',
-    //       // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    //       // header: {}, // 设置请求的 header
-    //       success: function (res) {
-    //           // success
-    //       },
-    //       fail: function () {
-    //           // fail
-    //       },
-    //       complete: function () {
-    //           // complete
-    //           wx.hideNavigationBarLoading() //完成停止加载
-    //           wx.stopPullDownRefresh() //停止下拉刷新
-    //       }
-    //   })
   }
   
 })

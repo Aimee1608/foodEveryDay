@@ -29,27 +29,27 @@
   display:inline-block;
 }
 
-.one-iconList navigator{
+.select-item:nth-child(1) navigator{
   color:#7ac873;
    border: 1px solid #7ac873;
 }
 
-.two-iconList navigator{
+.select-item:nth-child(2) navigator{
   color:#FFA995;
    border: 1px solid #FFA995;
 }
 
-.three-iconList navigator{
+.select-item:nth-child(3) navigator{
   color:#A4D9EC;
   border: 1px solid #A4D9EC;
 }
 
-.four-iconList navigator{
+.select-item:nth-child(4) navigator{
   color:#FF9332;
   border: 1px solid #FF9332;
 }
 
-.five-iconList navigator{
+.select-item:nth-child(5) navigator{
   color:#89B7AD;
   border: 1px solid #89B7AD;
 }
