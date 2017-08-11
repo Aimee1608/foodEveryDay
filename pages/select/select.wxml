@@ -8,29 +8,5 @@
         <navigator class="select-iconitem" wx:for="{{item.classArr}}"  data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
-    <!-- <view class="select-item">
-      <view class="select-title">肉类</view>
-      <view class="select-iconList two-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr[1]}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
-      </view>
-    </view>
-    <view class="select-item">
-      <view class="select-title">热门食材</view>
-      <view class="select-iconList three-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr[2]}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
-      </view>
-    </view>
-    <view class="select-item">
-      <view class="select-title">流行学做</view>
-      <view class="select-iconList four-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr[3]}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
-      </view>
-    </view>
-    <view class="select-item">
-      <view class="select-title">烘焙</view>
-      <view class="select-iconList five-iconList">
-         <navigator class="select-iconitem" wx:for="{{searchNameArr[4]}}" data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
-      </view>
-    </view> -->
   </view>
 </view>

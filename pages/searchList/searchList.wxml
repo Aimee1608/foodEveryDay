@@ -2,18 +2,18 @@
 <view class="container">
 <!-- 搜索框 -->
   <view class="section">
-    <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="send"/>
+    <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="search" bindconfirm="completeFun"/>
     <image src="../img/search.png"></image>
   </view>
   <!-- 搜索列表 -->
   <view class="like-list" >
    <navigator class="like-item" wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
-        <image src="{{item.imgUrl}}"></image>
+        <image src="{{item.img}}" mode="aspectFill"/>
         <view class="right-content">
-            <rich-text>{{item.title}}</rich-text>
+            <rich-text>{{item.name}}</rich-text>
             <view>{{item. material}}</view>
             <view>{{item.author}}</view>
-            <text>收藏{{item.save}}</text><text> 点赞{{item.like}}</text>
+            <text>收藏{{item.collect}}</text><text> 点赞{{item.user_like}}</text>
         </view>
     </navigator>
   </view>

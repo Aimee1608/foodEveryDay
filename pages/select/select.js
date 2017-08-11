@@ -156,7 +156,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var that = this
+      var that = this;
       wx.request({
           url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
           method: 'GET',

@@ -5,48 +5,91 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchListArr:[
-      {
-        id: 1,
-        imgUrl: '../img/1.jpg',
-        title: '西红柿炖牛腩',
-        material:'牛腩 西红柿 土豆 胡萝卜',
-        author:'小芊',
-        save:888,
-        like:999
-      },
-      {
-        id: 1,
-        imgUrl: '../img/1.jpg',
-        title: '西红柿炖牛腩',
-        material: '牛腩 西红柿 土豆 胡萝卜',
-        author: '小芊',
-        save: 888,
-        like: 999
-      },
-      {
-        id: 1,
-        imgUrl: '../img/1.jpg',
-        title: '西红柿炖牛腩',
-        material: '牛腩 西红柿 土豆 胡萝卜',
-        author: '小芊',
-        save: 888,
-        like: 999
-      },
-      {
-        id: 1,
-        imgUrl: '../img/1.jpg',
-        title: '西红柿炖牛腩',
-        material: '牛腩 西红柿 土豆 胡萝卜',
-        author: '小芊',
-        save: 888,
-        like: 999
-      }
-    ],
-    isLoading: false,//正在加载中
-    noMore: false//是否还有更多数据
-  },
+      searchListArr:[
+          //{
+          //  id: 1,
+          //  img: '../img/1.jpg',
+          //  name: '西红柿炖牛腩',
+          //  material:'牛腩 西红柿 土豆 胡萝卜',
+          //  author:'小芊',
+          //  collect:888,
+          //  user_like:999
+          //}
+      ],
+      isLoading: false,//正在加载中
+      noMore: false,//是否还有更多数据，
+      classId:null,
+      pageId:null,
+      keywords:null
 
+  },
+    getList:function(that,classId,pageId,keywords){
+        if(classId!=null||pageId!=null||keywords!=null){
+
+            console.log({'class_id':classId,pageId:pageId,name:keywords});
+            wx.request({
+                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/show_list',
+                method: 'POST',
+                data:{'class_id':classId,pageId:pageId,name:keywords},
+                // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                header: {
+                    'content-type': 'application/json'
+                },
+                success: function (res) {
+                    // success
+                    console.log('搜索列表', res);
+                    if (res.data.code == 1001) {
+                        var arr = res.data.data;
+                        var ListArr = that.data.searchListArr;
+                        if (arr.length > 0) {
+                            for (var i = 0; i < arr.length; i++) {
+                                if (arr[i].inventory.length>0){
+                                    var material = [];
+                                    for(var n = 0;n<arr[i].inventory.length;n++){
+                                        material.push(arr[i].inventory[n].food_name);
+                                    }
+                                    material = material.join(' ');
+                                }
+                                ListArr.push({
+                                    id: arr[i].id,
+                                    img: arr[i].img,
+                                    name: arr[i].name,
+                                    material: material,
+                                    author: arr[i].author,
+                                    collect: arr[i].collect!=null?arr[i].collect:0,
+                                    user_like: arr[i].user_like != null ? arr[i].user_like : 0
+                                });
+                            }
+                            //console.log(ListArr);
+                            if(arr.length<10){
+                                that.setData({
+                                    searchListArr: ListArr,
+                                    pageId:arr[arr.length-1].id,
+                                    noMore:true
+                                })
+                            }else{
+                                that.setData({
+                                    searchListArr: ListArr,
+                                    pageId:arr[arr.length-1].id,
+                                    noMore:false
+                                })
+                            }
+
+                        }
+
+                    }
+                },
+                fail: function (res) {
+                    // fail
+                    console.log(res);
+                },
+                complete: function () {
+                    // complete
+
+                }
+            })
+        }
+    },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -54,59 +97,28 @@ Page({
       var that =  this;
       console.log(options);
       if (options.keywordsId){
-          wx.request({
-              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/show_list',
-              method: 'POST',
-              data:{'class_id':options.keywordsId},
-              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-              header: {
-                  'content-type': 'application/json'
-              },
-              success: function (res) {
-                  // success
-                  console.log('焦点图', res);
-                  if (res.data.code == 1001) {
-                      var arr = res.data.data;
-                      var ListArr = [];
-                      if (arr.length > 0) {
-                          for (var i = 0; i < arr.length; i++) {
-                              if (arr[i].inventory.length>0){
-                                  var material = [];
-                                  for(var n = 0;n<arr[i].inventory.length;n++){
-                                      material.push(arr[i].inventory[n].food_name);
-                                  }
-                                  material = material.join(' ');
-                              }
-                              ListArr.push({
-                                  id: arr[i].id,
-                                  imgUrl: arr[i].img,
-                                  title: arr[i].name,
-                                  material: material,
-                                  author: arr[i].author,
-                                  save: arr[i].collect!=null?arr[i].collect:0,
-                                  like: arr[i].user_like != null ? arr[i].user_like : 0
-                              });
-                          }
-                          console.log(ListArr);
-                          that.setData({
-                              searchListArr: ListArr
-                          })
-                      }
+          that.setData({
+              classId:options.keywordsId
+          });
+          that.getList(that,that.data.classId,that.data.pageId,that.data.keywords);
 
-                  }
-              },
-              fail: function (res) {
-                  // fail
-                  console.log(res);
-              },
-              complete: function () {
-                  // complete
-
-              }
-          })
       }
   
   },
+    completeFun:function(e){
+        var that = this;
+        var val = e.detail.value;
+        if(val!=null&&val!=''){
+            that.setData({
+                classId:null,
+                pageId:null,
+                keywords: val,
+                searchListArr:[]
+            });
+            that.getList(that,that.data.classId,that.data.pageId,that.data.keywords);
+        }
+
+    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -147,7 +159,21 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+      if (!this.data.noMore) {
+          var that = this;
+          console.log('circle 下一页');
+          this.setData({
+              isLoading: true
+          });
+          var timer = setTimeout(function () {
+              console.log(888);
+              that.setData({
+                  isLoading: false
+              });
+              that.getList(that,that.data.classId,that.data.pageId,that.data.keywords);
+              clearTimeout(timer);
+          }, 1000)
+      }
   },
 
   /**
@@ -155,44 +181,6 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  /**
-   * 上拉加载更多
-   */
-  onReachBottom: function () {
-      if (!this.data.noMore) {
-          var that = this;
-          console.log('circle 下一页');
-          this.setData({
-              isLoading: true
-          })
-          var timer = setTimeout(function () {
-              console.log(888);
-              that.setData({
-                  isLoading: false
-              })
-              clearTimeout(timer);
-          }, 1000)
-      }
-
-
-      //   wx.request({
-      //       url: '',
-      //       data: {},
-      //       method: 'GET',
-      //       // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      //       // header: {}, // 设置请求的 header
-      //       success: function (res) {
-      //           // success
-      //       },
-      //       fail: function () {
-      //           // fail
-      //       },
-      //       complete: function () {
-      //           // complete
-      //           wx.hideNavigationBarLoading() //完成停止加载
-      //           wx.stopPullDownRefresh() //停止下拉刷新
-      //       }
-      //   })
   }
+
 })

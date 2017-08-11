@@ -13,7 +13,7 @@
       <block wx:for="{{swiper.imgUrls}}">
         <swiper-item>
             <navigator  data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
-                <image src="{{item.name}}" class="slide-image" />
+                <image src="{{item.img}}" class="slide-image" mode="aspectFill" />
            </navigator>
         </swiper-item>
         
@@ -27,8 +27,8 @@
     </view>
     <view class="todayList " >
        <navigator class="todayItem " wx:for="{{todayListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
-            <image src="{{item.imgUrl}}"/>
-            <text>{{item.text}}</text>
+            <image src="{{item.img}}" mode="aspectFill"/>
+            <text>{{item.name}}</text>
         </navigator>
     </view>
    

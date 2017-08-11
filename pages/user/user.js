@@ -9,9 +9,18 @@ Page({
   data: {
       userInfo:'',
       searchListArr: [
+          //{
+          //  id: 1,
+          //  img: '../img/1.jpg',
+          //  name: '西红柿炖牛腩',
+          //  material:'牛腩 西红柿 土豆 胡萝卜',
+          //  author:'小芊',
+          //  collect:888,
+          //  user_like:999
+          //}
           {
               id: 1,
-              imgUrl: '../img/1.jpg',
+              img: '../img/1.jpg',
               title: '西红柿炖牛腩',
               material: '牛腩 西红柿 土豆 胡萝卜',
               author: '小芊',
@@ -20,7 +29,7 @@ Page({
           },
           {
               id: 1,
-              imgUrl: '../img/1.jpg',
+              img: '../img/1.jpg',
               title: '西红柿炖牛腩',
               material: '牛腩 西红柿 土豆 胡萝卜',
               author: '小芊',
@@ -29,7 +38,7 @@ Page({
           },
           {
               id: 1,
-              imgUrl: '../img/1.jpg',
+              img: '../img/1.jpg',
               title: '西红柿炖牛腩',
               material: '牛腩 西红柿 土豆 胡萝卜',
               author: '小芊',
@@ -38,7 +47,7 @@ Page({
           },
           {
               id: 1,
-              imgUrl: '../img/1.jpg',
+              img: '../img/1.jpg',
               title: '西红柿炖牛腩',
               material: '牛腩 西红柿 土豆 胡萝卜',
               author: '小芊',
@@ -47,7 +56,9 @@ Page({
           }
       ],
       isLoading: false,//正在加载中
-      noMore: false//是否还有更多数据
+      noMore: false,//是否还有更多数据
+      openid:null,
+      pageId:null
   },
   //事件处理函数
   bindViewTap: function () {
@@ -59,15 +70,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo
-      })
-    })
+    console.log('onLoad');
+
   },
 
   /**
@@ -81,7 +85,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      //var that = this;
+      ////调用应用实例的方法获取全局数据
+      //app.getUserInfo(function (userInfo) {
+      //    //更新数据
+      //    console.log(userInfo);
+      //    that.setData({
+      //        userInfo: userInfo
+      //    })
+      //})
+      var that = this;
+      //调用应用实例的方法获取全局数据
+      app.getUserInfo(function (userInfo) {
+          //更新数据
+          console.log(userInfo);
+          that.setData({
+              userInfo: userInfo
+          })
+      })
+
   },
 
   /**

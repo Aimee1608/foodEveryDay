@@ -1,20 +1,20 @@
 <!--pages/detailFood/detailFood.wxml-->
 <!-- 底部固定喜欢收藏 -->
 <view class="fixed-box">
-    <view class="{{addLike.add?'add':''}} like" bindtap="funLike"><image src="{{addLike.url}}"></image>点赞</view>
-    <view class="{{addSave.add?'add':''}} save" bindtap="funSave"><image src="{{addSave.url}}"></image>收藏</view>
+    <view class="{{addLike.add==1?'add':''}} like" bindtap="funLike"><image src="{{addLike.url}}"></image>点赞</view>
+    <view class="{{addSave.add==1?'add':''}} save" bindtap="funSave"><image src="{{addSave.url}}"></image>收藏</view>
 </view>
 <!-- 详情 -->
 <view class="content">
 <!-- 菜品图片 -->
   <view class="title-image">
-    <image src="{{detail.imgUrl}}"></image>
+    <image src="{{detail.img}}" mode="aspectFill"></image>
   </view>
 </view>
 
 <view class="container detail-container">
     <!-- 菜品标题 -->
-  <text class="title-text">{{detail.title}}</text>
+  <text class="title-text">{{detail.name}}</text>
   
   <!-- 菜品收藏点赞量 -->
   <view class="like-save-count">
@@ -28,25 +28,25 @@
     </view>
     <view class="save-count">
         <image src="../img/save04.png"></image>
-        {{detail.save}}
+        {{detail.collect}}
     </view>
   </view>
   <!-- 菜品描述 -->
   <view class="food-text">
-    {{detail.foodText}}
+    {{detail.describe}}
   </view>
   <!-- 菜品难度、时间 -->
   <view class="food-time">
-    <view>烹饪难度：<text>{{detail.foodGrade}}</text></view>
-    <view>烹饪时间：<text>{{detail.foodTime}}</text></view>
+    <view>烹饪难度：<text>{{detail.complexity}}</text></view>
+    <view>烹饪时间：<text>{{detail.handle_time}}</text></view>
   </view>
   <!-- 食材清单 -->
   <view class="food-listbox01">
     <view class="food-list-title">——食材清单——</view>
     <view class="food-list" >
-      <view class="food-item" wx:for="{{detail.materialListArr}}">
-        <text>{{item.name}}</text>
-        <text>{{item.count}}g</text>
+      <view class="food-item" wx:for="{{detail.inventory}}">
+        <text>{{item.food_name}}</text>
+        <text>{{item.food_how}}</text>
       </view>
     </view>
   </view>
@@ -54,7 +54,7 @@
   <view class="way-listbox">
     <view class="food-list-title">——做法步骤——</view>
      <view class="way-list">
-      <view class="way-item" wx:for="{{detail.wayListArr}}">
+      <view class="way-item" wx:for="{{detail.step}}">
         <text>{{index+1}}</text>{{item}}
       </view>
      </view>
@@ -63,9 +63,9 @@
   <view class="pic-listbox">
      <view class="food-list-title">——图片分享——</view>
      <view class="pic-list">
-      <view class="pic-item" wx:for="{{detail.picListArr}}">
+      <view class="pic-item" wx:for="{{detail.thumbnail}}">
         <text>{{index+1}}</text>
-        <image src="{{item}}"></image>
+        <image src="{{item}}" mode="aspectFill"></image>
       </view>
     </view>
   </view>
@@ -73,7 +73,7 @@
   <view class="little-tip">
     <view class="food-list-title">——烹饪小窍门——</view>
     <view class="tip-content">
-        {{detail.tipContent}}
+        {{detail.tip}}
     </view>
   </view>
 </view>
