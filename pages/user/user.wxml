@@ -1,5 +1,5 @@
 <!--pages/user/user.wxml-->
-<view class="container">
+<view class="container" hidden="{{!isLogin}}">
 <!-- 用户信息 -->
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -26,4 +26,8 @@
     <view class="loadMore" hidden="{{!isLoading}}">加载中...</view>
   </view>
   <view class="loadMore" hidden="{{!noMore}}">没有更多数据</view>
+</view>
+<view class="login" hidden="{{isLogin}}" bindtap="loginFun">
+    <view class="clickLogin01">点击登录</view>
+    <view class="clickLogin02">登录后即可收藏喜欢的菜谱</view>
 </view>

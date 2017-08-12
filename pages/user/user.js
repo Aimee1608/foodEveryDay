@@ -58,7 +58,8 @@ Page({
       isLoading: false,//正在加载中
       noMore: false,//是否还有更多数据
       openid:null,
-      pageId:null
+      pageId:null,
+      isLogin:false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -71,7 +72,17 @@ Page({
    */
   onLoad: function (options) {
     console.log('onLoad');
-
+    console.log(app.globalData.userInfo, app.globalData.login);
+      if (app.globalData.login) {
+          this.setData({
+              isLogin: true,
+              userInfo: app.globalData.userInfo
+          })
+      } else {
+          this.setData({
+              isLogin: false
+          })
+      }
   },
 
   /**
@@ -85,24 +96,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      //var that = this;
-      ////调用应用实例的方法获取全局数据
-      //app.getUserInfo(function (userInfo) {
-      //    //更新数据
-      //    console.log(userInfo);
-      //    that.setData({
-      //        userInfo: userInfo
-      //    })
-      //})
-      var that = this;
-      //调用应用实例的方法获取全局数据
-      app.getUserInfo(function (userInfo) {
-          //更新数据
-          console.log(userInfo);
-          that.setData({
-              userInfo: userInfo
-          })
-      })
+      
 
   },
 
@@ -178,5 +172,42 @@ Page({
       //           wx.stopPullDownRefresh() //停止下拉刷新
       //       }
       //   })
+  },
+  loginFun:function(){
+      //var that = this;
+      ////调用应用实例的方法获取全局数据
+      //app.getUserInfo(function (userInfo) {
+      //    //更新数据
+      //    console.log(userInfo);
+      //    that.setData({
+      //        userInfo: userInfo
+      //    })
+      //})
+      var that = this;
+      //调用应用实例的方法获取全局数据
+      app.getUserInfo(function (userInfo) {
+          //更新数据
+        //   console.log(userInfo);
+          if (app.globalData.login!=false){
+              wx.showLoading({
+                  title: '加载中',
+              })
+
+              setTimeout(function () {
+                  wx.hideLoading();
+                  that.setData({
+                      userInfo: userInfo,
+                      isLogin: true
+                  })
+              }, 500)
+             
+          }else{
+              that.setData({
+                  isLogin: false
+              })
+          }
+          
+         
+      })
   }
 })

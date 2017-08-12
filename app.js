@@ -4,20 +4,16 @@ App({
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    wx.setStorageSync('logs', logs);
+    // console.log('logs',logs);
   },
   getUserInfo:function(cb){
-    var that = this;
-    //that.globalData.login = false;
-    //that.globalData.login = true;
-    if(this.globalData.userInfo&&that.globalData.login){
-      typeof cb == "function" && cb(this.globalData.userInfo)
+      var that = this;
+     //调用登录接口
 
-    }else{
-      //调用登录接口
       wx.login({
         success: function (msg) {
-          console.log(msg);
+          console.log('code',msg);
           if(msg.code){
             if(that.globalData.login==false){
               wx.openSetting({
@@ -28,28 +24,21 @@ App({
                       wx.getUserInfo({
                         withCredentials: false,
                         success: function (res) {
-                          that.globalData.userInfo = res.userInfo;
-                          typeof cb == "function" && cb(that.globalData.userInfo);
-                          that.globalData.login = true;
+                            console.log('第二次成功',res);
+                            that.globalData.userInfo = res.userInfo;
+                            that.globalData.login = true;
+                            typeof cb == "function" && cb(that.globalData.userInfo);
+                        //    getOpenid(res);
+                          
                         },
                         fail: function (res) {
                           that.globalData.login = false;
                           console.log('二次失败',res);
-                          wx.reLaunch({
-                            url: '../index/index'
-                          });
-                          //wx.navigateBack({
-                          //  delta: 1
-                          //})
-
                         }
                       });
                     }else{
                       that.globalData.login = false;
                       console.log('二次失败02');
-                      wx.reLaunch({
-                        url: '../index/index'
-                      });
                     }
                   }
                 },
@@ -62,10 +51,11 @@ App({
             }else{
               wx.getUserInfo({
                 success: function (res) {
-                  console.log(res);
+                  console.log('第一次成功',res);
                   that.globalData.userInfo = res.userInfo;
-                  typeof cb == "function" && cb(that.globalData.userInfo);
                   that.globalData.login = true;
+                  typeof cb == "function" && cb(that.globalData.userInfo);
+                //   getOpenid(res);
                   //  wx.request({
                   //    url:'',
                   //    data:{
@@ -77,17 +67,7 @@ App({
                   //  })
                 },fail:function(msg){
                   that.globalData.login = false;
-                  console.log(msg);
-
-                  //wx.navigateBack({
-                  //  delta: 1
-                  //})
-                  wx.reLaunch({
-                    url: '../index/index'
-                  });
-                  //wx.switchTab({
-                  //  url: '../index/index'
-                  //})
+                  console.log('第一次失败',msg);
                 }
               })
             }
@@ -100,9 +80,10 @@ App({
           console.log(res);
         }
       })
-    }
+    
   },
   globalData:{
     userInfo:null
-  }
+    
+  },
 })
