@@ -56,15 +56,32 @@ App({
                   that.globalData.login = true;
                   typeof cb == "function" && cb(that.globalData.userInfo);
                 //   getOpenid(res);
-                  //  wx.request({
-                  //    url:'',
-                  //    data:{
-                  //      code:msg.code
-                  //    },
-                  //    success:function(res){
-                  //
-                  //    }
-                  //  })
+                   wx.request({
+                       url:'https://api.weixin.qq.com/sns/jscode2session',
+                       data:{
+                           appid: 'gh_9f2fb8cd8e00',
+                           secret:'5b9412479cdd99059e26e391e74c2806',
+                           js_code:msg.code,
+                           grant_type:'authorization_code'
+
+                     },
+                     success:function(openData){
+                         console.log(openData);
+                         var openid = openData.data.openid;
+                         wx.request({
+                             url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/saveUserInfo',
+                             data: {
+                                 encryptedData: res.userInfo.encryptedData,
+                                 iv:res.userInfo.iv,
+                                 openid:openid
+
+                             },
+                             success: function (lastData) {
+                                console.log(lastData);
+                             }
+                         })
+                     }
+                   })
                 },fail:function(msg){
                   that.globalData.login = false;
                   console.log('第一次失败',msg);
