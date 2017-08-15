@@ -1,16 +1,26 @@
 <!--pages/addFood/addFood.wxml-->
 <view class="container">
     <view class="foodBox bigImg" bindtap="loadBigImg">
-        上传主图
+        <text>主图</text>
         <image class="foodUrl" src="../img/food.png"/>
         <image class="r-arrow" src="../img/r-arrow.png"></image>
     </view>
     <view class="foodBox title">
-        菜名
+       <text>菜名</text>
         <input type='text' placeholder="如鱼香肉丝"/>
     </view>
      <view class="foodBox foodText">
-        介绍
+       <text>介绍</text>
          <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;"  />
+    </view>
+    <view class="foodBox inventory">
+        <text>选择分类</text>
+        <view class="section">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+              当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+            </view>
+          </picker>
+        </view>
     </view>
 </view>

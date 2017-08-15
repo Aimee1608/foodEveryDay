@@ -184,7 +184,7 @@ Page({
                           classArr:material
                       });
                   }
-                  console.log(ListArr);
+                  //console.log(ListArr);
                   that.setData({
                       searchNameArr: ListArr
                   })

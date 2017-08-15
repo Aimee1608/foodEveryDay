@@ -1,22 +1,35 @@
 /* pages/addFood/addFood.wxss */
 .foodBox{
     width:100%;
+    box-sizing:border-box;
     border-bottom: 1px solid #ddd;
-    padding:20rpx 0;
+    padding:20rpx 0 20rpx 90rpx;
     color:#000;
+    position:relative;
 }
 .foodBox input{
     display:inline-block;
 }
+.foodBox text{
+    width:200rpx;
+    position:absolute;
+    left:0;
+    top:20rpx;
+}
 .bigImg{
     width:100%;
-    height:120rpx;
-    line-height: 120rpx;
+    height:160rpx;
+    /*line-height: 160rpx;*/
     position: relative;
+}
+.bigImg text{
+    top:50%;
+    transform:translate(0,-50%);
 }
 .bigImg image.foodUrl{
     width:120rpx;
     height:120rpx;
+    /*display:inline-block;*/
     vertical-align: middle;
 }
 .r-arrow{
@@ -33,14 +46,14 @@
 }
 .foodText textarea{
     width:100%;
-    padding-left:100rpx;
-    box-sizing: border-box;
-    float:right;
-    /* top:20rpx; */
-    
 }
-.foodText textarea::after{
-    content:'';
-    display:block;
-    clear:both;
+.title input{
+    position:relative;
+    top:5rpx;
+
+   /*line-height:104rpx;*/
+}
+.title text{
+    top:50%;
+    transform:translate(0,-50%);
 }
