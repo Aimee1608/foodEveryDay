@@ -2,7 +2,7 @@
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
+    var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
     // console.log('logs',logs);
@@ -10,11 +10,44 @@ App({
   getUserInfo:function(cb){
       var that = this;
      //调用登录接口
-
+      function getOpenid(backMsg){
+        that.globalData.userInfo = backMsg.userInfo;
+        that.globalData.encryptedData = backMsg.encryptedData;
+        that.globalData.iv = backMsg.iv;
+        that.globalData.login = true;
+        console.log(that.globalData.code);
+        typeof cb == "function" && cb(that.globalData.userInfo);
+        wx.request({/**通过code获取openid**/
+        url:'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/sendCode',
+          data:{
+            code:that.globalData.code
+          },
+          success:function(openData){
+            console.log(openData);
+            that.globalData.openid = openData.data.data.openid;
+            wx.request({/**用户数据后台入库**/
+            url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/saveUserInfo',
+              data: {
+                encryptedData: backMsg.encryptedData,
+                iv:backMsg.iv,
+                openid:that.globalData.openid
+              },
+              success: function (lastData) {
+                console.log(lastData);
+                if(lastData.data.code==1001){
+                  wx.setStorageSync('openid',that.globalData.openid);
+                  wx.setStorageSync('userInfo',that.globalData.userInfo);
+                }
+              }
+            })
+          }
+        })
+      }
       wx.login({
         success: function (msg) {
           console.log('code',msg);
           if(msg.code){
+            that.globalData.code = msg.code;
             if(that.globalData.login==false){
               wx.openSetting({
                 success: function (data) {
@@ -25,10 +58,7 @@ App({
                         withCredentials: false,
                         success: function (res) {
                             console.log('第二次成功',res);
-                            that.globalData.userInfo = res.userInfo;
-                            that.globalData.login = true;
-                            typeof cb == "function" && cb(that.globalData.userInfo);
-                        //    getOpenid(res);
+                            getOpenid(res);
                           
                         },
                         fail: function (res) {
@@ -44,40 +74,14 @@ App({
                 },
                 fail: function () {
                   console.info("设置失败返回数据");
-                  //wx.reLaunch({
-                  //    url: '../index/index'
-                  //});
-                }       });
+
+                }
+              });
             }else{
-              wx.getUserInfo({
+              wx.getUserInfo({/**获取用户信息**/
                 success: function (res) {
                   console.log('第一次成功',res);
-                  that.globalData.userInfo = res.userInfo;
-                  that.globalData.login = true;
-                    console.log(msg.code);
-                  typeof cb == "function" && cb(that.globalData.userInfo);
-                //   getOpenid(res);
-                   wx.request({
-                       url:'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/sendCode',
-                       data:{
-                          code:msg.code
-                     },
-                     success:function(openData){
-                         console.log(openData);
-                         var openid = openData.data.openid;
-                         //wx.request({
-                         //    url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/saveUserInfo',
-                         //    data: {
-                         //        encryptedData: res.userInfo.encryptedData,
-                         //        iv:res.userInfo.iv,
-                         //        openid:openid
-                         //    },
-                         //    success: function (lastData) {
-                         //       console.log(lastData);
-                         //    }
-                         //})
-                     }
-                   })
+                  getOpenid(res);
                 },fail:function(msg){
                   that.globalData.login = false;
                   console.log('第一次失败',msg);
@@ -93,7 +97,10 @@ App({
     
   },
   globalData:{
-    userInfo:null
-    
+    userInfo:null,
+    encryptedData:null,
+    iv:null,
+    openid:null,
+    code:null
   }
-})
+});

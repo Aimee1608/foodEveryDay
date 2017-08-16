@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'], ['猪肉绦虫', '吸血虫']],
+      multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],
       objectMultiArray: [
           [
               {
@@ -38,18 +38,9 @@ Page({
                   id: 4,
                   name: '节肢动物'
               }
-          ], [
-              {
-                  id: 0,
-                  name: '猪肉绦虫'
-              },
-              {
-                  id: 1,
-                  name: '吸血虫'
-              }
           ]
       ],
-      multiIndex: [0, 0, 0]
+      multiIndex: [0, 0]
   },
     bindMultiPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value);
@@ -75,44 +66,44 @@ Page({
                         break;
                 }
                 data.multiIndex[1] = 0;
-                data.multiIndex[2] = 0;
+                //data.multiIndex[2] = 0;
                 break;
             case 1:
                 switch (data.multiIndex[0]) {
                     case 0:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['蛔虫'];
-                                break;
-                            case 2:
-                                data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                                break;
-                            case 3:
-                                data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                                break;
-                            case 4:
-                                data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                                break;
-                        }
-                        break;
+                        //switch (data.multiIndex[1]) {
+                        //    case 0:
+                        //        data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
+                        //        break;
+                        //    case 1:
+                        //        data.multiArray[2] = ['蛔虫'];
+                        //        break;
+                        //    case 2:
+                        //        data.multiArray[2] = ['蚂蚁', '蚂蟥'];
+                        //        break;
+                        //    case 3:
+                        //        data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
+                        //        break;
+                        //    case 4:
+                        //        data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
+                        //        break;
+                        //}
+                        //break;
                     case 1:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['鲫鱼', '带鱼'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                                break;
-                            case 2:
-                                data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                                break;
-                        }
-                        break;
+                        //switch (data.multiIndex[1]) {
+                        //    case 0:
+                        //        data.multiArray[2] = ['鲫鱼', '带鱼'];
+                        //        break;
+                        //    case 1:
+                        //        data.multiArray[2] = ['青蛙', '娃娃鱼'];
+                        //        break;
+                        //    case 2:
+                        //        data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
+                        //        break;
+                        //}
+                        //break;
                 }
-                data.multiIndex[2] = 0;
+                //data.multiIndex[2] = 0;
                 console.log(data.multiIndex);
                 break;
         }
@@ -122,7 +113,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+      var that = this;
+      wx.request({
+          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+          method: 'GET',
+          // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          header: {
+              'content-type': 'application/json'
+          },
+          success: function (res) {
+              // success
+              console.log('添加菜单分类', res);
+              if (res.data.code == 1001) {
+                  var arr = res.data.data;
+                  if (arr.length > 0) {
+                      //console.log(ListArr);
+                      that.setData({
+                          searchNameArr: arr
+                      })
+                  }
+              }
+          },
+          fail: function (res) {
+              // fail
+              console.log(res);
+          },
+          complete: function () {
+              // complete
+          }
+      })
   },
 
   /**

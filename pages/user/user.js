@@ -73,12 +73,13 @@ Page({
   onLoad: function (options) {
     console.log('onLoad');
     console.log(app.globalData.userInfo, app.globalData.login);
-      if (app.globalData.login) {
+      var openid = wx.getStorageSync('openid');
+      if(openid){
           this.setData({
-              isLogin: true,
-              userInfo: app.globalData.userInfo
+              userInfo: wx.getStorageSync('userInfo'),
+              isLogin: true
           })
-      } else {
+      }else{
           this.setData({
               isLogin: false
           })
@@ -187,10 +188,10 @@ Page({
       //调用应用实例的方法获取全局数据
       app.getUserInfo(function (userInfo) {
           //更新数据
-        //   console.log(userInfo);
+          //   console.log(userInfo);
           if (app.globalData.login!=false){
               wx.showLoading({
-                  title: '加载中',
+                  title: '加载中'
               })
 
               setTimeout(function () {
@@ -200,14 +201,16 @@ Page({
                       isLogin: true
                   })
               }, 500)
-             
+
           }else{
               that.setData({
                   isLogin: false
               })
           }
-          
-         
+
+
       })
+
+
   }
 })
