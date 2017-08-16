@@ -46,13 +46,14 @@ Page({
     },
     addLike:{
         add:0,
-        url: '../img/like01.png'
+        url: '../img/like0.png'
     },
     addSave:{
         add: 0,
-        url: '../img/save03.png'
+        url: '../img/save0.png'
     },
-    foodId:null
+    foodId:null,
+    openid:null
   },
 
   /**
@@ -60,13 +61,13 @@ Page({
    */
   onLoad: function (options) {
       var that = this;
-      console.log(options);
+      console.log(options, wx.getStorageSync('openid'));
       if(options.id!=null){
           that.data.foodId = options.id;
           wx.request({
               url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/FoodInfoData',
               method: 'GET',
-              data: { id: that.data.foodId },
+              data: { id: that.data.foodId,openid: wx.getStorageSync('openid')},
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               header: {
                   'content-type': 'application/json'
@@ -93,14 +94,16 @@ Page({
                                   thumbnail:obj.thumbnail,
                                   tip:obj.tip
                               };
-                          console.log(obj.step);
-                          console.log(ListArr);
+                          //console.log(obj.step);
+                          //console.log(ListArr);
                           that.setData({
                               'addLike.add':obj.user_like_start,
+                              'addLike.url':'../img/like'+obj.user_like_start+'.png',
                               'addSave.add':obj.collect_start,
+                              'addSave.url':'../img/save'+obj.collect_start+'.png',
                               detail:ListArr
                               //   'swiper.imgUrls': ListArr
-                          })
+                          });
                       }
 
                   }
@@ -166,43 +169,83 @@ Page({
   onShareAppMessage: function () {
   
   },
+  saveLikeFun:function(type,add){
+      var that = this;
+      if(wx.getStorageSync('openid')){
+            var url=null;//请求路径
+            var img01=null;//取消点赞
+            var img02 = null;//点赞
+            var obj=null;
+            if(type=='like'){
+                url='https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserLike';
+                img01 = '../img/like0.png';
+                img02 = '../img/like1.png';
+                if(add==1){
+                    obj={
+                        addLike: {
+                            add:0,
+                            url: img01
+                            }
+                    }
+
+                }else{
+                    obj={
+                        addLike: {
+                            add:1,
+                            url: img02
+                        }
+                    }
+                }
+            }else if(type=='save'){
+                url='https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserCollect';
+                img01 = '../img/save0.png';
+                img02 = '../img/save1.png';
+                if(add==1){
+                    obj={
+                        addSave:{
+                            add:0,
+                            url: img01
+                        }
+                    }
+                }else{
+                    obj={
+                        addSave:{
+                            add:1,
+                            url: img02
+                        }
+                    }
+                }
+            }
+              wx.request({/**用户点赞**/
+              url: url,
+                  data: {
+                      f_id:that.data.foodId,
+                      openid:wx.getStorageSync('openid')
+                  },
+                  success: function (lastData) {
+                      console.log('点赞收藏',lastData);
+                      if(lastData.data.code==1001){
+                          that.setData(obj);
+                          wx.showLoading({
+                              title: '提交成功'
+                          });
+                          setTimeout(function () {
+                              wx.hideLoading();
+                          }, 500)
+                      }
+                  }
+              })
+      }else{
+          app.getUserInfo(function (userInfo) {});
+      }
+  },
   funLike:function(){
       var add = this.data.addLike.add;
-    //   console.log(add);
-      if(add==1){
-          this.setData({
-              addLike:{
-                  add:0,
-                  url: '../img/like01.png'
-              }
-          })
-      }else{
-          this.setData({
-              addLike: {
-                  add: 1,
-                  url: '../img/like02.png'
-              }
-          })
-      }
+      this.saveLikeFun('like',add);
+
   },
   funSave: function () {
       var add = this.data.addSave.add;
-    //   console.log(add);
-      if (add==1) {
-          this.setData({
-              addSave: {
-                  add: 0,
-                  url: '../img/save03.png'
-              }
-          })
-      } else {
-          this.setData({
-              addSave: {
-                  add: 1,
-                  url: '../img/save04.png'
-              }
-          })
-      }
+      this.saveLikeFun('save',add);
   }
-
 })

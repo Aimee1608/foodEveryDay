@@ -16,32 +16,31 @@ App({
         that.globalData.iv = backMsg.iv;
         that.globalData.login = true;
         console.log(that.globalData.code);
-        typeof cb == "function" && cb(that.globalData.userInfo);
         wx.request({/**通过code获取openid**/
-        url:'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/sendCode',
+          url:'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/sendCodeLogin',
           data:{
-            code:that.globalData.code
+            code:that.globalData.code,
+            encryptedData: backMsg.encryptedData,
+            iv:backMsg.iv
           },
           success:function(openData){
-            console.log(openData);
-            that.globalData.openid = openData.data.data.openid;
-            wx.request({/**用户数据后台入库**/
-            url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/saveUserInfo',
-              data: {
-                encryptedData: backMsg.encryptedData,
-                iv:backMsg.iv,
-                openid:that.globalData.openid
-              },
-              success: function (lastData) {
-                console.log(lastData);
-                if(lastData.data.code==1001){
-                  wx.setStorageSync('openid',that.globalData.openid);
-                  wx.setStorageSync('userInfo',that.globalData.userInfo);
-                }
-              }
-            })
+            console.log('返回openid',openData,openData.data);
+            if(openData.data.code==1001){
+              that.globalData.openid = openData.data.data.openid;
+              wx.setStorageSync('openid',that.globalData.openid);
+              wx.setStorageSync('userInfo',that.globalData.userInfo);
+              typeof cb == "function" && cb(that.globalData.userInfo);
+            }else{
+              wx.showLoading({
+                title: '登录失败'
+              });
+              setTimeout(function () {
+                wx.hideLoading();
+              }, 500)
+            }
           }
         })
+
       }
       wx.login({
         success: function (msg) {

@@ -23,11 +23,11 @@
         {{detail.author}}
     </view>
     <view class="like-count">
-        <image src="../img/like02.png"></image>
+        <image src="../img/like1.png"></image>
         {{detail.like}}
     </view>
     <view class="save-count">
-        <image src="../img/save04.png"></image>
+        <image src="../img/save1.png"></image>
         {{detail.collect}}
     </view>
   </view>
