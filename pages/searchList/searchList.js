@@ -19,7 +19,7 @@ Page({
       isLoading: false,//正在加载中
       noMore: false,//是否还有更多数据，
       classId:null,
-      pageId:null,
+      pageId:1,
       keywords:null
 
   },

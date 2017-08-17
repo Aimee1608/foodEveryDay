@@ -80,6 +80,7 @@
 .food-time view{
   width:50%;
   color:#969696;
+  font-size:12pt;
   /* line-height: 180%; */
 }
 .food-time view:first-child{
@@ -133,7 +134,7 @@
 .way-listbox .way-item{
     width:100%;
     line-height: 180%;
-    margin-bottom:50rpx;
+    margin-bottom:40rpx;
      text-align:justify;
      position: relative;
      /* text-indent: 3em; */

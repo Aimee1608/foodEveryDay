@@ -182,6 +182,7 @@ Page({
                 img02 = '../img/like1.png';
                 if(add==1){
                     obj={
+                        'detail.like':that.data.detail.like-1,
                         addLike: {
                             add:0,
                             url: img01
@@ -190,6 +191,7 @@ Page({
 
                 }else{
                     obj={
+                        'detail.like':that.data.detail.like+1,
                         addLike: {
                             add:1,
                             url: img02
@@ -202,6 +204,7 @@ Page({
                 img02 = '../img/save1.png';
                 if(add==1){
                     obj={
+                        'detail.collect':that.data.detail.collect-1,
                         addSave:{
                             add:0,
                             url: img01
@@ -209,6 +212,7 @@ Page({
                     }
                 }else{
                     obj={
+                        'detail.collect':that.data.detail.collect+1,
                         addSave:{
                             add:1,
                             url: img02

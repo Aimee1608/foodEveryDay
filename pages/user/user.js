@@ -37,12 +37,8 @@ Page({
             console.log({pageId:pageId,openid:openid});
             wx.request({
                 url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserCollectData',
-                method: 'POST',
-                data:{pageId:pageId,openid:"oY4QA0abt8v75VDLjNYqb8HOr1Rk"},
+                data:{pageId:pageId,openid:openid},
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-                header: {
-                    'content-type': 'application/json'
-                },
                 success: function (res) {
                     // success
                     console.log('收藏列表', res);
