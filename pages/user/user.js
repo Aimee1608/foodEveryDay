@@ -19,6 +19,7 @@ Page({
           //  user_like:999
           //}
       ],
+      totalCollect:0,
       isLoading: false,//正在加载中
       noMore: false,//是否还有更多数据
       openid:null,
@@ -43,7 +44,7 @@ Page({
                     // success
                     console.log('收藏列表', res);
                     if (res.data.code == 1001) {
-                        var arr = res.data.data;
+                        var arr = res.data.data.dataList;
                         var ListArr = that.data.searchListArr;
                         if (arr.length > 0) {
                             for (var i = 0; i < arr.length; i++) {
@@ -61,7 +62,7 @@ Page({
                                     material: material,
                                     author: arr[i].author,
                                     collect: arr[i].collect!=null?arr[i].collect:0,
-                                    user_like: arr[i].user_like != null ? arr[i].user_like : 0
+                                    like: arr[i].user_like != null ? arr[i].user_like : 0
                                 });
                             }
                             //console.log(ListArr);
@@ -69,12 +70,14 @@ Page({
                                 that.setData({
                                     searchListArr: ListArr,
                                     pageId:arr[arr.length-1].id,
+                                    totalCollect:res.data.data.count,
                                     noMore:true
                                 })
                             }else{
                                 that.setData({
                                     searchListArr: ListArr,
                                     pageId:arr[arr.length-1].id,
+                                    totalCollect:that.data.data.count,
                                     noMore:false
                                 })
                             }
@@ -98,19 +101,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var that = this;
-      var openid = wx.getStorageSync('openid');
-      if(openid){
-          this.setData({
-              userInfo: wx.getStorageSync('userInfo'),
-              isLogin: true
-          });
-          that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
-      }else{
-          this.setData({
-              isLogin: false
-          })
-      }
+
   },
 
   /**
@@ -124,7 +115,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      
+      var that = this;
+      var openid = wx.getStorageSync('openid');
+      if(openid){
+          this.setData({
+              userInfo: wx.getStorageSync('userInfo'),
+              isLogin: true
+          });
+          that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+      }else{
+          this.setData({
+              isLogin: false
+          })
+      }
 
   },
 
@@ -213,26 +216,16 @@ Page({
           //更新数据
           //   console.log(userInfo);
           if (app.globalData.login!=false){
-              wx.showLoading({
-                  title: '加载中'
+              that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+              that.setData({
+                  userInfo: userInfo,
+                  isLogin: true
               });
-
-              setTimeout(function () {
-                  wx.hideLoading();
-                  that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
-                  that.setData({
-                      userInfo: userInfo,
-                      isLogin: true
-                  })
-              }, 500)
-
           }else{
               that.setData({
                   isLogin: false
               })
           }
-
-
       })
 
 

@@ -5,7 +5,7 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo-text"> 
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <view class="likeCount">收藏数量</view>
+      <view class="likeCount">收藏数量 {{totalCollect}}</view>
     </view> 
   </view>
   <!-- 收藏菜品列表 -->
@@ -16,7 +16,7 @@
                <rich-text>{{item.name}}</rich-text>
                <view>{{item. material}}</view>
                <view>{{item.author}}</view>
-               <text>收藏{{item.collect}}</text><text> 点赞{{item.user_like}}</text>
+               <text>收藏{{item.collect}}</text><text> 点赞{{item.like}}</text>
            </view>
        </navigator>
      </view>

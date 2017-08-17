@@ -1,4 +1,5 @@
 // pages/detailFood/detailFood.js
+var app = getApp();
 Page({
 
   /**
@@ -7,42 +8,42 @@ Page({
 
   data: {
     detail:{
-        id:1,
-        img:'../img/food.png',
-        name:'香煎辣排骨',
-        author:'小芊',
-        collect:888,
-        like:959,
-        describe:'排骨绝对是人见人爱的美味佳肴，丰富的蛋白质、维生素以及骨胶原深受到女性的青睐，不管是红烧，糖醋还是清炒，味道都很赞。',
-        complexity:'一般',
-        handle_time:'60分钟',
-        inventory: [
-            {
-             food_name:'辣花生',
-             food_how:50
-            }
-        ],
-        step:[
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫',
-            '排骨切段，放入锅中焯水撇去浮沫'
-        ],
-        thumbnail: [
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png',
-            '../img/food.png'
-        ],
-        tip:'家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊'
+        //id:1,
+        //img:'../img/food.png',
+        //name:'香煎辣排骨',
+        //author:'小芊',
+        //collect:888,
+        //like:959,
+        //describe:'排骨绝对是人见人爱的美味佳肴，丰富的蛋白质、维生素以及骨胶原深受到女性的青睐，不管是红烧，糖醋还是清炒，味道都很赞。',
+        //complexity:'一般',
+        //handle_time:'60分钟',
+        //inventory: [
+        //    {
+        //     food_name:'辣花生',
+        //     food_how:50
+        //    }
+        //],
+        //step:[
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫',
+        //    '排骨切段，放入锅中焯水撇去浮沫'
+        //],
+        //thumbnail: [
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png',
+        //    '../img/food.png'
+        //],
+        //tip:'家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊'
     },
     addLike:{
         add:0,
@@ -230,26 +231,40 @@ Page({
                       console.log('点赞收藏',lastData);
                       if(lastData.data.code==1001){
                           that.setData(obj);
-                          wx.showLoading({
-                              title: '提交成功'
-                          });
-                          setTimeout(function () {
-                              wx.hideLoading();
-                          }, 500)
+                          wx.showToast({
+                              title: '成功',
+                              icon: 'success',
+                              duration: 500
+                          })
                       }
                   }
               })
       }else{
-          app.getUserInfo(function (userInfo) {});
+          wx.showModal({
+              title: '用户登录',
+              content: '登录后即可点赞收藏菜谱哦',
+              success: function(res) {
+                  if (res.confirm) {
+                      console.log('用户点击确定');
+                      app.getUserInfo(function(userInfo){
+
+                      });
+                      //wx.reLaunch({
+                      //    url:'../user/user'
+                      //})
+                  } else if (res.cancel) {
+                      console.log('用户点击取消');
+                  }
+              }
+          })
       }
   },
   funLike:function(){
       var add = this.data.addLike.add;
       this.saveLikeFun('like',add);
-
   },
   funSave: function () {
       var add = this.data.addSave.add;
       this.saveLikeFun('save',add);
   }
-})
+});

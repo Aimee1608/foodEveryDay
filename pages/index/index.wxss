@@ -53,6 +53,7 @@ view.search{
   width:100%;
   text-align: center;
   margin: 30rpx 0 20rpx 0 ;
+  color:#636363;
 }
 .todayList{
   width:722rpx;
@@ -92,6 +93,8 @@ view.search{
     height:60rpx;
     line-height: 60rpx;
     text-align: center;
+    color:#636363;
+    font-size:11pt;
 }
 .clearFloat{
   clear:both;

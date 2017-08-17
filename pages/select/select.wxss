@@ -10,6 +10,8 @@
   width:100%;
   text-align: center;
   padding:20rpx 0;
+  color:#000;
+  font-weight:bold;
 }
 .select-iconList{
   width:100%;

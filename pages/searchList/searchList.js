@@ -18,18 +18,15 @@ Page({
       ],
       isLoading: false,//正在加载中
       noMore: false,//是否还有更多数据，
-      classId:null,
+      classId:0,
       pageId:1,
-      keywords:null
-
+      keywords:''
   },
     getList:function(that,classId,pageId,keywords){
-        if(classId!=null||pageId!=null||keywords!=null){
-
+        if(classId!=0||pageId!=null||keywords!=''){
             console.log({'class_id':classId,pageId:pageId,name:keywords});
             wx.request({
                 url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/show_list',
-                method: 'POST',
                 data:{'class_id':classId,pageId:pageId,name:keywords},
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 header: {
@@ -57,7 +54,7 @@ Page({
                                     material: material,
                                     author: arr[i].author,
                                     collect: arr[i].collect!=null?arr[i].collect:0,
-                                    user_like: arr[i].user_like != null ? arr[i].user_like : 0
+                                    like: arr[i].like != null ? arr[i].like : 0
                                 });
                             }
                             //console.log(ListArr);
@@ -110,8 +107,8 @@ Page({
         var val = e.detail.value;
         if(val!=null&&val!=''){
             that.setData({
-                classId:null,
-                pageId:null,
+                classId:0,
+                pageId:1,
                 keywords: val,
                 searchListArr:[]
             });

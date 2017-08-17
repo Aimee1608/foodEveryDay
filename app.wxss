@@ -1,4 +1,7 @@
 /**app.wxss**/
+page{
+    background:#F9F5EC;
+}
 .container {
   /* height: 100%; */
   /* width:100%; */
@@ -11,13 +14,9 @@
   padding: 20rpx 22rpx;
   box-sizing: border-box;
   background:#F9F5EC;
-  font-size:14pt;
-  color:#9B9B9B;
-} 
-view{
-    color:#9b9b9b;
+  /*font-size:14pt;*/
+  color:#636363;
 }
-
 /***收藏列表、搜索列表***/
 .like-list{
   width:100%;

@@ -21,6 +21,9 @@
   margin-top:70rpx;
   margin-bottom:20rpx;
 }
+view{
+    color:#636363;
+}
 /**作者**/
 .author{
      text-align: right;
@@ -103,6 +106,7 @@
   width:100%;
   margin:70rpx 0;
   text-align: center;
+  font-size:13pt;
 }
 .food-listbox01 .food-item{
   width:100%;
@@ -191,7 +195,7 @@
 }
 .tip-content{
     text-indent: 2em;
-    color:#A7A7A7;
+    /*color:#A7A7A7;*/
     text-align:justify;
 }
 .fixed-box{
