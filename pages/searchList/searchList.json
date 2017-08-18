@@ -1,1 +1,7 @@
-{}
+{
+
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#F3EBDF",
+  "navigationBarTitleText": "搜索列表",
+  "navigationBarTextStyle": "black"
+}

@@ -99,6 +99,10 @@ Page({
           });
           that.getList(that,that.data.classId,that.data.pageId,that.data.keywords);
 
+      }else{
+          that.setData({
+              noMore:true
+          });
       }
   
   },

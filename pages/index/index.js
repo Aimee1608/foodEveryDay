@@ -38,34 +38,55 @@ Page({
       //  id: 1
       //}
     ],
-    pageId:0,
+    pageId:1,
     isLoading:false,//正在加载中
-    noMore:false//是否还有更多数据
+    noMore:false,//是否还有更多数据
+    init:true
   },  //事件处理函数
-  upper: function (e) {
-      console.log('顶')
-  },
-  lower: function (e) {
-      console.log('底')
-  },
-  scroll: function (e) {
-      console.log(e)
-  },
   /**
    * 列表 获取更多
    * ***/
   getList:function(that,noMore,pageId){
-      if(!noMore){
+      if(that.data.init){
           wx.request({
-              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/Recommend',
-              method: 'POST',
-              data:{
-                  pageId:pageId
-              },
+              url:'https://h5php.xingyuanauto.com/food/public/index.php/port/food/GetFocus',
+              method: 'GET',
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               header: {
                   'content-type': 'application/json'
               },
+              success: function (res) {
+                  // success
+                  console.log('焦点图',res);
+                  if(res.data.code==1001){
+                      var arr = res.data.data;
+                      if (arr.length > 0) {
+                          that.setData({
+                              'swiper.imgUrls': arr,
+                              init:false
+                          })
+                      }
+
+                  }
+              },
+              fail: function (res) {
+                  // fail
+                  console.log(res);
+              },
+              complete: function () {
+                  // complete
+
+              }
+          });
+      }
+      if(!noMore){
+           console.log(pageId);
+          wx.request({
+              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/Recommend',
+              data:{
+                  pageId:pageId
+              },
+              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               success: function (res) {
                   // success
                   console.log('列表', res);
@@ -81,10 +102,10 @@ Page({
                                   id: arr[i].id
                               });
                           }
-                          if (arr.length < 10) {
+                          if (arr.length < 8) {
                               that.setData({
                                   todayListArr: ListArr,
-                                  pageId: arr[arr.length - 1].id,
+                                  pageId: arr[arr.length-1].id,
                                   noMore:true
                               })
                           }else{
@@ -116,37 +137,8 @@ Page({
   */
   onLoad: function (options) {
       var that = this;
-      wx.request({
-        url:'https://h5php.xingyuanauto.com/food/public/index.php/port/food/GetFocus',
-        method: 'GET',
-        // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        header: {
-            'content-type': 'application/json'
-        },
-        success: function (res) {
-            // success
-            console.log('焦点图',res);
-            if(res.data.code==1001){
-                var arr = res.data.data;
-                if (arr.length > 0) {
-                    that.setData({
-                        'swiper.imgUrls': arr
-                    })
-                }
-               
-            }
-        },
-        fail: function (res) {
-            // fail
-            console.log(res);
-        },
-        complete: function () {
-            // complete
-            
-        }
-    });
       /**加载列表数据**/
-      that.getList(that,that.data.noMore,that.pageId);
+      that.getList(that,that.data.noMore,that.data.pageId);
     
   },
 
@@ -182,7 +174,28 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+      var that = this;
+      console.log('下拉刷新');
+      var openid = wx.getStorageSync('openid');
+      if(openid){
+          wx.showLoading({
+              title: '刷新中'
+          });
+          var timer = setTimeout(function () {
+              console.log(888);
+              that.setData({
+                  pageId:1,
+                  noMore:false,
+                  todayListArr:[],
+                  'swiper.imgUrls':[],
+                  init:true
+              });
+              wx.hideLoading();
+              that.getList(that,that.data.noMore,that.data.pageId);
+              wx.stopPullDownRefresh(); //停止下拉刷新
+              clearTimeout(timer);
+          }, 500)
+      }
   },
 
   /**
@@ -195,6 +208,9 @@ Page({
           this.setData({
               isLoading: true
           });
+          wx.showLoading({
+              title: '加载中'
+          });
 
           var timer = setTimeout(function () {
               console.log(888);
@@ -202,7 +218,8 @@ Page({
                   isLoading: false
               });
               /**上拉加载更多数据**/
-              that.getList(that,that.data.noMore,that.pageId);
+              that.getList(that,that.data.noMore,that.data.pageId);
+              wx.hideLoading();
               clearTimeout(timer);
           }, 1000)
       }

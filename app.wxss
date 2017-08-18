@@ -13,9 +13,8 @@ page{
   /* justify-content: space-between; */
   padding: 20rpx 22rpx;
   box-sizing: border-box;
-  background:#F9F5EC;
   /*font-size:14pt;*/
-  color:#636363;
+  /*color:#636363;*/
 }
 /***收藏列表、搜索列表***/
 .like-list{
@@ -31,7 +30,7 @@ page{
   height:240rpx;
   padding:24rpx;
    /* background:#F3EBDF;  */
-   background:rgba(255,255,255,0.8);
+   background:rgba(255,255,255,1);
    /* border-bottom:1px solid #c3c3c3; */
   position: relative;
   box-sizing: border-box;

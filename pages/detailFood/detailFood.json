@@ -1,1 +1,8 @@
-{}
+{
+
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#F3EBDF",
+  "navigationBarTitleText": "咿咕噜",
+  "navigationBarTextStyle": "black"
+
+}

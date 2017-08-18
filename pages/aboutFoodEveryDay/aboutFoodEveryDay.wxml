@@ -1,0 +1,9 @@
+<!--pages/aboutFoodEveryDay/aboutFoodEveryDay.wxml-->
+<view class="about-img">
+    <image src="../img/tou.png"></image>
+    <text class="name">咿咕噜 v1.0.0</text>
+    <text>你的美味生活</text>
+</view>
+<view class="content">
+    咿咕噜你的美味生活,咿咕噜你的美味生活咿咕噜你的美味生活咿咕噜你的美味生活咿咕噜你的美味生活咿咕噜你的美味生活咿咕噜你的美味生活
+</view>

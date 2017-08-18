@@ -6,7 +6,9 @@
     "pages/user/user",
     "pages/detailFood/detailFood",
     "pages/searchList/searchList",
-    "pages/addFood/addFood"
+    "pages/addFood/addFood",
+    "pages/collectList/collectList",
+    "pages/aboutFoodEveryDay/aboutFoodEveryDay"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -33,10 +35,10 @@
         "text":"分类"
       },
       {
-        "selectedIconPath": "pages/img/save02.png",
-        "iconPath": "pages/img/save01.png",
+        "selectedIconPath": "pages/img/user02.png",
+        "iconPath": "pages/img/user01.png",
         "pagePath": "pages/user/user",
-        "text": "收藏"
+        "text": "我的"
       }
     ]
   },

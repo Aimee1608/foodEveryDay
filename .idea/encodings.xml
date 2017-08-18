@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/pages/aboutFoodEveryDay/aboutFoodEveryDay.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/aboutFoodEveryDay/aboutFoodEveryDay.wxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/aboutFoodEveryDay/aboutFoodEveryDay.wxss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/collectList/collectList.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/collectList/collectList.wxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/collectList/collectList.wxss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/detailFood/detailFood.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/searchList/searchList.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/select/select.wxss" charset="UTF-8" />
   </component>
 </project>
