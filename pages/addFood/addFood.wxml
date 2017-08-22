@@ -16,9 +16,9 @@
     <view class="foodBox inventory">
         <text>选择分类</text>
         <view class="section">
-          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
             <view class="picker">
-              当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+              当前选择：{{multiArray[0][multiIndex[0]].class_name}}，{{multiArray[1][multiIndex[1]].class_name}}
             </view>
           </picker>
         </view>

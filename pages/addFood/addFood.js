@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+      searchNameArr:'',
       multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],
       objectMultiArray: [
           [
@@ -40,7 +41,9 @@ Page({
               }
           ]
       ],
-      multiIndex: [0, 0]
+      multiIndex: [0, 0],
+      cid:'',
+      cidIndex:1
   },
     bindMultiPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value);
@@ -52,62 +55,15 @@ Page({
         console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
         var data = {
             multiArray: this.data.multiArray,
-            multiIndex: this.data.multiIndex
+            multiIndex: this.data.multiIndex,
+            cid:this.data.cid
         };
         data.multiIndex[e.detail.column] = e.detail.value;
-        switch (e.detail.column) {
-            case 0:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-                        break;
-                    case 1:
-                        data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-                        break;
-                }
-                data.multiIndex[1] = 0;
-                //data.multiIndex[2] = 0;
-                break;
-            case 1:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        //switch (data.multiIndex[1]) {
-                        //    case 0:
-                        //        data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                        //        break;
-                        //    case 1:
-                        //        data.multiArray[2] = ['蛔虫'];
-                        //        break;
-                        //    case 2:
-                        //        data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                        //        break;
-                        //    case 3:
-                        //        data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                        //        break;
-                        //    case 4:
-                        //        data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                        //        break;
-                        //}
-                        //break;
-                    case 1:
-                        //switch (data.multiIndex[1]) {
-                        //    case 0:
-                        //        data.multiArray[2] = ['鲫鱼', '带鱼'];
-                        //        break;
-                        //    case 1:
-                        //        data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                        //        break;
-                        //    case 2:
-                        //        data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                        //        break;
-                        //}
-                        //break;
-                }
-                //data.multiIndex[2] = 0;
-                console.log(data.multiIndex);
-                break;
-        }
-        this.setData(data);
+        data.multiArray[1] = this.data.searchNameArr[this.data.multiIndex[0]].class_names;
+        data.cid = this.data.searchNameArr[this.data.multiIndex[0]].class_names[e.detail.value].id;
+        console.log(data.multiIndex,data.cid);
+        this.setData(data);         
+       
     },
   /**
    * 生命周期函数--监听页面加载
@@ -127,9 +83,15 @@ Page({
               if (res.data.code == 1001) {
                   var arr = res.data.data;
                   if (arr.length > 0) {
+                      var parrlist = [];
                       //console.log(ListArr);
+                      for(var i=0;i<arr.length;i++){
+                        parrlist.push({id:arr.id,class_name:arr[i].class_name});
+                      }
                       that.setData({
-                          searchNameArr: arr
+                          searchNameArr: arr,
+                          parrlist:parrlist,
+                          multiArray:[parrlist,arr[0].class_names]
                       })
                   }
               }

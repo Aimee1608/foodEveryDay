@@ -31,15 +31,15 @@
         </view>
    </view>
     <view class="myFood">
-        <view class="user-common ">
-                    <image src="../img/help.png"></image>
-                    <text>帮助和反馈意见</text>
-                    <image src="../img/r-arrow.png"></image>
-            </view>
+        <navigator class="user-common " url="../help/help">
+            <image src="../img/help.png"></image>
+            <text>帮助和反馈意见</text>
+            <image src="../img/r-arrow.png"></image>
+        </navigator>
         <navigator class="user-common" url="../aboutFoodEveryDay/aboutFoodEveryDay">
-                <image src="../img/tou.png"></image>
-                <text>关于咿咕噜</text>
-                <image src="../img/r-arrow.png"></image>
+            <image src="../img/logo.png"></image>
+            <text>关于咿咕噜</text>
+            <image src="../img/r-arrow.png"></image>
         </navigator>
     </view>
 </view>

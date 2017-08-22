@@ -8,7 +8,8 @@
     "pages/searchList/searchList",
     "pages/addFood/addFood",
     "pages/collectList/collectList",
-    "pages/aboutFoodEveryDay/aboutFoodEveryDay"
+    "pages/aboutFoodEveryDay/aboutFoodEveryDay",
+    "pages/help/help"
   ],
   "window":{
     "backgroundTextStyle":"light",
