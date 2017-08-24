@@ -5,7 +5,8 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
+    data: {
+      array: ['10分钟以内', '10-20分钟', '30分钟-1小时', '1-2小时','2小时以上'],
       searchNameArr:'',
       multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],
       objectMultiArray: [
@@ -45,6 +46,12 @@ Page({
       cid:'',
       cidIndex:1
   },
+    bindPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.setData({
+            index: e.detail.value
+        })
+    },
     bindMultiPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({

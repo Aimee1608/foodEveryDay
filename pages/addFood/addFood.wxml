@@ -13,14 +13,68 @@
        <text>介绍</text>
          <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;"  />
     </view>
-    <view class="foodBox inventory">
+    <view class="foodBox class-name">
         <text>选择分类</text>
         <view class="section">
           <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
             <view class="picker">
-              当前选择：{{multiArray[0][multiIndex[0]].class_name}}，{{multiArray[1][multiIndex[1]].class_name}}
+              {{multiArray[0][multiIndex[0]].class_name}}——{{multiArray[1][multiIndex[1]].class_name}}
             </view>
           </picker>
         </view>
     </view>
+    <view class="foodBox inventory">
+        <text>食材</text>
+        <view class="inventoryList">
+            <view class="inventoryItem">
+                <input type='text' placeholder='食材名称，例：花生' />
+                <input type='text' placeholder='食材量，例：50g' />
+                <image src="../img/plus.png"></image>
+            </view>
+            <view class="inventoryItem">
+                <input type='text' placeholder='食材名称，例：花生' />
+                <input type='text' placeholder='食材量，例：50g' />
+                <image src="../img/less.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="foodBox step">
+        <text>操作步骤</text>
+        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:red;"  />
+    </view>
+    <view class="foodBox thumbnail">
+        <text>图片步骤</text>
+        <view class="inputFile">
+            上传图片
+        </view>
+    </view>
+    <view class="foodBox tip">
+        <text>小窍门</text>
+        <textarea placeholder="小窍门" placeholder-style="color:red;"  />
+    </view>
+    <view class="foodBox complexity">
+        <text>难易程度</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" >
+                <radio value="一般" checked="true"/>一般
+            </label>
+            <label class="radio" >
+                <radio value="较易" checked="true"/>较易
+            </label>
+            <label class="radio" >
+                <radio value="较难" checked="true"/>较难
+            </label>
+        </radio-group>
+    </view>
+    <view class="foodBox handle_time">
+        <text>烹饪时间</text>
+        <view class="section">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="picker">
+                时间{{array[index]}}
+                </view>
+            </picker>
+        </view>
+    </view>
+    <button>提交作品</button>
 </view>
