@@ -3,19 +3,25 @@
     <view class="foodBox bigImg" >
         <text>主图</text>
         <image class="foodUrl" src="{{uploadObj.img}}"/>
-        <image bindtap="loadBigImg" class="r-arrow" src="../img/r-arrow.png"></image>
+        <view class="r-arrow" bindtap="loadBigImg">
+            <image   src="../img/r-arrow.png"></image>
+        </view>
     </view>
     <view class="foodBox title">
        <text>菜名</text>
-        <input type='text' placeholder="如鱼香肉丝"/>
+        <input type='text' placeholder="如鱼香肉丝" maxlength="10" bindinput="bindKeyInput01"/>
+        <view class="smallTip">{{totalKeyInput01}}/10</view>
     </view>
      <view class="foodBox foodText">
        <text>介绍</text>
-         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:#808080;"  />
+         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput02"/>
+         <view class="smallTip">{{totalKeyInput02}}/100</view>
     </view>
     <view class="foodBox class-name">
         <text>选择分类</text>
-        <image class="r-arrow" src="../img/r-arrow.png"></image>
+         <view class="r-arrow" >
+            <image   src="../img/r-arrow.png"></image>
+         </view>
         <view class="section">
           <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
             <view class="picker">
@@ -32,30 +38,34 @@
         </view>
         <view class="inventoryList" hidden="{{!isInventory}}">
             <view class="inventoryItem" wx:for="{{uploadObj.inventory}}">
-                <input type='text' placeholder='食材名称，例：花生' />
-                <input type='text' placeholder='食材量，例：50g' />
+                <input type='text' placeholder='例：花生' maxlength="10"/>
+                <input type='text' placeholder='例：50g' maxlength="10"/>
                 <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory"></image>
             </view>
         </view>
     </view>
     <view class="foodBox step">
         <text>操作步骤</text>
-        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:#808080;"  />
+        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:#808080;"  maxlength="200" bindinput="bindKeyInput03"/>
+        <view class="smallTip">{{totalKeyInput03}}/200</view>
     </view>
     <view class="foodBox thumbnail">
         <text>图片步骤</text>
         <image class="foodUrl" hidden="{{isLoad}}" src="{{loadImgB}}"/>
-        <image bindtap="loadThumbnailImg" class="r-arrow" src="../img/r-arrow.png"></image>
+        <view class="r-arrow" bindtap="loadThumbnailImg">
+            <image   src="../img/r-arrow.png"></image>
+        </view>
         <view class="inputFile" hidden="{{!isLoad}}">
             <view class="thumbnailImg" wx:for="{{uploadObj.thumbnail}}">
-                <image  src="{{item}}"/>
+                <image  src="https://h5php.xingyuanauto.com/food/public/upload/testfile/{{item}}"/>
                 <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
             </view>
         </view>
     </view>
     <view class="foodBox tip">
         <text>小窍门</text>
-        <textarea placeholder="小窍门" placeholder-style="color:#808080;"  />
+        <textarea placeholder="小窍门" placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput04" />
+        <view class="smallTip">{{totalKeyInput04}}/100</view>
     </view>
     <view class="foodBox complexity">
         <text>难易程度</text>
@@ -73,7 +83,9 @@
     </view>
     <view class="foodBox handle_time">
         <text>烹饪时间</text>
-         <image class="r-arrow" src="../img/r-arrow.png"></image>
+        <view class="r-arrow" >
+            <image   src="../img/r-arrow.png"></image>
+        </view>
         <view class="section">
             <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
                 <view class="picker">

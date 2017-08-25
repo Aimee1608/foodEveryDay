@@ -61,6 +61,10 @@ Page({
       loadImgB:'../img/imgM.png',
       isLoad:false,
       isInventory:false,
+      totalKeyInput01:0,
+      totalKeyInput02:0,
+      totalKeyInput03:0,
+      totalKeyInput04:0,
   },
     bindPickerChange: function (e) {
         console.log('时间picker发送选择改变，携带值为', e.detail.value);
@@ -69,22 +73,23 @@ Page({
         })
     },
     bindMultiPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value);
+
+        var cid = this.data.multiArray[1][e.detail.value[1]].id;
+        console.log('picker发送选择改变，携带值为', e.detail.value,cid);
         this.setData({
-            multiIndex: e.detail.value
+            multiIndex: e.detail.value,
+            cid:this.data.cid
         })
     },
     bindMultiPickerColumnChange: function (e) {
         console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
         var data = {
             multiArray: this.data.multiArray,
-            multiIndex: this.data.multiIndex,
-            cid:this.data.cid
+            multiIndex: this.data.multiIndex
         };
         data.multiIndex[e.detail.column] = e.detail.value;
         data.multiArray[1] = this.data.searchNameArr[this.data.multiIndex[0]].class_names;
-        data.cid = this.data.searchNameArr[this.data.multiIndex[0]].class_names[e.detail.value].id;
-        console.log(data.multiIndex,data.cid);
+        console.log(data.multiIndex);
         this.setData(data);         
        
     },
@@ -191,19 +196,25 @@ Page({
               var tempFilePaths = res.tempFilePaths;
               var tempFiles = res.tempFiles;
               console.log(tempFiles,res.tempFilePaths);
-              that.setData({
-                  'uploadObj.img':res.tempFilePaths[0]
-              });
               wx.uploadFile({
-                  url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/UploadeImg', //仅为示例，非真实的接口地址
+                  url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/uploadProjectImage', //仅为示例，非真实的接口地址
                   filePath: tempFilePaths[0],
                   name: 'file',
+                  header: {
+                      'content-type':'multipart/form-data'
+                  },
                   formData:{
                       'user': 'test'
                   },
                   success: function(msg){
-                      var data = msg.data;
-                      console.log(msg);
+                      var json = JSON.parse(msg.data);
+                      console.log(json);
+                      if(json.status==1){
+                          that.setData({
+                              'uploadObj.img':'https://h5php.xingyuanauto.com/food/public/upload/testfile/'+json.image_name
+                          });
+                      }
+
                       //do something
                   }
               })
@@ -220,25 +231,39 @@ Page({
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = res.tempFilePaths;
                 var tempFiles = res.tempFiles;
-                var arr = that.data.uploadObj.thumbnail;
-                arr = arr.concat(tempFilePaths);
+
                 console.log(tempFiles,res.tempFilePaths);
-                that.setData({
-                    'uploadObj.thumbnail':arr,
-                    isLoad:true
-                });
-                wx.uploadFile({
-                    url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    formData:{
-                        'user': 'test'
-                    },
-                    success: function(res){
-                        var data = res.data;
-                        //do something
+
+                if(tempFilePaths.length>0){
+                    for(var i=0;i<tempFilePaths.length;i++){
+                        console.log(tempFilePaths[i]);
+                        upload_file(tempFilePaths[i]);
                     }
-                })
+                }
+                function upload_file(itemUrl){
+                    wx.uploadFile({
+                        url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
+                        filePath: itemUrl,
+                        name: 'name',
+                        header: {
+                            'content-type': 'multipart/form-data'
+                        }, // 设置请求的 header
+                        formData:{
+                            'user': 'test'
+                        },
+                        success: function(msg){
+                            var json = JSON.parse(msg.data);
+                            console.log(json,json.data[0]);
+                            var arr = that.data.uploadObj.thumbnail;
+                            arr = arr.push(json.data[0]);
+                            that.setData({
+                                'uploadObj.thumbnail':arr,
+                                isLoad:true
+                            });
+                        }
+                    })
+                }
+
             }
         })
     },
@@ -284,5 +309,25 @@ Page({
     },
     radioChange:function(event){
         console.log('radio发生change事件，携带value值为：', event.detail.value)
+    },
+    bindKeyInput01:function(e){
+        this.setData({
+            totalKeyInput01: e.detail.value.length
+        });
+    },
+    bindKeyInput02:function(e){
+        this.setData({
+            totalKeyInput02: e.detail.value.length
+        });
+    },
+    bindKeyInput03:function(e){
+        this.setData({
+            totalKeyInput03: e.detail.value.length
+        });
+    },
+    bindKeyInput04:function(e){
+        this.setData({
+            totalKeyInput04: e.detail.value.length
+        });
     }
 })

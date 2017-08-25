@@ -13,7 +13,7 @@ page{
   /* justify-content: space-between; */
   padding: 20rpx 22rpx;
   box-sizing: border-box;
-  /*font-size:14pt;*/
+  font-size:12pt;
   /*color:#636363;*/
 }
 /***收藏列表、搜索列表***/

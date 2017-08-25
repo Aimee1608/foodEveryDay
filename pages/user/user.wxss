@@ -91,6 +91,7 @@ page{
 .user-common text{
     width:350rpx;
     height:50rpx;
+    line-height:50rpx;
     position:absolute;
     left:80rpx;
     top:50%;
