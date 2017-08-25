@@ -4,7 +4,7 @@ page{
 }
 .container {
   /* height: 100%; */
-  /* width:100%; */
+  width:100%;
    min-height:1206rpx; 
   /* height:2412rpx; */
    display: flex; 

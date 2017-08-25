@@ -7,6 +7,7 @@ Page({
    */
     data: {
       array: ['10分钟以内', '10-20分钟', '30分钟-1小时', '1-2小时','2小时以上'],
+      index:0,
       searchNameArr:'',
       multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],
       objectMultiArray: [
@@ -44,10 +45,25 @@ Page({
       ],
       multiIndex: [0, 0],
       cid:'',
-      cidIndex:1
+      cidIndex:1,
+      uploadObj:{
+          author:'',
+          complexity:'较易',
+          describe:'就安静安静家啊',
+          handle_time:'30分钟-1小时',
+          img:'../img/imgB.png',
+          name:'jajaj',
+          tip:'jajajja',
+          inventory:[],
+          step:'',
+          thumbnail:[]
+      },
+      loadImgB:'../img/imgM.png',
+      isLoad:false,
+      isInventory:false,
   },
     bindPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
+        console.log('时间picker发送选择改变，携带值为', e.detail.value);
         this.setData({
             index: e.detail.value
         })
@@ -165,16 +181,108 @@ Page({
    * 用户点击右上角分享
    */
   loadBigImg:function(){
+      var that = this;
       wx.chooseImage({
+          count:1,
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
           success: function (res) {
-              wx.getImageInfo({
-                  src: res.tempFilePaths[0],
-                  success: function (res) {
-                      console.log(res.width)
-                      console.log(res.height)
+              // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+              var tempFilePaths = res.tempFilePaths;
+              var tempFiles = res.tempFiles;
+              console.log(tempFiles,res.tempFilePaths);
+              that.setData({
+                  'uploadObj.img':res.tempFilePaths[0]
+              });
+              wx.uploadFile({
+                  url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/UploadeImg', //仅为示例，非真实的接口地址
+                  filePath: tempFilePaths[0],
+                  name: 'file',
+                  formData:{
+                      'user': 'test'
+                  },
+                  success: function(msg){
+                      var data = msg.data;
+                      console.log(msg);
+                      //do something
                   }
               })
           }
       })
-  }
+  },
+    /**上传多张图片**/
+    loadThumbnailImg:function(){
+        var that = this;
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                var tempFilePaths = res.tempFilePaths;
+                var tempFiles = res.tempFiles;
+                var arr = that.data.uploadObj.thumbnail;
+                arr = arr.concat(tempFilePaths);
+                console.log(tempFiles,res.tempFilePaths);
+                that.setData({
+                    'uploadObj.thumbnail':arr,
+                    isLoad:true
+                });
+                wx.uploadFile({
+                    url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+                    filePath: tempFilePaths[0],
+                    name: 'file',
+                    formData:{
+                        'user': 'test'
+                    },
+                    success: function(res){
+                        var data = res.data;
+                        //do something
+                    }
+                })
+            }
+        })
+    },
+    /**清楚上传的图片**/
+    clearImg:function(event){
+        var that = this;
+        var arr = that.data.uploadObj.thumbnail;
+        arr.splice(event.target.dataset.index,1);
+        if(arr.length<1){
+            that.setData({
+                'uploadObj.thumbnail':arr,
+                isLoad:false
+            });
+        }else{
+            that.setData({
+                'uploadObj.thumbnail':arr
+            });
+        }
+    },
+    addInventory:function(){
+        var that = this;
+        var arr = that.data.uploadObj.inventory;
+        arr.push({food_how:'',food_name:''});
+        that.setData({
+            'uploadObj.inventory':arr,
+            isInventory:true
+        });
+    },
+    clearInventory:function(event){
+        var that = this;
+        var arr = that.data.uploadObj.inventory;
+        arr.splice(event.target.dataset.index,1);
+        if(arr.length<1){
+            that.setData({
+                'uploadObj.inventory':arr,
+                isInventory:false
+            });
+        }else{
+            that.setData({
+                'uploadObj.inventory':arr
+            });
+        }
+    },
+    radioChange:function(event){
+        console.log('radio发生change事件，携带value值为：', event.detail.value)
+    }
 })

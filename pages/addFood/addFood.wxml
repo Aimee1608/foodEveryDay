@@ -1,9 +1,9 @@
 <!--pages/addFood/addFood.wxml-->
 <view class="container">
-    <view class="foodBox bigImg" bindtap="loadBigImg">
+    <view class="foodBox bigImg" >
         <text>主图</text>
-        <image class="foodUrl" src="../img/food.png"/>
-        <image class="r-arrow" src="../img/r-arrow.png"></image>
+        <image class="foodUrl" src="{{uploadObj.img}}"/>
+        <image bindtap="loadBigImg" class="r-arrow" src="../img/r-arrow.png"></image>
     </view>
     <view class="foodBox title">
        <text>菜名</text>
@@ -11,70 +11,78 @@
     </view>
      <view class="foodBox foodText">
        <text>介绍</text>
-         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:red;"  />
+         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:#808080;"  />
     </view>
     <view class="foodBox class-name">
         <text>选择分类</text>
+        <image class="r-arrow" src="../img/r-arrow.png"></image>
         <view class="section">
           <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
             <view class="picker">
               {{multiArray[0][multiIndex[0]].class_name}}——{{multiArray[1][multiIndex[1]].class_name}}
             </view>
+
           </picker>
         </view>
     </view>
     <view class="foodBox inventory">
         <text>食材</text>
-        <view class="inventoryList">
-            <view class="inventoryItem">
+        <view class="inventory-btn">
+            <button bindtap="addInventory">添加食材</button>
+        </view>
+        <view class="inventoryList" hidden="{{!isInventory}}">
+            <view class="inventoryItem" wx:for="{{uploadObj.inventory}}">
                 <input type='text' placeholder='食材名称，例：花生' />
                 <input type='text' placeholder='食材量，例：50g' />
-                <image src="../img/plus.png"></image>
-            </view>
-            <view class="inventoryItem">
-                <input type='text' placeholder='食材名称，例：花生' />
-                <input type='text' placeholder='食材量，例：50g' />
-                <image src="../img/less.png"></image>
+                <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory"></image>
             </view>
         </view>
     </view>
     <view class="foodBox step">
         <text>操作步骤</text>
-        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:red;"  />
+        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:#808080;"  />
     </view>
     <view class="foodBox thumbnail">
         <text>图片步骤</text>
-        <view class="inputFile">
-            上传图片
+        <image class="foodUrl" hidden="{{isLoad}}" src="{{loadImgB}}"/>
+        <image bindtap="loadThumbnailImg" class="r-arrow" src="../img/r-arrow.png"></image>
+        <view class="inputFile" hidden="{{!isLoad}}">
+            <view class="thumbnailImg" wx:for="{{uploadObj.thumbnail}}">
+                <image  src="{{item}}"/>
+                <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
+            </view>
         </view>
     </view>
     <view class="foodBox tip">
         <text>小窍门</text>
-        <textarea placeholder="小窍门" placeholder-style="color:red;"  />
+        <textarea placeholder="小窍门" placeholder-style="color:#808080;"  />
     </view>
     <view class="foodBox complexity">
         <text>难易程度</text>
         <radio-group class="radio-group" bindchange="radioChange">
             <label class="radio" >
-                <radio value="一般" checked="true"/>一般
+                <radio value="一般" checked="true" color="#FFCC66"/>一般
             </label>
             <label class="radio" >
-                <radio value="较易" checked="true"/>较易
+                <radio value="较易" checked="true" color="#FFCC66"/>较易
             </label>
             <label class="radio" >
-                <radio value="较难" checked="true"/>较难
+                <radio value="较难" checked="true" color="#FFCC66"/>较难
             </label>
         </radio-group>
     </view>
     <view class="foodBox handle_time">
         <text>烹饪时间</text>
+         <image class="r-arrow" src="../img/r-arrow.png"></image>
         <view class="section">
             <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
                 <view class="picker">
-                时间{{array[index]}}
+                {{array[index]}}
                 </view>
             </picker>
         </view>
     </view>
-    <button>提交作品</button>
+    <view class="submit">
+        <button>提交作品</button>
+    </view>
 </view>
