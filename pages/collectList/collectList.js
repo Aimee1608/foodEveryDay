@@ -154,7 +154,7 @@ Page({
     var openid = wx.getStorageSync('openid');
     if(openid){
       wx.showLoading({
-        title: '加载中'
+        title: '刷新中'
       });
       var timer = setTimeout(function () {
         console.log(888);

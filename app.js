@@ -33,7 +33,7 @@ App({
                 title: '登录成功',
                 icon: 'success',
                 duration: 500
-              })
+              });
               typeof cb == "function" && cb(that.globalData.userInfo);
             }else{
               wx.showLoading({

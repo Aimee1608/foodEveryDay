@@ -2,7 +2,7 @@
 <view class="container">
     <view class="foodBox bigImg" >
         <text>主图</text>
-        <image class="foodUrl" src="{{uploadObj.img}}"/>
+        <image class="foodUrl" src="{{uploadObj.imgUrl}}"/>
         <view class="r-arrow" bindtap="loadBigImg">
             <image   src="../img/r-arrow.png"></image>
         </view>
@@ -38,16 +38,17 @@
         </view>
         <view class="inventoryList" hidden="{{!isInventory}}">
             <view class="inventoryItem" wx:for="{{uploadObj.inventory}}">
-                <input type='text' placeholder='例：花生' maxlength="10"/>
-                <input type='text' placeholder='例：50g' maxlength="10"/>
+                <input type='text' placeholder='例：花生' maxlength="10" data-index="{{index}}" bindinput="inventoryInputname"/>
+                <input type='text' placeholder='例：50g' maxlength="10" data-index="{{index}}" bindinput="inventoryInputhow"/>
                 <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory"></image>
             </view>
         </view>
     </view>
     <view class="foodBox step">
         <text>操作步骤</text>
-        <textarea placeholder="完成一步按回车输入下一步操作" placeholder-style="color:#808080;"  maxlength="200" bindinput="bindKeyInput03"/>
+        <textarea placeholder="如：新鲜的鲫鱼一条收拾干净..." placeholder-style="color:#808080;"  maxlength="200" bindinput="bindKeyInput03"/>
         <view class="smallTip">{{totalKeyInput03}}/200</view>
+        <rich-text>完成一步按回车输入下一步操作</rich-text>
     </view>
     <view class="foodBox thumbnail">
         <text>图片步骤</text>
@@ -56,11 +57,12 @@
             <image   src="../img/r-arrow.png"></image>
         </view>
         <view class="inputFile" hidden="{{!isLoad}}">
-            <view class="thumbnailImg" wx:for="{{uploadObj.thumbnail}}">
-                <image  src="https://h5php.xingyuanauto.com/food/public/upload/testfile/{{item}}"/>
+            <view class="thumbnailImg" wx:for="{{uploadObj.thumbnailReady}}">
+                <image  src="{{item}}"/>
                 <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
             </view>
         </view>
+        <rich-text>最多上传10张图</rich-text>
     </view>
     <view class="foodBox tip">
         <text>小窍门</text>
@@ -71,11 +73,12 @@
         <text>难易程度</text>
         <radio-group class="radio-group" bindchange="radioChange">
             <label class="radio" >
-                <radio value="一般" checked="true" color="#FFCC66"/>一般
-            </label>
-            <label class="radio" >
                 <radio value="较易" checked="true" color="#FFCC66"/>较易
             </label>
+            <label class="radio" >
+                <radio value="一般" checked="true" color="#FFCC66"/>一般
+            </label>
+
             <label class="radio" >
                 <radio value="较难" checked="true" color="#FFCC66"/>较难
             </label>
@@ -95,6 +98,6 @@
         </view>
     </view>
     <view class="submit">
-        <button>提交作品</button>
+        <button bindtap="submitFun">提交作品</button>
     </view>
 </view>

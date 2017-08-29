@@ -16,6 +16,10 @@
     left:0;
     top:20rpx;
 }
+.foodBox rich-text{
+    font-size:10pt;
+    color:#808080;
+}
 .foodBox textarea{
     margin:0;
     padding:0;
@@ -37,6 +41,9 @@
     right:5rpx;
     bottom:30rpx;
     color:#808080;
+}
+.step .smallTip{
+    bottom:24rpx;
 }
 .bigImg{
     width:100%;

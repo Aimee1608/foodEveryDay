@@ -6,79 +6,57 @@ Page({
    * 页面的初始数据
    */
     data: {
-      array: ['10分钟以内', '10-20分钟', '30分钟-1小时', '1-2小时','2小时以上'],
+      array: ['10分钟以内', '10-20分钟', '30分钟-1小时', '1-2小时','2小时以上'],//时间数组
       index:0,
       searchNameArr:'',
-      multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],
-      objectMultiArray: [
-          [
-              {
-                  id: 0,
-                  name: '无脊柱动物'
-              },
-              {
-                  id: 1,
-                  name: '脊柱动物'
-              }
-          ], [
-              {
-                  id: 0,
-                  name: '扁性动物'
-              },
-              {
-                  id: 1,
-                  name: '线形动物'
-              },
-              {
-                  id: 2,
-                  name: '环节动物'
-              },
-              {
-                  id: 3,
-                  name: '软体动物'
-              },
-              {
-                  id: 4,
-                  name: '节肢动物'
-              }
-          ]
-      ],
-      multiIndex: [0, 0],
-      cid:'',
-      cidIndex:1,
-      uploadObj:{
-          author:'',
-          complexity:'较易',
-          describe:'就安静安静家啊',
-          handle_time:'30分钟-1小时',
-          img:'../img/imgB.png',
-          name:'jajaj',
-          tip:'jajajja',
-          inventory:[],
-          step:'',
-          thumbnail:[]
+      multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],//分类的数组
+      multiIndex: [0, 0],//分类当前选择大类小类
+      uploadObj:{//上传到后台的总数据
+          author:'',//作者 openid
+          complexity:'较易',//难易程度
+          describe:'',//描述
+          handle_time:'10分钟以内',//烹饪时间
+          imgUrl:'../img/imgB.png',//上传前的主图路径
+          img:'',//上传后的主图路径
+          name:'',//菜品名字
+          tip:'',//注意贴士
+          inventory:[],//食材和数量
+          step:'',//步骤
+          class_id:1,//分类ID
+          thumbnail:[],//步骤小图
+          thumbnailReady:[]//上传前的步骤小图
       },
-      loadImgB:'../img/imgM.png',
-      isLoad:false,
-      isInventory:false,
-      totalKeyInput01:0,
-      totalKeyInput02:0,
-      totalKeyInput03:0,
-      totalKeyInput04:0,
+      loadImgB:'../img/imgM.png',//步骤小图提示
+      isLoad:false,//是否上传了步骤图
+      isInventory:false,//是否添加了分类步骤
+      totalKeyInput01:0,//输入框长度-名字
+      totalKeyInput02:0,//输入框长度-描述
+      totalKeyInput03:0,//输入框长度-步骤
+      totalKeyInput04:0//输入框长度-小贴士
   },
+    /**难易程度的radiao事件**/
+    radioChange:function(e){
+        console.log('radio发生change事件，携带value值为：', e.detail.value);
+        this.setData({
+            'uploadObj.complexity': e.detail.value
+        })
+    },
+    /**烹饪时间选择的picker改变事件**/
     bindPickerChange: function (e) {
         console.log('时间picker发送选择改变，携带值为', e.detail.value);
         this.setData({
+            'uploadObj.handle_time': this.data.array[e.detail.value],
             index: e.detail.value
         })
     },
+    /**分类选择的picker改变事件**/
     bindMultiPickerChange: function (e) {
 
         var cid = this.data.multiArray[1][e.detail.value[1]].id;
         console.log('picker发送选择改变，携带值为', e.detail.value,cid);
         this.setData({
             multiIndex: e.detail.value,
-            cid:this.data.cid
+            'uploadObj.class_id':cid
         })
     },
     bindMultiPickerColumnChange: function (e) {
@@ -98,82 +76,44 @@ Page({
    */
   onLoad: function (options) {
       var that = this;
-      wx.request({
-          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
-          method: 'GET',
-          // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-          header: {
-              'content-type': 'application/json'
-          },
-          success: function (res) {
-              // success
-              console.log('添加菜单分类', res);
-              if (res.data.code == 1001) {
-                  var arr = res.data.data;
-                  if (arr.length > 0) {
-                      var parrlist = [];
-                      //console.log(ListArr);
-                      for(var i=0;i<arr.length;i++){
-                        parrlist.push({id:arr.id,class_name:arr[i].class_name});
+      if(wx.getStorageSync('openid')){
+          wx.request({/**获取分类**/
+              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+              method: 'GET',
+              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+              header: {
+                  'content-type': 'application/json'
+              },
+              success: function (res) {
+                  // success
+                  console.log('添加菜单分类', res);
+                  if (res.data.code == 1001) {
+                      var arr = res.data.data;
+                      if (arr.length > 0) {
+                          var parrlist = [];
+                          //console.log(ListArr);
+                          for(var i=0;i<arr.length;i++){
+                              parrlist.push({id:arr.id,class_name:arr[i].class_name});
+                          }
+                          that.setData({
+                              searchNameArr: arr,
+                              multiArray:[parrlist,arr[0].class_names],
+                              'uploadObj.class_id':arr[0].class_names[0].id,
+                              'uploadObj.author':wx.getStorageSync('openid')
+                          })
                       }
-                      that.setData({
-                          searchNameArr: arr,
-                          parrlist:parrlist,
-                          multiArray:[parrlist,arr[0].class_names]
-                      })
                   }
+              },
+              fail: function (res) {
+                  // fail
+                  console.log(res);
+              },
+              complete: function () {
+                  // complete
               }
-          },
-          fail: function (res) {
-              // fail
-              console.log(res);
-          },
-          complete: function () {
-              // complete
-          }
-      })
-  },
+          })
+      }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
   },
 
   /**
@@ -183,41 +123,23 @@ Page({
   
   },
   /**
-   * 用户点击右上角分享
+   * 上传大的主图
    */
   loadBigImg:function(){
       var that = this;
       wx.chooseImage({
           count:1,
-          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
           sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
           success: function (res) {
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               var tempFilePaths = res.tempFilePaths;
               var tempFiles = res.tempFiles;
               console.log(tempFiles,res.tempFilePaths);
-              wx.uploadFile({
-                  url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/uploadProjectImage', //仅为示例，非真实的接口地址
-                  filePath: tempFilePaths[0],
-                  name: 'file',
-                  header: {
-                      'content-type':'multipart/form-data'
-                  },
-                  formData:{
-                      'user': 'test'
-                  },
-                  success: function(msg){
-                      var json = JSON.parse(msg.data);
-                      console.log(json);
-                      if(json.status==1){
-                          that.setData({
-                              'uploadObj.img':'https://h5php.xingyuanauto.com/food/public/upload/testfile/'+json.image_name
-                          });
-                      }
+              that.setData({
+                  'uploadObj.imgUrl':tempFilePaths[0]
+              });
 
-                      //do something
-                  }
-              })
           }
       })
   },
@@ -225,44 +147,32 @@ Page({
     loadThumbnailImg:function(){
         var that = this;
         wx.chooseImage({
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                var tempFilePaths = res.tempFilePaths;
-                var tempFiles = res.tempFiles;
+                var tempFilePaths = that.data.uploadObj.thumbnailReady;
+                tempFilePaths = tempFilePaths.concat(res.tempFilePaths);
+                console.log(tempFilePaths);
+                if(tempFilePaths.length>10){
+                    wx.showModal({
+                        title: '提示',
+                        content: '最多只能上传10张',
+                        showCancel:false,
+                        success: function(res) {
+                            if (res.confirm) {
 
-                console.log(tempFiles,res.tempFilePaths);
-
-                if(tempFilePaths.length>0){
-                    for(var i=0;i<tempFilePaths.length;i++){
-                        console.log(tempFilePaths[i]);
-                        upload_file(tempFilePaths[i]);
-                    }
-                }
-                function upload_file(itemUrl){
-                    wx.uploadFile({
-                        url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
-                        filePath: itemUrl,
-                        name: 'name',
-                        header: {
-                            'content-type': 'multipart/form-data'
-                        }, // 设置请求的 header
-                        formData:{
-                            'user': 'test'
-                        },
-                        success: function(msg){
-                            var json = JSON.parse(msg.data);
-                            console.log(json,json.data[0]);
-                            var arr = that.data.uploadObj.thumbnail;
-                            arr = arr.push(json.data[0]);
-                            that.setData({
-                                'uploadObj.thumbnail':arr,
-                                isLoad:true
-                            });
+                            }
                         }
                     })
+                }else{
+                    that.setData({
+                        'uploadObj.thumbnailReady':tempFilePaths,
+                        isLoad:true
+                    });
                 }
+
+
 
             }
         })
@@ -270,19 +180,20 @@ Page({
     /**清楚上传的图片**/
     clearImg:function(event){
         var that = this;
-        var arr = that.data.uploadObj.thumbnail;
+        var arr = that.data.uploadObj.thumbnailReady;
         arr.splice(event.target.dataset.index,1);
         if(arr.length<1){
             that.setData({
-                'uploadObj.thumbnail':arr,
+                'uploadObj.thumbnailReady':arr,
                 isLoad:false
             });
         }else{
             that.setData({
-                'uploadObj.thumbnail':arr
+                'uploadObj.thumbnailReady':arr
             });
         }
     },
+    /**添加食材清单**/
     addInventory:function(){
         var that = this;
         var arr = that.data.uploadObj.inventory;
@@ -292,6 +203,7 @@ Page({
             isInventory:true
         });
     },
+    /**删除食材清单项**/
     clearInventory:function(event){
         var that = this;
         var arr = that.data.uploadObj.inventory;
@@ -307,27 +219,211 @@ Page({
             });
         }
     },
-    radioChange:function(event){
-        console.log('radio发生change事件，携带value值为：', event.detail.value)
+    /**绑定食材清单数量的输入数据**/
+    inventoryInputhow:function(e){
+        var that = this;
+        var changeArr = that.data.uploadObj.inventory;
+        changeArr[e.target.dataset.index].food_how=e.detail.value;
+        this.setData({
+            'uploadObj.inventory': changeArr
+        });
     },
+    /**绑定食材清单名字的输入数据**/
+    inventoryInputname:function(e){
+        var that = this;
+        var changeArr = that.data.uploadObj.inventory;
+        changeArr[e.target.dataset.index].food_name=e.detail.value;
+        this.setData({
+            'uploadObj.inventory': changeArr
+        });
+    },
+    /**绑定名字的输入数据**/
     bindKeyInput01:function(e){
         this.setData({
-            totalKeyInput01: e.detail.value.length
+            totalKeyInput01: e.detail.value.length,
+            'uploadObj.name': e.detail.value
         });
     },
+    /**绑定描述的输入数据**/
     bindKeyInput02:function(e){
         this.setData({
-            totalKeyInput02: e.detail.value.length
+            totalKeyInput02: e.detail.value.length,
+            'uploadObj.describe': e.detail.value
         });
     },
+    /**绑定步骤的输入数据**/
     bindKeyInput03:function(e){
         this.setData({
-            totalKeyInput03: e.detail.value.length
+            totalKeyInput03: e.detail.value.length,
+            'uploadObj.step': e.detail.value
         });
     },
+    /**绑定小贴士的输入数据**/
     bindKeyInput04:function(e){
         this.setData({
-            totalKeyInput04: e.detail.value.length
+            totalKeyInput04: e.detail.value.length,
+            'uploadObj.tip': e.detail.value
         });
+    },
+    /**提交验证**/
+    checkReg:function(){
+        var imgReg = false,
+            describeReg=false,
+            nameReg=false,
+            tipReg=false,
+            inventoryReg = false,
+            stepReg = false,
+            thumbnailReg = false;
+        var that = this;
+        function inputReg(data){
+            var reg ;
+            if(data!=''){
+                reg = true;
+            }else{
+                reg = false;
+            }
+            return reg;
+        }
+        nameReg = inputReg(that.data.uploadObj.name);
+        describeReg = inputReg(that.data.uploadObj.describe);
+        stepReg = inputReg(that.data.uploadObj.step);
+        tipReg = inputReg(that.data.uploadObj.tip);
+        function foodReg(){
+            var reg,inventory=that.data.uploadObj.inventory;
+            if(inventory.length>0){
+                for(var i=0;i<inventory.length;i++){
+                    if(inventory[i].food_how!=''&&inventory[i].food_name!=''){
+                        reg = true;
+                    }else{
+                        reg = false;
+                        return reg;
+                    }
+                }
+            }else{
+                reg = false;
+            }
+            return reg;
+        }
+        inventoryReg = foodReg();
+        if(that.data.uploadObj.imgUrl!=''&&that.data.uploadObj.imgUrl!='../img/imgB.png'){
+            imgReg = true;
+        }else{
+            imgReg = false;
+        }
+        if(that.data.uploadObj.thumbnailReady.length>0){
+            thumbnailReg = true;
+        }else{
+            thumbnailReg = false;
+        }
+        console.log(imgReg,describeReg,nameReg,tipReg,inventoryReg,stepReg,thumbnailReg);
+        var total = imgReg&&describeReg&&nameReg&&tipReg&&inventoryReg&&stepReg&&thumbnailReg;
+        return total;
+        //return true;
+    },
+    /**提交**/
+    submitFun:function(){
+        var that = this;
+        /**判断表单数据是否填完整**/
+        if(that.checkReg()){
+            /**上传单个主图**/
+            wx.uploadFile({
+                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/uploadProjectImage', //仅为示例，非真实的接口地址
+                filePath: that.data.uploadObj.imgUrl,
+                name: 'file',
+                header: {
+                    'content-type':'multipart/form-data'
+                },
+                formData:{
+                    'user': 'test'
+                },
+                success: function(msg){
+                    console.log(msg);
+                    var json = JSON.parse(msg.data);
+                    console.log(json);
+                    if(json.status==1){
+                        /**单个主图上传成功返回路径**/
+                        that.setData({
+                            'uploadObj.img':json.image_name
+                        });
+                        /**分步骤图上传**/
+                        var tempFilePaths = that.data.uploadObj.thumbnailReady;
+                        if(tempFilePaths.length>0){
+                            var arr=[],lastImg = false;
+                            for(var i=0;i<tempFilePaths.length;i++){
+                                if(i==(tempFilePaths.length-1)){
+                                    lastImg = true;
+                                }
+                                upload_file(tempFilePaths[i]);
+
+                            }
+
+
+
+                        }
+                        /**上传图片**/
+                        function upload_file(itemUrl){
+                            wx.uploadFile({
+                                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
+                                filePath: itemUrl,
+                                name: 'name',
+                                header: {
+                                    'content-type': 'multipart/form-data'
+                                }, // 设置请求的 header
+                                formData:{
+                                    'user': 'test'
+                                },
+                                success: function(nmsg){
+                                    var json = JSON.parse(nmsg.data);
+                                    console.log(json,json.data[0]);
+                                    arr.push(json.data[0]);
+                                    if(lastImg){
+                                        that.setData({
+                                            'uploadObj.thumbnail':arr
+                                        });
+                                        console.log(arr,arr.length,that.data.uploadObj.thumbnail,that.data.uploadObj);
+                                        /**提交所有数据到数据库**/
+                                        wx.request({
+                                            url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/MenuAddUpload',
+                                            data:that.data.uploadObj,
+                                            // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                                            header: {
+                                                'content-type': 'application/json'
+                                            },
+                                            success: function (res) {
+                                                // success
+                                                console.log(res);
+                                                wx.showModal({
+                                                    title: '提交成功',
+                                                    content: '查看我的作品',
+                                                    showCancel:false,
+                                                    success: function(res) {
+                                                        wx.switchTab({
+                                                            url: '../user/user'
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    }
+
+                    //do something
+                }
+            })
+        }else{
+            wx.showModal({
+                title: '提示',
+                content: '请完善菜品信息',
+                showCancel:false,
+                success: function(res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定')
+                    }
+                }
+            })
+        }
     }
 })
