@@ -2,17 +2,23 @@
 <view class="container" hidden="{{!isLogin}}">
 <!-- 用户信息 -->
   <view  class="handle-box">
-
+    <view class="">全部作品</view>
+    <view>删除</view>
   </view>
   <!-- 收藏菜品列表 -->
-    <view class="like-list" >
-      <navigator class="like-item" wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
+    <view class="like-list " >
+      <navigator class="like-item " wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
            <image src="{{item.img}}" mode="aspectFill"></image>
            <view class="right-content">
                <rich-text>{{item.name}}</rich-text>
                <view>{{item. material}}</view>
-               <view>{{item.author}}</view>
                <text>收藏{{item.collect}}</text><text> 点赞{{item.like}}</text>
+               <view>2017年8月29日</view>
+           </view>
+           <view class="edit-content">
+                <view class="delete">
+                    <button>删除</button>
+                </view>
            </view>
        </navigator>
      </view>
