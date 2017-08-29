@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="71b0bf82-e477-492a-beff-7c30a96ad2cc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/addFood/addFood.js" afterPath="$PROJECT_DIR$/pages/addFood/addFood.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/addFood/addFood.wxml" afterPath="$PROJECT_DIR$/pages/addFood/addFood.wxml" />
     </list>
     <ignored path="foodEveryDay.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +52,17 @@
         <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.wxml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+              <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.wxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/index/index.wxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="79" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -61,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.49673203">
-              <caret line="387" column="41" selection-start-line="385" selection-start-column="36" selection-end-line="387" selection-end-column="41" />
+              <caret line="315" column="31" selection-start-line="315" selection-start-column="31" selection-end-line="315" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -117,16 +128,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="42" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -163,9 +164,9 @@
         <option value="$PROJECT_DIR$/pages/user/user.wxss" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/pages/collectList/collectList.js" />
-        <option value="$PROJECT_DIR$/pages/addFood/addFood.wxml" />
         <option value="$PROJECT_DIR$/pages/addFood/addFood.wxss" />
         <option value="$PROJECT_DIR$/pages/addFood/addFood.js" />
+        <option value="$PROJECT_DIR$/pages/addFood/addFood.wxml" />
       </list>
     </option>
   </component>
@@ -701,13 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.wxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/user/user.wxss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33769062">
@@ -749,14 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.wxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.wxss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -791,10 +777,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="56" selection-start-line="60" selection-start-column="56" selection-end-line="60" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/index.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="79" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/addFood/addFood.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49673203">
-          <caret line="387" column="41" selection-start-line="385" selection-start-column="36" selection-end-line="387" selection-end-column="41" />
+          <caret line="315" column="31" selection-start-line="315" selection-start-column="31" selection-end-line="315" selection-end-column="31" />
           <folding />
         </state>
       </provider>

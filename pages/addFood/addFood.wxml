@@ -2,7 +2,7 @@
 <view class="container">
     <view class="foodBox bigImg" >
         <text>主图</text>
-        <image class="foodUrl" src="{{uploadObj.imgUrl}}"/>
+        <image class="foodUrl" src="{{uploadObj.imgUrl}}" mode="aspectFill"/>
         <view class="r-arrow" bindtap="loadBigImg">
             <image   src="../img/r-arrow.png"></image>
         </view>
@@ -40,7 +40,7 @@
             <view class="inventoryItem" wx:for="{{uploadObj.inventory}}">
                 <input type='text' placeholder='例：花生' maxlength="10" data-index="{{index}}" bindinput="inventoryInputname"/>
                 <input type='text' placeholder='例：50g' maxlength="10" data-index="{{index}}" bindinput="inventoryInputhow"/>
-                <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory"></image>
+                <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory" mode="aspectFill"></image>
             </view>
         </view>
     </view>
@@ -58,7 +58,7 @@
         </view>
         <view class="inputFile" hidden="{{!isLoad}}">
             <view class="thumbnailImg" wx:for="{{uploadObj.thumbnailReady}}">
-                <image  src="{{item}}"/>
+                <image  src="{{item}}" mode="aspectFill"/>
                 <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
             </view>
         </view>

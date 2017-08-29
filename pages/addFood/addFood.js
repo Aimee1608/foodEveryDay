@@ -351,15 +351,8 @@ Page({
                         /**分步骤图上传**/
                         var tempFilePaths = that.data.uploadObj.thumbnailReady;
                         if(tempFilePaths.length>0){
-                            var arr=[],lastImg = false;
                             for(var i=0;i<tempFilePaths.length;i++){
-                                if(i==(tempFilePaths.length-1)){
-                                    lastImg = true;
-                                }else{
-                                    lastImg = false;
-                                }
-                                console.log(lastImg);
-                                upload_file(tempFilePaths[i],lastImg);
+                                upload_file(tempFilePaths[i]);
 
                             }
 
@@ -367,7 +360,7 @@ Page({
 
                         }
                         /**上传图片**/
-                        function upload_file(itemUrl,lastTrue){
+                        function upload_file(itemUrl){
                             wx.uploadFile({
                                 url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
                                 filePath: itemUrl,
@@ -380,8 +373,8 @@ Page({
                                 },
                                 success: function(nmsg){
                                     var json = JSON.parse(nmsg.data);
-                                    console.log(json,json.data[0]);
-                                    arr=that.data.uploadObj.thumbnail;
+                                    //console.log(json,json.data[0]);
+                                    var arr=that.data.uploadObj.thumbnail;
                                     arr.push(json.data[0]);
                                     //that.setData({
                                     //    'uploadObj.thumbnail':arr
