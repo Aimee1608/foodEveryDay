@@ -1,1 +1,6 @@
-{}
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#F3EBDF",
+  "navigationBarTitleText": "管理作品",
+  "navigationBarTextStyle": "black"
+}

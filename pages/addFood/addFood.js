@@ -438,7 +438,7 @@ Page({
                                                         content: '查看我的作品',
                                                         showCancel:false,
                                                         success: function(res) {
-                                                            wx.switchTab({
+                                                            wx.reLaunch({
                                                                 url: '../userList/userList'
                                                             })
                                                         }
