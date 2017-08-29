@@ -12,7 +12,8 @@ Page({
       multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']],//分类的数组
       multiIndex: [0, 0],//分类当前选择大类小类
       uploadObj:{//上传到后台的总数据
-          author:'',//作者 openid
+          openid:'',//openid
+          author:'',//作者名字
           complexity:'较易',//难易程度
           describe:'',//描述
           handle_time:'10分钟以内',//烹饪时间
@@ -77,6 +78,7 @@ Page({
   onLoad: function (options) {
       var that = this;
       if(wx.getStorageSync('openid')){
+          var userInfo = wx.getStorageSync('userInfo');
           wx.request({/**获取分类**/
               url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
               method: 'GET',
@@ -99,7 +101,8 @@ Page({
                               searchNameArr: arr,
                               multiArray:[parrlist,arr[0].class_names],
                               'uploadObj.class_id':arr[0].class_names[0].id,
-                              'uploadObj.author':wx.getStorageSync('openid')
+                              'uploadObj.openid':wx.getStorageSync('openid'),
+                              'uploadObj.author':userInfo.nickName
                           })
                       }
                   }
@@ -352,8 +355,11 @@ Page({
                             for(var i=0;i<tempFilePaths.length;i++){
                                 if(i==(tempFilePaths.length-1)){
                                     lastImg = true;
+                                }else{
+                                    lastImg = false;
                                 }
-                                upload_file(tempFilePaths[i]);
+                                console.log(lastImg);
+                                upload_file(tempFilePaths[i],lastImg);
 
                             }
 
@@ -361,7 +367,7 @@ Page({
 
                         }
                         /**上传图片**/
-                        function upload_file(itemUrl){
+                        function upload_file(itemUrl,lastTrue){
                             wx.uploadFile({
                                 url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
                                 filePath: itemUrl,
@@ -375,12 +381,16 @@ Page({
                                 success: function(nmsg){
                                     var json = JSON.parse(nmsg.data);
                                     console.log(json,json.data[0]);
+                                    arr=that.data.uploadObj.thumbnail;
                                     arr.push(json.data[0]);
-                                    if(lastImg){
+                                    //that.setData({
+                                    //    'uploadObj.thumbnail':arr
+                                    //});
+                                    if(arr.length==that.data.uploadObj.thumbnailReady.length){
                                         that.setData({
                                             'uploadObj.thumbnail':arr
                                         });
-                                        console.log(arr,arr.length,that.data.uploadObj.thumbnail,that.data.uploadObj);
+                                        console.log(arr,that.data.uploadObj);
                                         /**提交所有数据到数据库**/
                                         wx.request({
                                             url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/MenuAddUpload',
