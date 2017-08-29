@@ -10,5 +10,8 @@
     <file url="file://$PROJECT_DIR$/pages/detailFood/detailFood.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/searchList/searchList.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pages/select/select.wxss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/userList/userList.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/userList/userList.wxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pages/userList/userList.wxss" charset="UTF-8" />
   </component>
 </project>

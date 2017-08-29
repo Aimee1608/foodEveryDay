@@ -78,43 +78,86 @@ Page({
   onLoad: function (options) {
       var that = this;
       if(wx.getStorageSync('openid')){
-          var userInfo = wx.getStorageSync('userInfo');
-          wx.request({/**获取分类**/
-              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+          wx.request({
+              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/UserMenuCount',
               method: 'GET',
+              data:{openid:wx.getStorageSync('openid')},
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               header: {
                   'content-type': 'application/json'
               },
-              success: function (res) {
-                  // success
-                  console.log('添加菜单分类', res);
-                  if (res.data.code == 1001) {
-                      var arr = res.data.data;
-                      if (arr.length > 0) {
-                          var parrlist = [];
-                          //console.log(ListArr);
-                          for(var i=0;i<arr.length;i++){
-                              parrlist.push({id:arr.id,class_name:arr[i].class_name});
-                          }
-                          that.setData({
-                              searchNameArr: arr,
-                              multiArray:[parrlist,arr[0].class_names],
-                              'uploadObj.class_id':arr[0].class_names[0].id,
-                              'uploadObj.openid':wx.getStorageSync('openid'),
-                              'uploadObj.author':userInfo.nickName
+              success: function (msg) {
+                  console.log(msg);
+                  if(msg.data.code==1001){
+                      if(msg.data.data<3){
+
+                          var userInfo = wx.getStorageSync('userInfo');
+                          wx.request({/**获取分类**/
+                          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+                              method: 'GET',
+                              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                              header: {
+                                  'content-type': 'application/json'
+                              },
+                              success: function (res) {
+                                  // success
+                                  //console.log('添加菜单分类', res);
+                                  if (res.data.code == 1001) {
+                                      var arr = res.data.data;
+                                      if (arr.length > 0) {
+                                          var parrlist = [];
+                                          //console.log(ListArr);
+                                          for(var i=0;i<arr.length;i++){
+                                              parrlist.push({id:arr.id,class_name:arr[i].class_name});
+                                          }
+                                          that.setData({
+                                              searchNameArr: arr,
+                                              multiArray:[parrlist,arr[0].class_names],
+                                              'uploadObj.class_id':arr[0].class_names[0].id,
+                                              'uploadObj.openid':wx.getStorageSync('openid'),
+                                              'uploadObj.author':userInfo.nickName
+                                          })
+                                      }
+                                  }
+                              },
+                              fail: function (res) {
+                                  // fail
+                                  console.log(res);
+                              },
+                              complete: function () {
+                                  // complete
+                              }
                           })
+
+                      }else{
+                          wx.showModal({
+                              title: '提示',
+                              content: '一天总共能上传3个菜品，您已上传了3个',
+                              showCancel: false,
+                              success: function (data) {
+                                  wx.switchTab({
+                                      url: '../user/user'
+                                  })
+                              }
+                          })
+
                       }
+
+                  }else{
+                      wx.showModal({
+                          title: '提示',
+                          content: '系统错误',
+                          showCancel: false,
+                          success: function (data) {
+                              wx.switchTab({
+                                  url: '../user/user'
+                              })
+                          }
+                      })
                   }
-              },
-              fail: function (res) {
-                  // fail
-                  console.log(res);
-              },
-              complete: function () {
-                  // complete
               }
-          })
+          });
+
       }
 
   },
@@ -138,7 +181,7 @@ Page({
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               var tempFilePaths = res.tempFilePaths;
               var tempFiles = res.tempFiles;
-              console.log(tempFiles,res.tempFilePaths);
+              //console.log(tempFiles,res.tempFilePaths);
               that.setData({
                   'uploadObj.imgUrl':tempFilePaths[0]
               });
@@ -156,16 +199,14 @@ Page({
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = that.data.uploadObj.thumbnailReady;
                 tempFilePaths = tempFilePaths.concat(res.tempFilePaths);
-                console.log(tempFilePaths);
+                //console.log(tempFilePaths);
                 if(tempFilePaths.length>10){
                     wx.showModal({
                         title: '提示',
                         content: '最多只能上传10张',
                         showCancel:false,
                         success: function(res) {
-                            if (res.confirm) {
 
-                            }
                         }
                     })
                 }else{
@@ -342,7 +383,7 @@ Page({
                 success: function(msg){
                     console.log(msg);
                     var json = JSON.parse(msg.data);
-                    console.log(json);
+                    //console.log(json);
                     if(json.status==1){
                         /**单个主图上传成功返回路径**/
                         that.setData({
@@ -353,11 +394,7 @@ Page({
                         if(tempFilePaths.length>0){
                             for(var i=0;i<tempFilePaths.length;i++){
                                 upload_file(tempFilePaths[i]);
-
                             }
-
-
-
                         }
                         /**上传图片**/
                         function upload_file(itemUrl){
@@ -395,22 +432,36 @@ Page({
                                             success: function (res) {
                                                 // success
                                                 console.log(res);
-                                                wx.showModal({
-                                                    title: '提交成功',
-                                                    content: '查看我的作品',
-                                                    showCancel:false,
-                                                    success: function(res) {
-                                                        wx.switchTab({
-                                                            url: '../user/user'
-                                                        })
-                                                    }
-                                                })
+                                                if(res.data.code==1){
+                                                    wx.showModal({
+                                                        title: '提交成功',
+                                                        content: '查看我的作品',
+                                                        showCancel:false,
+                                                        success: function(res) {
+                                                            wx.switchTab({
+                                                                url: '../userList/userList'
+                                                            })
+                                                        }
+                                                    })
+                                                }
+
                                             }
                                         })
                                     }
                                 }
                             })
                         }
+                    }else{
+                        wx.showModal({
+                            title: '页面错误',
+                            content: '页面错误，即将跳转',
+                            showCancel:false,
+                            success: function(res) {
+                                if (res.confirm) {
+                                    //console.log('用户点击确定')
+                                }
+                            }
+                        })
                     }
 
                     //do something
@@ -418,12 +469,12 @@ Page({
             })
         }else{
             wx.showModal({
-                title: '提示',
+                title: '内容缺失',
                 content: '请完善菜品信息',
                 showCancel:false,
                 success: function(res) {
                     if (res.confirm) {
-                        console.log('用户点击确定')
+                        //console.log('用户点击确定')
                     }
                 }
             })

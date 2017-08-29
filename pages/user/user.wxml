@@ -14,21 +14,21 @@
        <image src="../img/r-arrow.png"></image>
    </navigator>
    <view class="myFood">
-    <view class="user-common">
+       <navigator class="user-common" url="../userList/userList">
           <image src="../img/myFood.png"></image>
           <text>我的作品</text>
           <image src="../img/r-arrow.png"></image>
-       </view>
+       </navigator>
        <navigator class="user-common" url="../addFood/addFood">
           <image src="../img/addfood.png"></image>
           <text>发布作品</text>
           <image src="../img/r-arrow.png"></image>
        </navigator>
-        <view class="user-common">
+        <navigator class="user-common" url="../editFood/editFood">
               <image src="../img/editfood.png"></image>
               <text>管理作品</text>
               <image src="../img/r-arrow.png"></image>
-        </view>
+        </navigator>
    </view>
     <view class="myFood">
         <navigator class="user-common " url="../help/help">

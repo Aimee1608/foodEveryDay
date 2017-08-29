@@ -1,0 +1,57 @@
+/* pages/userList/userList.wxss */
+.userinfo {
+  margin-bottom:30rpx;
+  width:100%;
+  align-items: center;
+  vertical-align: center;
+  position: relative;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx 20rpx 20rpx 0;
+  border-radius: 50%;
+}
+.userinfo-text{
+  width:100%;
+  padding-left:160rpx;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  top:50%;
+  transform: translate(0,-50%);
+}
+.userinfo-nickname {
+  /* color: #aaa; */
+  /* padding-left:148rpx; */
+  vertical-align: center;
+}
+.likeCount{
+  font-size:10pt;
+  margin-top:14rpx;
+}
+.loadMore{
+  width:100%;
+  text-align: center;
+}
+.login{
+    width:100%;
+    position: absolute;
+    left:0;
+    top:40%;
+    /* transform: (0,-40%); */
+    text-align: center;
+}
+.clickLogin01{
+    width:100%;
+    font-size:16pt;
+    margin-bottom: 30rpx;
+}
+.clickLogin02{
+    width:100%;
+    font-size:13pt;
+}
+page{
+    background:#F9F5EC;
+}
