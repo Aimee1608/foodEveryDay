@@ -2,26 +2,30 @@
 <view class="container" hidden="{{!isLogin}}">
 <!-- 用户信息 -->
   <view  class="handle-box">
-    <view class="">全部作品</view>
-    <view>删除</view>
+    <view class="">全部作品（{{totalCollect}}）</view>
+    <view bindtap="deleteHandle">{{deleteText}}</view>
   </view>
   <!-- 收藏菜品列表 -->
-    <view class="like-list " >
-      <navigator class="like-item " wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">
-           <image src="{{item.img}}" mode="aspectFill"></image>
-           <view class="right-content">
-               <rich-text>{{item.name}}</rich-text>
-               <view>{{item. material}}</view>
-               <text>收藏{{item.collect}}</text><text> 点赞{{item.like}}</text>
-               <view>2017年8月29日</view>
-           </view>
-           <view class="edit-content">
-                <view class="delete">
-                    <button>删除</button>
+   <view class="like-list " >
+      <view class="like-item  " wx:for="{{searchListArr}}" data-id="{{item.id}}">
+           <navigator class="edit-item"  url="/pages/detailFood/detailFood?id={{item.id}}">
+               <image src="{{item.img}}" mode="aspectFill"></image>
+               <view class="right-content">
+                   <rich-text>{{item.name}}</rich-text>
+                   <view>{{item. material}}</view>
+                   <view>{{item.author}} </view>
+                   <view><image src="../img/like1.png"></image><text>{{item.like}}</text><image src="../img/save1.png"></image><text>{{item.collect}}</text>{{item.time}}</view>
+               </view>
+           </navigator>
+           <view class="edit-box" hidden="{{!isDelete}}">
+                <view class="edit-content">
+                    <view class="delete">
+                         <button data-id="{{item.id}}"  bindtap="deleteFun">删除</button>
+                    </view>
                 </view>
            </view>
-       </navigator>
-     </view>
+       </view>
+    </view>
   <!-- 上拉加载更多 -->
   <view hidden="{{noMore}}">
     <view class="loadMore" hidden="{{isLoading}}">上拉加载更多</view>

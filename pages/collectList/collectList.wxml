@@ -15,8 +15,8 @@
            <view class="right-content">
                <rich-text>{{item.name}}</rich-text>
                <view>{{item. material}}</view>
-               <view>{{item.author}}</view>
-               <text>收藏{{item.collect}}</text><text> 点赞{{item.like}}</text>
+               <view>{{item.author}} </view>
+               <view><image src="../img/like1.png"></image><text>{{item.like}}</text><image src="../img/save1.png"></image><text>{{item.collect}}</text>{{item.time}}</view>
            </view>
        </navigator>
      </view>

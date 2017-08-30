@@ -35,6 +35,9 @@ view.search{
   width:100%;
   height:300rpx;
 }
+.swiper-box swiper{
+  height:300rpx;
+}
 .swiper-box navigator{
   width:100%;
   height:100%;

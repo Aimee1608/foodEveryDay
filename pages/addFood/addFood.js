@@ -1,5 +1,5 @@
 // pages/addFood/addFood.js
-
+var app = getApp();
 Page({
 
   /**
@@ -79,7 +79,7 @@ Page({
       var that = this;
       if(wx.getStorageSync('openid')){
           wx.request({
-              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/UserMenuCount',
+              url: app.localUrl+'Webfood/UserMenuCount',
               method: 'GET',
               data:{openid:wx.getStorageSync('openid')},
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -93,7 +93,7 @@ Page({
 
                           var userInfo = wx.getStorageSync('userInfo');
                           wx.request({/**获取分类**/
-                          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+                          url:  app.localUrl+'/food/class_list',
                               method: 'GET',
                               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                               header: {
@@ -166,7 +166,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+      return {
+          title: '咿咕噜开启你的美味生活！',
+          path: '/pages/index/index',
+          imageUrl:'../img/share.png',
+          success: function(msg) {
+              // 转发成功
+              console.log(msg)
+          },
+          fail: function(msg) {
+              // 转发失败
+              console.log(msg)
+          }
+      }
   },
   /**
    * 上传大的主图
@@ -181,7 +193,7 @@ Page({
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               var tempFilePaths = res.tempFilePaths;
               var tempFiles = res.tempFiles;
-              //console.log(tempFiles,res.tempFilePaths);
+              console.log(tempFiles);
               that.setData({
                   'uploadObj.imgUrl':tempFilePaths[0]
               });
@@ -370,8 +382,11 @@ Page({
         /**判断表单数据是否填完整**/
         if(that.checkReg()){
             /**上传单个主图**/
+            //wx.showLoading({
+            //    title: '上传中'
+            //});
             wx.uploadFile({
-                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/uploadProjectImage', //仅为示例，非真实的接口地址
+                url:  app.localUrl+'Webfood/uploadProjectImage', //仅为示例，非真实的接口地址
                 filePath: that.data.uploadObj.imgUrl,
                 name: 'file',
                 header: {
@@ -399,7 +414,7 @@ Page({
                         /**上传图片**/
                         function upload_file(itemUrl){
                             wx.uploadFile({
-                                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/webfood/zyupload', //仅为示例，非真实的接口地址
+                                url:  app.localUrl+'webfood/zyupload', //仅为示例，非真实的接口地址
                                 filePath: itemUrl,
                                 name: 'name',
                                 header: {
@@ -423,7 +438,7 @@ Page({
                                         console.log(arr,that.data.uploadObj);
                                         /**提交所有数据到数据库**/
                                         wx.request({
-                                            url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/Webfood/MenuAddUpload',
+                                            url:  app.localUrl+'Webfood/MenuAddUpload',
                                             data:that.data.uploadObj,
                                             // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                                             header: {
@@ -433,6 +448,7 @@ Page({
                                                 // success
                                                 console.log(res);
                                                 if(res.data.code==1){
+                                                    //wx.hideLoading();
                                                     wx.showModal({
                                                         title: '提交成功',
                                                         content: '查看我的作品',

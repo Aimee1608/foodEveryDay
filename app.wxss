@@ -40,17 +40,23 @@ page{
   width:250rpx;
   height:100%;
 }
-.right-content view{
-    font-size:10pt;
-    margin-top:17rpx;
-}
 .right-content view:last-child{
     color:#C3C3C3;
 }
 .right-content text{
     font-size:10pt;
-    margin-top:17rpx;
+    /**margin-top:17rpx;**/
     color:#C3C3C3;
+    margin-right:20rpx;
+    margin-left:6rpx;
+    display:inline-block;
+}
+.right-content image{
+    width:30rpx;
+    height:30rpx;
+    vertical-align:middle;
+    position:relative;
+    top:-2rpx;
 }
 .right-content{
   width:100%;
@@ -70,4 +76,6 @@ page{
     white-space: nowrap;
      overflow: hidden;
     -webkit-box-orient: vertical;
+    font-size:10pt;
+     margin-top:12rpx;
 }

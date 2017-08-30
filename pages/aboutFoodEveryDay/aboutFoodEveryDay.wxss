@@ -31,8 +31,13 @@
 }
 .content{
     width:100%;
-    padding:20rpx;
+    padding:40rpx;
     box-sizing:border-box;
+}
+.content view{
+     text-indent: 2em;
+     text-align: justify;
+     margin-bottom:20rpx;
 }
 
 

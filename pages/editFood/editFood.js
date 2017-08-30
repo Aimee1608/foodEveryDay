@@ -24,25 +24,22 @@ Page({
     openid:null,
     pageId:1,
     isLogin:false,
-    isRefresh:false
+    isRefresh:false,
+    isDelete:false,
+    deleteText:'删除'
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../addFood/addFood'
-    })
-  },
   getList:function(that,openid,pageId){
     if(pageId!=null&&openid!=null){
 
       console.log({pageId:pageId,openid:openid});
       wx.request({
-        url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserCollectData',
+        url:  app.localUrl+'Webfood/UserMenuList',
         data:{pageId:pageId,openid:openid},
         // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         success: function (res) {
           // success
-          console.log('收藏列表', res);
+          console.log('发布作品列表', res);
           if (res.data.code == 1001) {
             var arr = res.data.data.dataList;
             var ListArr = that.data.searchListArr;
@@ -62,11 +59,12 @@ Page({
                   material: material,
                   author: arr[i].author,
                   collect: arr[i].collect!=null?arr[i].collect:0,
-                  like: arr[i].user_like != null ? arr[i].user_like : 0
+                  like: arr[i].user_like != null ? arr[i].user_like : 0,
+                  time:arr[i].time
                 });
               }
               //console.log(ListArr);
-              if(arr.length<8){
+              if(arr.length<10){
                 that.setData({
                   searchListArr: ListArr,
                   pageId:arr[arr.length-1].id,
@@ -77,13 +75,17 @@ Page({
                 that.setData({
                   searchListArr: ListArr,
                   pageId:arr[arr.length-1].id,
-                  totalCollect:that.data.data.count,
+                  totalCollect:res.data.data.count,
                   noMore:false
                 })
               }
 
             }
 
+          }else if(res.data.code==1004){
+            that.setData({
+              noMore:true
+            })
           }
         },
         fail: function (res) {
@@ -190,33 +192,25 @@ Page({
         clearTimeout(timer);
       }, 1000)
     }
-
-
-    //   wx.request({
-    //       url: '',
-    //       data: {},
-    //       method: 'GET',
-    //       // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    //       // header: {}, // 设置请求的 header
-    //       success: function (res) {
-    //           // success
-    //       },
-    //       fail: function () {
-    //           // fail
-    //       },
-    //       complete: function () {
-    //           // complete
-    //           wx.hideNavigationBarLoading() //完成停止加载
-    //           wx.stopPullDownRefresh() //停止下拉刷新
-    //       }
-    //   })
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '咿咕噜开启你的美味生活！',
+      path: '/pages/index/index',
+      imageUrl:'../img/share.png',
+      success: function(msg) {
+        // 转发成功
+        console.log(msg)
+      },
+      fail: function(msg) {
+        // 转发失败
+        console.log(msg)
+      }
+    }
   },
   loginFun:function(){
     //var that = this;
@@ -244,6 +238,41 @@ Page({
         that.setData({
           isLogin: false
         })
+      }
+    })
+  },
+  deleteHandle:function(){
+    if(this.data.isDelete){
+      this.setData({
+         isDelete:false,
+        deleteText:'删除'
+      });
+    }else{
+      this.setData({
+        isDelete:true,
+        deleteText:'完成'
+      });
+    }
+  },
+  deleteFun:function(e){
+    console.log(e);
+    var that = this;
+    var id = e.target.dataset.id;
+    wx.request({
+      url:  app.localUrl+'webfood/UserMenuDel',
+      data:{id:id,openid:wx.getStorageSync('openid')},
+      // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      success: function (res) {
+        // success
+        console.log(res);
+        if(res.data.code==1001){
+          that.setData({
+            pageId:1,
+            searchListArr:[]
+          });
+          that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+        }
+
       }
     })
   }

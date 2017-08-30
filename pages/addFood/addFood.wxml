@@ -14,7 +14,7 @@
     </view>
      <view class="foodBox foodText">
        <text>介绍</text>
-         <textarea placeholder="placeholder颜色是红色的" placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput02"/>
+         <textarea placeholder="如：很喜欢糖醋味的菜..." placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput02"/>
          <view class="smallTip">{{totalKeyInput02}}/100</view>
     </view>
     <view class="foodBox class-name">

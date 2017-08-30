@@ -1,4 +1,5 @@
 // pages/select/select.js
+var app = getApp();
 Page({
 
   /**
@@ -158,7 +159,7 @@ Page({
   onLoad: function (options) {
       var that = this;
       wx.request({
-          url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/class_list',
+          url:  app.localUrl+'food/class_list',
           method: 'GET',
           // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
           header: {
@@ -249,6 +250,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+      return {
+          title: '咿咕噜开启你的美味生活！',
+          path: '/pages/select/select',
+          imageUrl:'../img/share.png',
+          success: function(msg) {
+              // 转发成功
+              console.log(msg)
+          },
+          fail: function(msg) {
+              // 转发失败
+              console.log(msg)
+          }
+      }
   }
 })

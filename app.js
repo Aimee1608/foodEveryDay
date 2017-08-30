@@ -106,5 +106,6 @@ App({
     iv:null,
     openid:null,
     code:null
-  }
+  },
+  localUrl:'https://h5php.xingyuanauto.com/food/public/index.php/port/'
 });

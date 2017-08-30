@@ -16,7 +16,7 @@ input.search{
   padding-top:15rpx;
   padding-right:50rpx;
    color:#A37011;
-   font-size: 14pt;
+   font-size: 12pt;
 }
 .phcolor{
     color:#A37011;

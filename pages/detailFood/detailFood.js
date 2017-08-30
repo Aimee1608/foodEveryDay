@@ -64,9 +64,11 @@ Page({
       var that = this;
       console.log(options, wx.getStorageSync('openid'));
       if(options.id!=null){
-          that.data.foodId = options.id;
+          that.setData({
+              foodId:options.id
+          });
           wx.request({
-              url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/FoodInfoData',
+              url:  app.localUrl+'food/FoodInfoData',
               method: 'GET',
               data: { id: that.data.foodId,openid: wx.getStorageSync('openid')},
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -168,7 +170,20 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+      var that = this;
+      return {
+          title: '咿咕噜开启你的美味生活！',
+          path: '/pages/detailFood/detailFood?id='+that.data.foodId,
+          imageUrl:'../img/share.png',
+          success: function(msg) {
+              // 转发成功
+              console.log(msg)
+          },
+          fail: function(msg) {
+              // 转发失败
+              console.log(msg)
+          }
+      }
   },
   saveLikeFun:function(type,add){
       var that = this;
@@ -178,7 +193,7 @@ Page({
             var img02 = null;//点赞
             var obj=null;
             if(type=='like'){
-                url='https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserLike';
+                url= app.localUrl+'food/UserLike';
                 img01 = '../img/like0.png';
                 img02 = '../img/like1.png';
                 if(add==1){
@@ -200,7 +215,7 @@ Page({
                     }
                 }
             }else if(type=='save'){
-                url='https://h5php.xingyuanauto.com/food/public/index.php/port/food/UserCollect';
+                url= app.localUrl+'food/UserCollect';
                 img01 = '../img/save0.png';
                 img02 = '../img/save1.png';
                 if(add==1){

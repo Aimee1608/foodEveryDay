@@ -66,6 +66,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '咿咕噜开启你的美味生活！',
+      path: '/pages/index/index',
+      imageUrl:'../img/share.png',
+      success: function(msg) {
+        // 转发成功
+        console.log(msg)
+      },
+      fail: function(msg) {
+        // 转发失败
+        console.log(msg)
+      }
+    }
   }
 })

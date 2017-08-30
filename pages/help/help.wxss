@@ -42,7 +42,7 @@
     height: 400rpx;
     position: absolute;
     left:50%;
-    top:120rpx;
+    top:180rpx;
     transform: translate(-50%,0);
 }
 

@@ -1,4 +1,5 @@
 // pages/searchList/searchList.js
+var app = getApp();
 Page({
 
   /**
@@ -26,7 +27,7 @@ Page({
         if(classId!=0||pageId!=null||keywords!=''){
             console.log({'class_id':classId,pageId:pageId,name:keywords});
             wx.request({
-                url: 'https://h5php.xingyuanauto.com/food/public/index.php/port/food/show_list',
+                url:  app.localUrl+'food/show_list',
                 data:{'class_id':classId,pageId:pageId,name:keywords},
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 header: {
@@ -54,7 +55,8 @@ Page({
                                     material: material,
                                     author: arr[i].author,
                                     collect: arr[i].collect!=null?arr[i].collect:0,
-                                    like: arr[i].like != null ? arr[i].like : 0
+                                    like: arr[i].like != null ? arr[i].like : 0,
+                                    time:arr[i].time
                                 });
                             }
                             //console.log(ListArr);
@@ -181,7 +183,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+      return {
+          title: '咿咕噜开启你的美味生活！',
+          path: '/pages/index/index',
+          imageUrl:'../img/share.png',
+          success: function(msg) {
+              // 转发成功
+              console.log(msg)
+          },
+          fail: function(msg) {
+              // 转发失败
+              console.log(msg)
+          }
+      }
   }
 
 })
