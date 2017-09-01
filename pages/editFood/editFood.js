@@ -23,18 +23,19 @@ Page({
     noMore: false,//是否还有更多数据
     openid:null,
     pageId:1,
-    isLogin:false,
     isRefresh:false,
     isDelete:false,
-    deleteText:'删除'
+    deleteText:'删除',
+    isHandle:'pass',
+    url: 'Webfood/UserMenuList'
   },
   //事件处理函数
-  getList:function(that,openid,pageId){
+  getList:function(that,openid,pageId,url){
     if(pageId!=null&&openid!=null){
 
       console.log({pageId:pageId,openid:openid});
       wx.request({
-        url:  app.localUrl+'Webfood/UserMenuList',
+        url:  app.localUrl+url,
         data:{pageId:pageId,openid:openid},
         // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         success: function (res) {
@@ -58,8 +59,6 @@ Page({
                   name: arr[i].name,
                   material: material,
                   author: arr[i].author,
-                  collect: arr[i].collect!=null?arr[i].collect:0,
-                  like: arr[i].user_like != null ? arr[i].user_like : 0,
                   time:arr[i].time
                 });
               }
@@ -107,13 +106,12 @@ Page({
     var openid = wx.getStorageSync('openid');
     if(openid){
       this.setData({
-        userInfo: wx.getStorageSync('userInfo'),
-        isLogin: true
+        userInfo: wx.getStorageSync('userInfo')
       });
-      that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+      that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
     }else{
-      this.setData({
-        isLogin: false
+      wx:wx.reLaunch({
+          url: '../user/user'
       })
     }
   },
@@ -165,7 +163,7 @@ Page({
           searchListArr:[]
         });
         wx.hideLoading();
-        that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+        that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
         wx.stopPullDownRefresh(); //停止下拉刷新
         clearTimeout(timer);
       }, 500)
@@ -188,9 +186,9 @@ Page({
           isLoading: false
         });
 
-        that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+        that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
         clearTimeout(timer);
-      }, 1000)
+      }, 500)
     }
   },
 
@@ -211,35 +209,6 @@ Page({
         console.log(msg)
       }
     }
-  },
-  loginFun:function(){
-    //var that = this;
-    ////调用应用实例的方法获取全局数据
-    //app.getUserInfo(function (userInfo) {
-    //    //更新数据
-    //    console.log(userInfo);
-    //    that.setData({
-    //        userInfo: userInfo
-    //    })
-    //})
-    var that = this;
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-
-      //更新数据
-      //   console.log(userInfo);
-      if (app.globalData.login!=false){
-        that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
-        that.setData({
-          userInfo: userInfo,
-          isLogin: true
-        });
-      }else{
-        that.setData({
-          isLogin: false
-        })
-      }
-    })
   },
   deleteHandle:function(){
     if(this.data.isDelete){
@@ -270,10 +239,46 @@ Page({
             pageId:1,
             searchListArr:[]
           });
-          that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
+          that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
         }
 
       }
     })
+  },
+  changeFun:function(handleName,url){
+      var that = this;
+      that.setData({
+          isHandle: handleName,
+          searchListArr: [
+              //{
+              //  id: 1,
+              //  img: '../img/1.jpg',
+              //  name: '西红柿炖牛腩',
+              //  material:'牛腩 西红柿 土豆 胡萝卜',
+              //  author:'小芊',
+              //  collect:888,
+              //  user_like:999
+              //}
+          ],
+          totalCollect: 0,
+          isLoading: false,//正在加载中
+          noMore: false,//是否还有更多数据
+          pageId: 1,
+          isRefresh: false,
+          isDelete: false,
+          deleteText: '删除',
+          isHandle: handleName,
+          url:url
+      });
+      that.getList(that, wx.getStorageSync('openid'), that.data.pageId, that.data.url);
+  },
+  passFun:function(){
+      this.changeFun('pass','Webfood/UserMenuList');
+  },
+  failedFun:function(){
+      this.changeFun('failed', 'Webfood/UserMenuList');
+  },
+  checkFun:function(){
+      this.changeFun('check', 'Webfood/UserMenuList');
   }
 })

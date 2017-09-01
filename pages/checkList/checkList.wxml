@@ -1,19 +1,14 @@
-<!--pages/editFood/editFood.wxml-->
-<view class="fixed-title">
-    <view class="{{isHandle=='pass'?'chosed':''}}" bindtap="passFun">审核通过</view>
-    <view class="{{isHandle=='failed'?'chosed':''}}" bindtap="failedFun">审核未通过</view>
-    <view class="{{isHandle=='check'?'chosed':''}}" bindtap="checkFun">待审核</view>
-</view>
+<!--pages/checkList/checkList.wxml-->
 <view class="container" >
 <!-- 用户信息 -->
   <view  class="handle-box">
-    <view class="">作品（{{totalCollect}}）</view>
-    <view bindtap="deleteHandle">{{deleteText}}</view>
+    <view class="">待审核作品（{{totalCollect}}）</view>
+    <view bindtap="auditHandle">{{auditText}}</view>
   </view>
   <!-- 收藏菜品列表 -->
    <view class="like-list " >
       <view class="like-item  " wx:for="{{searchListArr}}" data-id="{{item.id}}">
-           <navigator class="edit-item"  url="/pages/detailFood/detailFood?id={{item.id}}">
+           <navigator class="edit-item"  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}">
                <image src="{{item.img}}" mode="aspectFill"></image>
                <view class="right-content">
                    <rich-text>{{item.name}}</rich-text>
@@ -22,12 +17,16 @@
                    <view>{{item.time}}</view>
                </view>
            </navigator>
-           <view class="edit-box" hidden="{{!isDelete}}">
+           <view class="edit-box" hidden="{{!isAudit}}">
                 <view class="edit-content">
-                    <view class="delete">
-                         <button data-id="{{item.id}}"  bindtap="deleteFun">删除</button>
+                    <view class="auditpass">
+                         <button data-id="{{item.id}}"  bindtap="auditpassFun">通过</button>
+                    </view>
+                    <view class="auditfailed ">
+                         <button data-id="{{item.id}}"  bindtap="auditfailedFun">驳回</button>
                     </view>
                 </view>
+                 
            </view>
        </view>
     </view>

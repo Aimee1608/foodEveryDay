@@ -1,7 +1,4 @@
-/* pages/userList/editFood.wxss */
-.container{
-    margin-top:60rpx;
-}
+/* pages/checkList/checkList.wxss */
 .handle-box{
     width:100%;
     padding:22rpx 10rpx;
@@ -48,8 +45,9 @@ page{
     background:rgba(255,255,255,0.5);
 
 }
-.edit-box .delete button{
-    width:200rpx;
+.edit-box  button{
+    width:160rpx;
+    line-height: 2;
     background:#FFCC66;
     color:#fff;
 }
@@ -70,38 +68,15 @@ button::after{
     height:100%;
 }
 
-.delete {
+.auditpass {
     position:absolute;
     top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    left:20rpx;
+    transform:translate(0,-50%);
 }
-.fixed-title{
-    width:100%;
-    height:80rpx;
-    position: fixed;
-    top:0;
-    left:0;
-    background:#F3EBDF;
-    
-}
-.fixed-title view{
-    /* width:33.333%; */
-    height:100%;
-    line-height:80rpx;
-    background:#F3EBDF;
-    display:inline-block;
-    text-align: center;
-}
-.fixed-title view:first-child{
-    width:33.3%;
-}
-.fixed-title view:nth-child(2){
-    width:33.4%;
-}
-.fixed-title view:last-child{
-    width:33.3%;
-}
-.fixed-title view.chosed{
-    background: #F9F5EC;
+.auditfailed{
+    position:absolute;
+    top:50%;
+    right:30rpx;
+    transform:translate(0,-50%);
 }

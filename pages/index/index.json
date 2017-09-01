@@ -1,9 +1,7 @@
 {
-
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#F3EBDF",
-  "navigationBarTitleText": "今日推荐",
+  "navigationBarTitleText": "咿咕噜",
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh":true
-
 }

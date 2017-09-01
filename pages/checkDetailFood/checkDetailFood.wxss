@@ -1,0 +1,235 @@
+/* pages/checkDetailFood/checkDetailFood.wxss */
+.title-image{
+  width:100%;
+  height:472rpx;
+  
+}
+.title-image image{
+  width:100%;
+  height:100%;
+}
+.detail-container{
+    background: #F9F5EC;
+    color:#7E5E48;
+}
+.title-text{
+  font-size:18pt;
+  font-weight: bold;
+  padding:25rpx 10rpx;
+  border-top:1px solid #969696;
+  border-bottom:1px solid #969696;
+  margin-top:50rpx;
+  margin-bottom:20rpx;
+}
+view{
+    color:#636363;
+}
+/**作者**/
+.author{
+     text-align: right;
+     padding-right:20rpx;
+    font-size: 11pt;
+    /* color:#7E5E48; */
+}
+.author image{
+    width:30rpx;
+    height:30rpx;
+    position: relative;
+    top:5rpx;
+}
+/**点赞和收藏数量**/
+.like-save-count{
+    width:100%;
+    height:50rpx;
+    line-height: 50rpx;
+     margin-bottom:40rpx;
+     text-align: center;
+}
+.like-save-count image{
+    width:30rpx;
+    height:30rpx;
+    position: relative;
+    top:5rpx;
+}
+.like-save-count view{
+
+    /* width:33%; */
+    height:100%;
+    display: inline-block;
+    /* float:left; */
+    box-sizing: border-box;
+    font-size: 12pt;
+}
+.like-save-count .like-count{
+    text-align: right;
+    padding-right:20rpx;
+}
+.like-save-count .save-count{
+    text-align: left;
+    padding-left:20rpx;
+}
+/**菜单说明**/
+.food-text{
+  margin-bottom:50rpx;
+   line-height: 180%;
+   text-align:justify;
+   text-indent:2em;
+     /* text-align-last:justify; */
+}
+.food-time{
+  width:100%;
+  /* line-height: 180%; */
+}
+.food-time view{
+  width:50%;
+  color:#969696;
+  font-size:12pt;
+  /* line-height: 180%; */
+}
+.food-time view:first-child{
+  float:left;
+}
+.food-time view:last-child{
+  float:right;
+  text-align: right;
+}
+.food-item::after{
+  content:'';
+  display:block;
+  clear:both;
+}
+.food-listbox01{
+  width:100%;
+  height:auto;
+}
+.food-list-title{
+  width:100%;
+  margin:50rpx 0;
+  text-align: center;
+  font-size:13pt;
+}
+.food-listbox01 .food-item{
+  width:100%;
+  height:88rpx;
+  line-height: 88rpx;
+  border-bottom:1px solid #E2E2E2;
+}
+.food-listbox01 .food-item text:first-child{
+  width:50%;
+  float:left;
+  text-align: left;
+}
+.food-listbox01 .food-item text:last-child{
+  width:50%;
+  float:right;
+  text-align: right;
+}
+.food-listbox01 .food-item::after{
+  content:'';
+  display:block;
+  clear:both;
+}
+
+/***做法步骤***/
+.way-listbox{
+    width:100%;
+    height:auto;
+}
+.way-listbox .way-item{
+    width:100%;
+    line-height: 180%;
+    margin-bottom:40rpx;
+     text-align:justify;
+     position: relative;
+     /* text-indent: 3em; */
+}
+.way-item text{
+    font-size: 24pt;
+    padding-right:10rpx;
+    color:#969696;
+    font-weight: bold;
+    position: relative;
+    top:6rpx;
+}
+/***图片分享***/
+.pic-listbox{
+    width:100%;
+    height:auto;
+}
+.pic-listbox .pic-item{
+    width:50%;
+    height:300rpx;
+    float:left;
+    position: relative;
+}
+.pic-item image{
+    width:100%;
+    height:100%;
+    box-sizing: border-box;
+    padding:10rpx;
+}
+.pic-item text{
+    position: absolute;
+    left:20rpx;
+    top:20rpx;
+    width:40rpx;
+    height:40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    background:rgba(255,255,255,0.8);
+    border-radius: 50%;
+    color:#A37011;
+    font-size: 11pt;
+}
+.pic-list::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/**小窍门**/
+.little-tip{
+    width:100%;
+    height:auto;
+     margin-bottom:120rpx; 
+}
+.tip-content{
+    text-indent: 2em;
+    /*color:#A7A7A7;*/
+    text-align:justify;
+}
+.fixed-box{
+    width:100%;
+    height:100rpx;
+    line-height: 100rpx;
+    background:#FBC966;
+    position: fixed;
+    bottom:0;
+    left:0;
+    z-index: 100;
+}
+.fixed-box view{
+    width:50%;
+    height:100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    float:left;
+    color:#fff;
+    vertical-align: middle;
+}
+
+.fixed-box view.add{
+    color: #A37011;
+}
+.fixed-box text{
+    width:2rpx;
+    height:60rpx;
+    position: absolute;
+    left:374rpx;
+    top:20rpx;
+    background:#fff;
+    display: block;
+}
+
+
+

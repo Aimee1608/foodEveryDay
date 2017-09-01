@@ -11,7 +11,9 @@
     "pages/aboutFoodEveryDay/aboutFoodEveryDay",
     "pages/help/help",
     "pages/editFood/editFood",
-    "pages/userList/userList"
+    "pages/userList/userList",
+    "pages/checkList/checkList",
+    "pages/checkDetailFood/checkDetailFood"
   ],
   "window":{
     "backgroundTextStyle":"light",

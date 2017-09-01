@@ -1,0 +1,72 @@
+<!--pages/checkDetailFood/checkDetailFood.wxml-->
+<!-- 底部固定通过驳回 -->
+<view class="fixed-box">
+    <view  bindtap="funPass">通过</view>
+    <view  bindtap="funFailed">驳回</view>
+    <text></text>
+</view>
+<!-- 详情 -->
+<view class="content">
+<!-- 菜品图片 -->
+  <view class="title-image">
+    <image src="{{detail.img}}" mode="aspectFill"></image>
+  </view>
+</view>
+
+<view class="container detail-container">
+    <!-- 菜品标题 -->
+  <text class="title-text">{{detail.name}}</text>
+  
+  <!-- 菜品收藏点赞量 -->
+  <view class="like-save-count">
+    <view class="author">
+        <image src="../img/tou02.png"></image>
+        {{detail.author}}
+    </view>
+  </view>
+  <!-- 菜品描述 -->
+  <view class="food-text">
+    {{detail.describe}}
+  </view>
+  <!-- 菜品难度、时间 -->
+  <view class="food-time">
+    <view>烹饪难度：<text>{{detail.complexity}}</text></view>
+    <view>烹饪时间：<text>{{detail.handle_time}}</text></view>
+  </view>
+  <!-- 食材清单 -->
+  <view class="food-listbox01">
+    <view class="food-list-title">——食材清单——</view>
+    <view class="food-list" >
+      <view class="food-item" wx:for="{{detail.inventory}}">
+        <text>{{item.food_name}}</text>
+        <text>{{item.food_how}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 做法步骤 -->
+  <view class="way-listbox">
+    <view class="food-list-title">——做法步骤——</view>
+     <view class="way-list">
+      <view class="way-item" wx:for="{{detail.step}}">
+        <text>{{index+1}}</text>{{item}}
+      </view>
+     </view>
+  </view>
+  <!-- 图片分享 -->
+  <view class="pic-listbox">
+     <view class="food-list-title">——图片分享——</view>
+     <view class="pic-list">
+      <view class="pic-item" wx:for="{{detail.thumbnail}}">
+        <text>{{index+1}}</text>
+        <image src="{{item}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 烹饪小窍门 -->
+  <view class="little-tip">
+    <view class="food-list-title">——烹饪小窍门——</view>
+    <view class="tip-content">
+        {{detail.tip}}
+    </view>
+  </view>
+</view>
