@@ -1,6 +1,6 @@
 <!--pages/checkDetailFood/checkDetailFood.wxml-->
 <!-- 底部固定通过驳回 -->
-<view class="fixed-box">
+<view hidden='{{isCheck==0}}' class="fixed-box">
     <view  bindtap="funPass">通过</view>
     <view  bindtap="funFailed">驳回</view>
     <text></text>
@@ -63,7 +63,7 @@
     </view>
   </view>
   <!-- 烹饪小窍门 -->
-  <view class="little-tip">
+  <view class="little-tip {{isCheck==0?'noCheck':''}}">
     <view class="food-list-title">——烹饪小窍门——</view>
     <view class="tip-content">
         {{detail.tip}}

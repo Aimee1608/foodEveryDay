@@ -9,7 +9,8 @@ Page({
   data: {
       userInfo:'',
       openid:null,
-      isLogin:false
+      isLogin:false,
+      isManager:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -20,7 +21,8 @@ Page({
       if(openid){
           this.setData({
               userInfo: wx.getStorageSync('userInfo'),
-              isLogin: true
+              isLogin: true,
+              isManager:wx.getStorageSync('isManager')
           });
       }else{
           this.setData({
@@ -106,7 +108,8 @@ Page({
           if (app.globalData.login!=false){
               that.setData({
                   userInfo: userInfo,
-                  isLogin: true
+                  isLogin: true,
+                  isManager: wx.getStorageSync('isManager')
               });
           }else{
               that.setData({

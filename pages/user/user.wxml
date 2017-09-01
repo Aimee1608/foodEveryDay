@@ -29,12 +29,12 @@
               <text>管理作品</text>
               <image src="../img/r-arrow.png"></image>
         </navigator>
-        <navigator class="user-common" url="../checkList/checkList">
-            <image src="../img/editfood.png"></image>
+   </view>
+   <navigator hidden='{{!isManager}}' class="user-common one-common" url="../checkList/checkList">
+            <image src="../img/manager.png"></image>
               <text>超级管理员</text>
               <image src="../img/r-arrow.png"></image>
         </navigator>
-   </view>
     <view class="myFood">
         <navigator class="user-common " url="../help/help">
             <image src="../img/help.png"></image>

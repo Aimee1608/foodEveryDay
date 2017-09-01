@@ -100,11 +100,14 @@ page{
 .one-common text{
     left:102rpx;
 }
+.one-common{
+    margin-bottom:40rpx;
+}
 .myFood{
     width:100%;
     padding-left:22rpx;
     background:#fff;
-    margin-top:40rpx;
+    margin-bottom:40rpx;
     border-top:1px solid #E5E5E7;
     border-bottom:1px solid #E5E5E7;
     box-sizing:border-box;

@@ -193,6 +193,9 @@ view{
     height:auto;
      margin-bottom:120rpx; 
 }
+.noCheck{
+    margin-bottom:20rpx;
+}
 .tip-content{
     text-indent: 2em;
     /*color:#A7A7A7;*/

@@ -63,9 +63,11 @@ Page({
     onLoad: function (options) {
         var that = this;
         console.log(options, wx.getStorageSync('openid'));
+       
         if (options.id != null) {
             that.setData({
-                foodId: options.id
+                foodId: options.id,
+                isCheck:options.isCheck
             });
             wx.request({
                 url: app.localUrl + 'food/FoodInfoData',
@@ -103,6 +105,7 @@ Page({
                                 // 'addSave.add': obj.collect_start,
                                 // 'addSave.url': '../img/save' + obj.collect_start + '.png',
                                 detail: ListArr
+                               
                                 //   'swiper.imgUrls': ListArr
                             });
                         }

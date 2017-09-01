@@ -29,6 +29,7 @@ App({
               that.globalData.openid = openData.data.data.openid;
               wx.setStorageSync('openid',that.globalData.openid);
               wx.setStorageSync('userInfo',that.globalData.userInfo);
+              wx.setStorageSync('isManager', true);
               wx.showToast({
                 title: '登录成功',
                 icon: 'success',
