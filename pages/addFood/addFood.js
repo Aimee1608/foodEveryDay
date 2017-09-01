@@ -90,7 +90,6 @@ Page({
                   console.log(msg);
                   if(msg.data.code==1001){
                       if(msg.data.data<3){
-
                           var userInfo = wx.getStorageSync('userInfo');
                           wx.request({/**获取分类**/
                           url:  app.localUrl+'/food/class_list',
@@ -382,9 +381,9 @@ Page({
         /**判断表单数据是否填完整**/
         if(that.checkReg()){
             /**上传单个主图**/
-            //wx.showLoading({
-            //    title: '上传中'
-            //});
+            wx.showLoading({
+               title: '上传中'
+            });
             wx.uploadFile({
                 url:  app.localUrl+'Webfood/uploadProjectImage', //仅为示例，非真实的接口地址
                 filePath: that.data.uploadObj.imgUrl,
@@ -398,12 +397,14 @@ Page({
                 success: function(msg){
                     console.log(msg);
                     var json = JSON.parse(msg.data);
+                    console.log(json,json.image_name);
                     //console.log(json);
                     if(json.status==1){
                         /**单个主图上传成功返回路径**/
                         that.setData({
                             'uploadObj.img':json.image_name
                         });
+                        console.log(333);
                         /**分步骤图上传**/
                         var tempFilePaths = that.data.uploadObj.thumbnailReady;
                         if(tempFilePaths.length>0){
@@ -424,46 +425,56 @@ Page({
                                     'user': 'test'
                                 },
                                 success: function(nmsg){
-                                    var json = JSON.parse(nmsg.data);
-                                    //console.log(json,json.data[0]);
-                                    var arr=that.data.uploadObj.thumbnail;
-                                    arr.push(json.data[0]);
-                                    //that.setData({
-                                    //    'uploadObj.thumbnail':arr
-                                    //});
-                                    if(arr.length==that.data.uploadObj.thumbnailReady.length){
-                                        that.setData({
-                                            'uploadObj.thumbnail':arr
-                                        });
-                                        console.log(arr,that.data.uploadObj);
-                                        /**提交所有数据到数据库**/
-                                        wx.request({
-                                            url:  app.localUrl+'Webfood/MenuAddUpload',
-                                            data:that.data.uploadObj,
-                                            // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-                                            header: {
-                                                'content-type': 'application/json'
-                                            },
-                                            success: function (res) {
-                                                // success
-                                                console.log(res);
-                                                if(res.data.code==1){
-                                                    //wx.hideLoading();
-                                                    wx.showModal({
-                                                        title: '提交成功',
-                                                        content: '查看我的作品',
-                                                        showCancel:false,
-                                                        success: function(res) {
-                                                            wx.reLaunch({
-                                                                url: '../userList/userList'
-                                                            })
-                                                        }
-                                                    })
-                                                }
-
-                                            }
+                                    console.log(nmsg);
+                                    if(nmsg.statusCode==500){
+                                        wx.showModal({
+                                            title: '上传失败',
+                                            content: '上传图片小于1M',
+                                            showCancel: false
                                         })
+                                    }else{
+                                        var json = JSON.parse(nmsg.data);
+                                        console.log(json, json.data[0]);
+                                        var arr = that.data.uploadObj.thumbnail;
+                                        arr.push(json.data[0]);
+                                        //that.setData({
+                                        //    'uploadObj.thumbnail':arr
+                                        //});
+                                        if (arr.length == that.data.uploadObj.thumbnailReady.length) {
+                                            that.setData({
+                                                'uploadObj.thumbnail': arr
+                                            });
+                                            console.log(arr, that.data.uploadObj);
+                                            /**提交所有数据到数据库**/
+                                            wx.request({
+                                                url: app.localUrl + 'Webfood/MenuAddUpload',
+                                                data: that.data.uploadObj,
+                                                // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                                                header: {
+                                                    'content-type': 'application/json'
+                                                },
+                                                success: function (res) {
+                                                    // success
+                                                    console.log(res);
+                                                    if (res.data.code == 1) {
+                                                        wx.hideLoading();
+                                                        wx.showModal({
+                                                            title: '提交成功',
+                                                            content: '查看我的作品',
+                                                            showCancel: false,
+                                                            success: function (res) {
+                                                                wx.reLaunch({
+                                                                    url: '../user/user'
+                                                                })
+                                                            }
+                                                        })
+                                                    }
+
+                                                }
+                                            })
+                                        }
                                     }
+                                    
                                 }
                             })
                         }

@@ -27,22 +27,22 @@ Page({
     isDelete:false,
     deleteText:'删除',
     isHandle:'pass',
-    url: 'Webfood/UserMenuList'
+    auditStart:1
   },
   //事件处理函数
-  getList:function(that,openid,pageId,url){
-    if(pageId!=null&&openid!=null){
+  getList: function (that, audit_start,pageId){
+      if (pageId != null && audit_start!=null){
 
-      console.log({pageId:pageId,openid:openid});
+      console.log({pageId:pageId,audit_start:audit_start});
       wx.request({
-        url:  app.localUrl+url,
-        data:{pageId:pageId,openid:openid},
+          url: app.localUrl + 'audit/AuditList',
+          data: { pageId: pageId, audit_start: audit_start},
         // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         success: function (res) {
           // success
-          console.log('发布作品列表', res);
+          console.log('发布作品列表'+audit_start, res);
           if (res.data.code == 1001) {
-            var arr = res.data.data.dataList;
+            var arr = res.data.data.DataArr;
             var ListArr = that.data.searchListArr;
             if (arr.length > 0) {
               for (var i = 0; i < arr.length; i++) {
@@ -108,7 +108,7 @@ Page({
       this.setData({
         userInfo: wx.getStorageSync('userInfo')
       });
-      that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
+      that.getList(that,that.data.auditStart,that.data.pageId);
     }else{
       wx:wx.reLaunch({
           url: '../user/user'
@@ -163,7 +163,7 @@ Page({
           searchListArr:[]
         });
         wx.hideLoading();
-        that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
+        that.getList(that, that.data.auditStart, that.data.pageId);
         wx.stopPullDownRefresh(); //停止下拉刷新
         clearTimeout(timer);
       }, 500)
@@ -186,7 +186,7 @@ Page({
           isLoading: false
         });
 
-        that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
+        that.getList(that, that.data.auditStart, that.data.pageId);
         clearTimeout(timer);
       }, 500)
     }
@@ -245,7 +245,7 @@ Page({
       }
     })
   },
-  changeFun:function(handleName,url){
+  changeFun:function(handleName,start){
       var that = this;
       that.setData({
           isHandle: handleName,
@@ -268,17 +268,18 @@ Page({
           isDelete: false,
           deleteText: '删除',
           isHandle: handleName,
-          url:url
+          auditStart:start
+          
       });
-      that.getList(that, wx.getStorageSync('openid'), that.data.pageId, that.data.url);
+      that.getList(that, that.data.auditStart, that.data.pageId);
   },
   passFun:function(){
-      this.changeFun('pass','Webfood/UserMenuList');
+      this.changeFun('pass',1);
   },
   failedFun:function(){
-      this.changeFun('failed', 'Webfood/UserMenuList');
+      this.changeFun('failed', 2);
   },
   checkFun:function(){
-      this.changeFun('check', 'Webfood/UserMenuList');
+      this.changeFun('check', 0);
   }
 })
