@@ -17,7 +17,7 @@ App({
         that.globalData.login = true;
         console.log(that.globalData.code);
         wx.request({/**通过code获取openid**/
-          url:'https://h5php.xingyuanauto.com/food/public/index.php/port/Login/sendCodeLogin',
+          url:that.localUrl+'Login/sendCodeLogin',
           data:{
             code:that.globalData.code,
             encryptedData: backMsg.encryptedData,
@@ -29,7 +29,7 @@ App({
               that.globalData.openid = openData.data.data.openid;
               wx.setStorageSync('openid',that.globalData.openid);
               wx.setStorageSync('userInfo',that.globalData.userInfo);
-              wx.setStorageSync('isManager', true);
+              wx.setStorageSync('isManager', openData.data.data.isManager);
               wx.showToast({
                 title: '登录成功',
                 icon: 'success',

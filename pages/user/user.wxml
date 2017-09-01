@@ -30,7 +30,7 @@
               <image src="../img/r-arrow.png"></image>
         </navigator>
    </view>
-   <navigator hidden='{{!isManager}}' class="user-common one-common" url="../checkList/checkList">
+   <navigator hidden='{{isManager==0}}' class="user-common one-common" url="../checkList/checkList">
             <image src="../img/manager.png"></image>
               <text>超级管理员</text>
               <image src="../img/r-arrow.png"></image>
