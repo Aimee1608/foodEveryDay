@@ -196,16 +196,45 @@ Page({
             }
         }
     },
+    sendAuditFun: function (url) {
+        var that = this;
+        wx.request({
+            url: app.localUrl + url,
+            data: { id: that.data.detail.id, openid: wx.getStorageSync('openid') },
+            // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            success: function (res) {
+                // success
+                console.log(res);
+                if (res.data.code == 1001) {
+                    that.setData({
+                        pageId: 1,
+                        searchListArr: []
+                    });
+                    wx: wx.redirectTo({
+                        url: '../checkList/checkList'
+                    })
+                } else if (res.data.code == 1004) {
+                    wx.showLoading({
+                        title: '提交失败',
+                    })
+
+                    setTimeout(function () {
+                        wx.hideLoading()
+                    }, 1000)
+                }
+
+            }
+        })
+    },
     funPass:function(){
+        var that = this;
         wx.showModal({
             title: '通过审核',
             content: '确认通过审核吗？',
             success: function (res) {
                 if (res.confirm) {
                     console.log('用户点击确定')
-                    wx:wx.redirectTo({
-                        url: '../checkList/checkList'
-                    })
+                    that.sendAuditFun('audit/greens_adopt');
                 } else if (res.cancel) {
                     console.log('用户点击取消')
                 }
@@ -213,15 +242,14 @@ Page({
         })
     },
     funFailed:function(){
+        var that = this;
         wx.showModal({
             title: '驳回',
             content: '确认驳回吗？',
             success: function (res) {
                 if (res.confirm) {
                     console.log('用户点击确定')
-                    wx: wx.redirectTo({
-                        url: '../checkList/checkList'
-                    })
+                    that.sendAuditFun('audit/greens_adopt');
                 } else if (res.cancel) {
                     console.log('用户点击取消')
                 }

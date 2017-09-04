@@ -55,7 +55,7 @@ view.search{
 .todayTitle{
   width:100%;
   text-align: center;
-  margin: 30rpx 0 20rpx 0 ;
+  margin: 40rpx 0 20rpx 0 ;
   color:#636363;
 }
 .todayList{

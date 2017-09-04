@@ -27,7 +27,7 @@ Page({
       indicatorColor:'rgba(249,245,236,0.6)',
       indicatorActiveColor:'#FFCC66',
       autoplay: true,//是否自动切换
-      interval: 5000,//自动切换时间间隔
+      interval: 3000,//自动切换时间间隔
       duration: 500,//滑动动画时长
       circular: true//是否自动切换
     },
@@ -38,6 +38,7 @@ Page({
       //  id: 1
       //}
     ],
+    newListArr:[],
     pageId:1,
     isLoading:false,//正在加载中
     noMore:false,//是否还有更多数据
@@ -48,41 +49,80 @@ Page({
    * ***/
   getList:function(that,noMore,pageId){
       if(that.data.init){
-          wx.request({
-              url:app.localUrl+'food/GetFocus',
-              method: 'GET',
-              // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-              header: {
-                  'content-type': 'application/json'
-              },
-              success: function (res) {
-                  // success
-                  console.log('焦点图',res);
-                  if(res.data.code==1001){
-                      var arr = res.data.data;
-                      if (arr.length > 0) {
-                          that.setData({
-                              'swiper.imgUrls': arr,
-                              init:false
-                          })
-                      }
+            wx.request({
+                url:app.localUrl+'food/GetFocus',
+                method: 'GET',
+                // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                header: {
+                    'content-type': 'application/json'
+                },
+                success: function (res) {
+                    // success
+                    console.log('焦点图',res);
+                    if(res.data.code==1001){
+                        var arr = res.data.data;
+                        if (arr.length > 0) {
+                            that.setData({
+                                'swiper.imgUrls': arr,
+                                init:false
+                            })
+                        }
 
-                  }
-              },
-              fail: function (res) {
-                  // fail
-                  console.log(res);
-              },
-              complete: function () {
-                  // complete
+                    }
+                },
+                fail: function (res) {
+                    // fail
+                    console.log(res);
+                },
+                complete: function () {
+                    // complete
 
-              }
-          });
-      }
+                }
+            });
+            wx.request({
+                url: app.localUrl + 'food/Recommend',//audit/IndexShowList
+                data: {
+                    pageId: pageId
+                },
+                // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                success: function (res) {
+                    // success
+                    console.log('列表', res);
+
+                    if (res.data.code == 1001) {
+                        var arr = res.data.data;
+                        var ListArr = [];
+                        if (arr.length > 0) {
+                            for (var i = 0; i < arr.length; i++) {
+                                ListArr.push({
+                                    img: arr[i].img,
+                                    name: arr[i].name,
+                                    id: arr[i].id
+                                });
+                            }
+                            that.setData({
+                                todayListArr: ListArr,
+                            })
+                        }
+
+
+                    }
+
+                },
+                fail: function (res) {
+                    // fail
+                    console.log(res);
+                },
+                complete: function () {
+                    // complete
+
+                }
+            })
+     }
       if(!noMore){
            console.log(pageId);
           wx.request({
-              url:  app.localUrl+'food/Recommend',
+              url: app.localUrl + 'food/IndexShowList',//audit/IndexShowList
               data:{
                   pageId:pageId
               },
@@ -93,7 +133,7 @@ Page({
 
                   if (res.data.code == 1001) {
                       var arr = res.data.data;
-                      var ListArr = that.data.todayListArr;
+                      var ListArr = that.data.newListArr;
                       if (arr.length > 0) {
                           for (var i = 0; i < arr.length; i++) {
                               ListArr.push({
@@ -104,13 +144,13 @@ Page({
                           }
                           if (arr.length < 10) {
                               that.setData({
-                                  todayListArr: ListArr,
+                                  newListArr: ListArr,
                                   pageId: arr[arr.length-1].id,
                                   noMore:true
                               })
                           }else{
                               that.setData({
-                                  todayListArr: ListArr,
+                                  newListArr: ListArr,
                                   pageId: arr[arr.length-1].id,
                                   noMore: false
                               })
@@ -186,7 +226,7 @@ Page({
               that.setData({
                   pageId:1,
                   noMore:false,
-                  todayListArr:[],
+                  newListArr:[],
                   'swiper.imgUrls':[],
                   init:true
               });

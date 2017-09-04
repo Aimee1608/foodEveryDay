@@ -76,6 +76,20 @@ Page({
 
                         }
 
+                    }else if(res.data.code == 1003){//没有数据，为空
+                        wx.showLoading({
+                            title: '暂无数据',
+                            mask: true,
+                            success: function(res) {},
+                            fail: function(res) {},
+                            complete: function(res) {},
+                        })
+                        setTimeout(function(){
+                            wx.hideLoading();
+                        },500)
+                        that.setData({
+                            noMore: true
+                        })
                     }
                 },
                 fail: function (res) {

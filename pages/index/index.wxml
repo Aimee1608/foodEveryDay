@@ -23,7 +23,7 @@
   <!-- 今日推荐 -->
   <view class="todayNew">
     <view class="todayTitle">
-      今日推荐
+      —— 今日推荐 ——
     </view>
     <view class="todayList " >
        <navigator class="todayItem " wx:for="{{todayListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
@@ -31,7 +31,17 @@
             <text>{{item.name}}</text>
         </navigator>
     </view>
-   
+  </view>
+  <view class="todayNew moreNew">
+    <view class="todayTitle">
+      —— 最新菜品 ——
+    </view>
+    <view class="todayList " >
+       <navigator class="todayItem " wx:for="{{newListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
+            <image src="{{item.img}}" mode="aspectFill"/>
+            <text>{{item.name}}</text>
+        </navigator>
+    </view>
   </view>
   <!-- 上拉加载更多 -->
   <view hidden="{{noMore}}">
