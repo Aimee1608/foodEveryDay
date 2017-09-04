@@ -103,7 +103,15 @@ Page({
     onLoad: function (options) {
         var that = this;
         var openid = wx.getStorageSync('openid');
+        var title='';
         if (openid) {
+            if(openid.auditStart==0){
+                title='待审核作品'
+            }else if(openid.auditStart==1){
+                title="审核未通过作品"
+            }else if(openid.auditStart==2){
+                title="审核通过作品"
+            }
             this.setData({
                 userInfo: wx.getStorageSync('userInfo')
             });

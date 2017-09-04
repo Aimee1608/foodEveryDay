@@ -13,7 +13,7 @@
   <!-- 收藏菜品列表 -->
    <view class="like-list " >
       <view class="like-item  " wx:for="{{searchListArr}}" data-id="{{item.id}}">
-           <navigator class="edit-item"  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}&&isCheck=0">
+           <navigator class="edit-item"  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}&&isCheck=0&&auditStart={{auditStart}}">
                <image src="{{item.img}}" mode="aspectFill"></image>
                <view class="right-content">
                    <rich-text>{{item.name}}</rich-text>

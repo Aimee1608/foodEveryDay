@@ -30,13 +30,13 @@ Page({
     auditStart:1
   },
   //事件处理函数
-  getList: function (that, audit_start,pageId){
+  getList: function (that, audit_start,pageId,openid){
       if (pageId != null && audit_start!=null){
 
       console.log({pageId:pageId,audit_start:audit_start});
       wx.request({
           url: app.localUrl + 'audit/AuditList',
-          data: { pageId: pageId, audit_start: audit_start},
+          data: { pageId: pageId, audit_start: audit_start,openid:openid},
         // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         success: function (res) {
           // success
@@ -108,7 +108,7 @@ Page({
       this.setData({
         userInfo: wx.getStorageSync('userInfo')
       });
-      that.getList(that,that.data.auditStart,that.data.pageId);
+      that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
     }else{
       wx:wx.reLaunch({
           url: '../user/user'
@@ -163,7 +163,7 @@ Page({
           searchListArr:[]
         });
         wx.hideLoading();
-        that.getList(that, that.data.auditStart, that.data.pageId);
+        that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
         wx.stopPullDownRefresh(); //停止下拉刷新
         clearTimeout(timer);
       }, 500)
@@ -186,7 +186,7 @@ Page({
           isLoading: false
         });
 
-        that.getList(that, that.data.auditStart, that.data.pageId);
+        that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
         clearTimeout(timer);
       }, 500)
     }
@@ -239,7 +239,7 @@ Page({
             pageId:1,
             searchListArr:[]
           });
-          that.getList(that,wx.getStorageSync('openid'),that.data.pageId,that.data.url);
+          that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
         }
 
       }
@@ -271,7 +271,7 @@ Page({
           auditStart:start
           
       });
-      that.getList(that, that.data.auditStart, that.data.pageId);
+      that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
   },
   passFun:function(){
       this.changeFun('pass',1);
