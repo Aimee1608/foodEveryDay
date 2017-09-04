@@ -83,7 +83,7 @@ view{
 .food-time view{
   width:50%;
   color:#969696;
-  font-size:12pt;
+  font-size:11pt;
   /* line-height: 180%; */
 }
 .food-time view:first-child{

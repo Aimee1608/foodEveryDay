@@ -63,11 +63,21 @@ Page({
     onLoad: function (options) {
         var that = this;
         console.log(options, wx.getStorageSync('openid'));
-       
+        var title = '待审核作品';
         if (options.id != null) {
+            if (options.auditStart == 0) {
+                title = '待审核作品'
+            } else if (options.auditStart == 2) {
+                title = "审核未通过作品"
+            } else if (options.auditStart == 1) {
+                title = "审核通过作品"
+            }
+            wx.setNavigationBarTitle({
+                title: title
+            })
             that.setData({
                 foodId: options.id,
-                isCheck:options.isCheck
+                isCheck:options.isCheck,
             });
             wx.request({
                 url: app.localUrl + 'food/FoodInfoData',

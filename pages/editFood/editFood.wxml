@@ -12,8 +12,9 @@
   </view>
   <!-- 收藏菜品列表 -->
    <view class="like-list " >
-      <view class="like-item  " wx:for="{{searchListArr}}" data-id="{{item.id}}">
-           <navigator class="edit-item"  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}&&isCheck=0&&auditStart={{auditStart}}">
+      <view class="like-item " wx:for="{{searchListArr}}" data-id="{{item.id}}">
+           <view hidden='{{auditStart==2?false:true}}' class='failed-item'>失效</view>
+           <navigator class="edit-item "  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}&&isCheck=0&&auditStart={{auditStart}}">
                <image src="{{item.img}}" mode="aspectFill"></image>
                <view class="right-content">
                    <rich-text>{{item.name}}</rich-text>
@@ -32,9 +33,11 @@
        </view>
     </view>
   <!-- 上拉加载更多 -->
+  <view hidden='{{auditStart==2?false:true}}' class="tips">注：审核未通过作品，审核驳回之日起至三天后系统自动删除！</view>
   <view hidden="{{noMore}}">
     <view class="loadMore" hidden="{{isLoading}}">上拉加载更多</view>
     <view class="loadMore" hidden="{{!isLoading}}">加载中...</view>
   </view>
   <view class="loadMore" hidden="{{!noMore}}">没有更多数据</view>
+  
 </view>

@@ -105,3 +105,22 @@ button::after{
 .fixed-title view.chosed{
     background: #F9F5EC;
 }
+
+/**审核未通过列表**/
+.like-list .failed-item{
+    width:80rpx;   
+     height:40rpx; 
+     position: absolute;
+     right:0;
+     top:0;
+    background:rgba(190,190,190,1);
+    text-align: center;
+    line-height: 40rpx;
+    font-size: 11pt;
+}
+.tips{
+    font-size: 11pt;
+    margin-top:10rpx;
+    margin-bottom:10rpx;
+    color:rgba(168,168,168,1);
+}

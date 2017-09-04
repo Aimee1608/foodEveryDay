@@ -34,12 +34,12 @@ Page({
 
             console.log({ pageId: pageId, openid: openid });
             wx.request({
-                url: app.localUrl + 'Webfood/UserMenuList',
+                url: app.localUrl + 'audit/AdministratorsAudit',
                 data: { pageId: pageId, openid: openid },
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 success: function (res) {
                     // success
-                    console.log('发布作品列表', res);
+                    console.log('管理员审核', res);
                     if (res.data.code == 1001) {
                         var arr = res.data.data.dataList;
                         var ListArr = that.data.searchListArr;
@@ -103,15 +103,7 @@ Page({
     onLoad: function (options) {
         var that = this;
         var openid = wx.getStorageSync('openid');
-        var title='';
         if (openid) {
-            if(openid.auditStart==0){
-                title='待审核作品'
-            }else if(openid.auditStart==1){
-                title="审核未通过作品"
-            }else if(openid.auditStart==2){
-                title="审核通过作品"
-            }
             this.setData({
                 userInfo: wx.getStorageSync('userInfo')
             });
@@ -243,13 +235,10 @@ Page({
             });
         }
     },
-    /**审核通过**/
-    auditpassFun: function (e) {
-        console.log(e);
+    sendAuditFun:function(id,url){
         var that = this;
-        var id = e.target.dataset.id;
         wx.request({
-            url: app.localUrl + 'webfood/UserMenuDel',
+            url: app.localUrl + url,
             data: { id: id, openid: wx.getStorageSync('openid') },
             // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
             success: function (res) {
@@ -261,13 +250,30 @@ Page({
                         searchListArr: []
                     });
                     that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
+                }else if(res.data.code==1004){
+                    wx.showLoading({
+                        title: '提交失败',
+                    })
+
+                    setTimeout(function () {
+                        wx.hideLoading()
+                    }, 1000)
                 }
 
             }
         })
     },
+    /**审核通过**/
+    auditpassFun: function (e) {
+        console.log(e);
+        var that = this;
+        var id = e.target.dataset.id;
+        that.sendAuditFun(id,'audit/greens_adopt');
+    },
     /**审核驳回**/
     auditfailedFun:function(e){
-
+        var that = this;
+        var id = e.target.dataset.id;
+        that.sendAuditFun(id, 'audit/greens_reject');
     }
 })

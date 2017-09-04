@@ -130,8 +130,8 @@ Page({
 
                       }else{
                           wx.showModal({
-                              title: '提示',
-                              content: '一天总共能上传3个菜品，您已上传了3个',
+                              title: '每天可传3个菜品',
+                              content: '您已上传了3个',
                               showCancel: false,
                               success: function (data) {
                                   wx.switchTab({
@@ -192,10 +192,22 @@ Page({
               // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
               var tempFilePaths = res.tempFilePaths;
               var tempFiles = res.tempFiles;
-              console.log(tempFiles);
-              that.setData({
-                  'uploadObj.imgUrl':tempFilePaths[0]
-              });
+            //   console.log(tempFiles);
+              if (tempFiles[0].size>=8388608){
+                  wx.showModal({
+                      title: '提示',
+                      content: '图片大小不能大于8MB',
+                      showCancel: false,
+                      success: function (res) {
+
+                      }
+                  })
+              }else{
+                  that.setData({
+                      'uploadObj.imgUrl': tempFilePaths[0]
+                  });
+              }
+             
 
           }
       })
@@ -209,26 +221,44 @@ Page({
             success: function (res) {
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = that.data.uploadObj.thumbnailReady;
-                tempFilePaths = tempFilePaths.concat(res.tempFilePaths);
+                var tempFiles = res.tempFiles;
                 //console.log(tempFilePaths);
-                if(tempFilePaths.length>10){
-                    wx.showModal({
-                        title: '提示',
-                        content: '最多只能上传10张',
-                        showCancel:false,
-                        success: function(res) {
+                var first = true;
+                if (tempFiles.length > 0) {
+                    for (var i = 0; i < tempFiles.length; i++) {
+                        var size = tempFiles[i].size;
+                        if (size >= 8388608&&first) {
+                            first=false;
+                            wx.showModal({
+                                title: '提示',
+                                content: '图片大小不能大于8MB',
+                                showCancel: false,
+                                success: function (res) {
 
+                                }
+                            })
                         }
-                    })
-                }else{
-                    that.setData({
-                        'uploadObj.thumbnailReady':tempFilePaths,
-                        isLoad:true
-                    });
+                    }
+                    if(first){
+                        tempFilePaths = tempFilePaths.concat(res.tempFilePaths);
+                        if (tempFilePaths.length > 10) {
+                            wx.showModal({
+                                title: '提示',
+                                content: '最多只能上传10张',
+                                showCancel: false,
+                                success: function (res) {
+
+                                }
+                            })
+                        } else {
+
+                            that.setData({
+                                'uploadObj.thumbnailReady': tempFilePaths,
+                                isLoad: true
+                            });
+                        }
+                    }
                 }
-
-
-
             }
         })
     },

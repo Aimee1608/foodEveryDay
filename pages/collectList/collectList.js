@@ -62,7 +62,7 @@ Page({
                   material: material,
                   author: arr[i].author,
                   collect: arr[i].collect!=null?arr[i].collect:0,
-                  like: arr[i].user_like != null ? arr[i].user_like : 0,
+                  like: arr[i].like != null ? arr[i].like : 0,
                   time:arr[i].time
                 });
               }
