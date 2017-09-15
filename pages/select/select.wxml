@@ -5,7 +5,7 @@
     <view class="select-item" wx:for="{{searchNameArr}}">
       <view class="select-title">{{item.class_name}}</view>
       <view class="select-iconList one-iconList">
-        <navigator class="select-iconitem" wx:for="{{item.classArr}}"  data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
+        <navigator class="select-iconitem" wx:for="{{item.classArr}}"  data-id="{{item.id}}" url="/pages/searchList/searchList?keywordsId={{item.id}}&&className={{item.keywords}}" hover-class="navigator-hover">{{item.keywords}}</navigator>
       </view>
     </view>
   </view>

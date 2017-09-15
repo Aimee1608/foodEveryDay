@@ -30,3 +30,12 @@ input.search{
   height:50rpx;
   opacity: 0.5;
 }
+.className{
+    width:100%;
+    margin-bottom:20rpx;
+    padding:10rpx 0;
+    /* background:#eee; */
+    text-align: center;
+    color:#666;
+}
+

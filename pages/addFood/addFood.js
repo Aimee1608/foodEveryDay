@@ -264,6 +264,7 @@ Page({
     },
     /**清楚上传的图片**/
     clearImg:function(event){
+        
         var that = this;
         var arr = that.data.uploadObj.thumbnailReady;
         arr.splice(event.target.dataset.index,1);
@@ -282,7 +283,7 @@ Page({
     addInventory:function(){
         var that = this;
         var arr = that.data.uploadObj.inventory;
-        arr.push({food_how:'',food_name:''});
+        arr.push({food_how:'',food_name:'',ind:arr.length});
         that.setData({
             'uploadObj.inventory':arr,
             isInventory:true
@@ -292,7 +293,9 @@ Page({
     clearInventory:function(event){
         var that = this;
         var arr = that.data.uploadObj.inventory;
+        // console.log(event.target.dataset.index,arr);
         arr.splice(event.target.dataset.index,1);
+        // console.log(arr);
         if(arr.length<1){
             that.setData({
                 'uploadObj.inventory':arr,
@@ -308,19 +311,22 @@ Page({
     inventoryInputhow:function(e){
         var that = this;
         var changeArr = that.data.uploadObj.inventory;
-        changeArr[e.target.dataset.index].food_how=e.detail.value;
-        this.setData({
-            'uploadObj.inventory': changeArr
-        });
+        // changeArr[e.target.dataset.index].food_how=e.detail.value;
+        that.data.uploadObj.inventory[e.target.dataset.index].food_how = e.detail.value;
+        // this.setData({
+        //     'uploadObj.inventory': changeArr
+        // });
     },
     /**绑定食材清单名字的输入数据**/
     inventoryInputname:function(e){
         var that = this;
         var changeArr = that.data.uploadObj.inventory;
-        changeArr[e.target.dataset.index].food_name=e.detail.value;
-        this.setData({
-            'uploadObj.inventory': changeArr
-        });
+        // changeArr[e.target.dataset.index].food_name=e.detail.value;
+        that.data.uploadObj.inventory[e.target.dataset.index].food_name = e.detail.value;
+        // this.setData({
+        //     'uploadObj.inventory': changeArr
+        // });
+        // console.log(that.data.uploadObj.inventory);
     },
     /**绑定名字的输入数据**/
     bindKeyInput01:function(e){

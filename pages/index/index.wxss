@@ -56,13 +56,15 @@ view.search{
   width:100%;
   text-align: center;
   margin: 40rpx 0 20rpx 0 ;
-  color:#636363;
+  /* color:#636363; */
+   color:#A37011;
 }
 .todayList{
   width:722rpx;
   box-sizing: border-box;
   /* padding-right:-14rpx; */
   flex-direction:row;
+ 
 }
 .todayList:after{
   content: "";

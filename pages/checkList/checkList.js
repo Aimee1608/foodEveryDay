@@ -22,7 +22,7 @@ Page({
         isLoading: false,//正在加载中
         noMore: false,//是否还有更多数据
         openid: null,
-        pageId: 1,
+        pageId: 0,
         isHide: false,
         isRefresh: false,
         isAudit: false,
@@ -131,7 +131,8 @@ Page({
             that.setData({
                 pageId: 1,
                 searchListArr: [],
-                isHide:false
+                isHide:false,
+                totalCollect: 0,
             });
             that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
         }
@@ -185,6 +186,9 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
+      wx.showLoading({
+        title: '加载中...',
+      });
         if (!this.data.noMore) {
             var that = this;
             console.log('circle 下一页');
@@ -198,6 +202,7 @@ Page({
                 });
 
                 that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
+                wx.hideLoading();
                 clearTimeout(timer);
             }, 1000)
         }
@@ -236,6 +241,7 @@ Page({
         }
     },
     sendAuditFun:function(id,url){
+      wx.showLoading();
         var that = this;
         wx.request({
             url: app.localUrl + url,
@@ -247,17 +253,22 @@ Page({
                 if (res.data.code == 1001) {
                     that.setData({
                         pageId: 1,
-                        searchListArr: []
+                        searchListArr: [],
+                        totalCollect:0
                     });
                     that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
+                    var timer = setTimeout(function () {
+                       wx.hideLoading();
+                       clearTimeout(timer);
+                    }, 300);
+                
                 }else if(res.data.code==1004){
-                    wx.showLoading({
-                        title: '提交失败',
+                    wx.showToast({
+                      title: '删除失败',
+                      duration:500
                     })
 
-                    setTimeout(function () {
-                        wx.hideLoading()
-                    }, 1000)
+                   
                 }
 
             }

@@ -32,70 +32,74 @@ Page({
   //事件处理函数
   getList: function (that, audit_start,pageId,openid){
       if (pageId != null && audit_start!=null){
-
-      console.log({pageId:pageId,audit_start:audit_start});
-      wx.request({
-          url: app.localUrl + 'audit/AuditList',
-          data: { pageId: pageId, audit_start: audit_start,openid:openid},
-        // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-        success: function (res) {
-          // success
-          console.log('发布作品列表'+audit_start, res);
-          if (res.data.code == 1001) {
-            var arr = res.data.data.DataArr;
-            var ListArr = that.data.searchListArr;
-            if (arr.length > 0) {
-              for (var i = 0; i < arr.length; i++) {
-                if (arr[i].inventory.length>0){
-                  var material = [];
-                  for(var n = 0;n<arr[i].inventory.length;n++){
-                    material.push(arr[i].inventory[n].food_name);
+        console.log({pageId:pageId,audit_start:audit_start});
+        wx.request({
+            url: app.localUrl + 'audit/AuditList',
+            data: { pageId: pageId, audit_start: audit_start,openid:openid},
+          // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          success: function (res) {
+      
+            // success
+            console.log('发布作品列表'+audit_start, res);
+            if (res.data.code == 1001) {
+              var arr = res.data.data.DataArr;
+              var ListArr = that.data.searchListArr;
+              if (arr.length > 0) {
+                for (var i = 0; i < arr.length; i++) {
+                  if (arr[i].inventory.length>0){
+                    var material = [];
+                    for(var n = 0;n<arr[i].inventory.length;n++){
+                      material.push(arr[i].inventory[n].food_name);
+                    }
+                    material = material.join(' ');
                   }
-                  material = material.join(' ');
+                  ListArr.push({
+                    id: arr[i].id,
+                    img: arr[i].img,
+                    name: arr[i].name,
+                    material: material,
+                    author: arr[i].author,
+                    time:arr[i].time
+                  });
                 }
-                ListArr.push({
-                  id: arr[i].id,
-                  img: arr[i].img,
-                  name: arr[i].name,
-                  material: material,
-                  author: arr[i].author,
-                  time:arr[i].time
-                });
-              }
-              //console.log(ListArr);
-              if(arr.length<10){
-                that.setData({
-                  searchListArr: ListArr,
-                  pageId:arr[arr.length-1].id,
-                  totalCollect:res.data.data.count,
-                  noMore:true
-                })
-              }else{
-                that.setData({
-                  searchListArr: ListArr,
-                  pageId:arr[arr.length-1].id,
-                  totalCollect:res.data.data.count,
-                  noMore:false
-                })
+                //console.log(ListArr);
+                if(arr.length<10){
+                  that.setData({
+                    searchListArr: ListArr,
+                    pageId:arr[arr.length-1].id,
+                    totalCollect:res.data.data.count,
+                    noMore:true
+                  })
+                }else{
+                  that.setData({
+                    searchListArr: ListArr,
+                    pageId:arr[arr.length-1].id,
+                    totalCollect:res.data.data.count,
+                    noMore:false
+                  })
+                }
+
               }
 
+            }else if(res.data.code==1004){
+              that.setData({
+                noMore:true
+              })
+            }else if(res.data.code==1003){//没有数据
+              that.setData({
+                noMore: true
+              })
             }
+          },
+          fail: function (res) {
+            // fail
+            console.log(res);
+          },
+          complete: function () {
+            // complete
 
-          }else if(res.data.code==1004){
-            that.setData({
-              noMore:true
-            })
           }
-        },
-        fail: function (res) {
-          // fail
-          console.log(res);
-        },
-        complete: function () {
-          // complete
-
-        }
-      })
+        })
     }
   },
   /**
@@ -180,6 +184,7 @@ Page({
       this.setData({
         isLoading: true
       });
+      wx.showLoading();
       var timer = setTimeout(function () {
         console.log(888);
         that.setData({
@@ -187,6 +192,7 @@ Page({
         });
 
         that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
+        wx.hideLoading();
         clearTimeout(timer);
       }, 500)
     }
@@ -224,6 +230,9 @@ Page({
     }
   },
   deleteFun:function(e){
+    wx.showLoading({
+      title: '删除中'
+    });
     console.log(e);
     var that = this;
     var id = e.target.dataset.id;
@@ -240,12 +249,18 @@ Page({
             searchListArr:[]
           });
           that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
+          var timer = setTimeout(function(){
+            wx.hideLoading();
+            clearTimeout(timer);
+          },500);
+          
         }
 
       }
     })
   },
   changeFun:function(handleName,start){
+    wx.showLoading();
       var that = this;
       that.setData({
           isHandle: handleName,
@@ -272,6 +287,10 @@ Page({
           
       });
       that.getList(that, that.data.auditStart, that.data.pageId, wx.getStorageSync('openid'));
+      var timer = setTimeout(function () {
+        wx.hideLoading();
+        clearTimeout(timer);
+      }, 300);
   },
   passFun:function(){
       this.changeFun('pass',1);

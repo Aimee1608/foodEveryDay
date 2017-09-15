@@ -37,7 +37,7 @@
             <button bindtap="addInventory">添加食材</button>
         </view>
         <view class="inventoryList" hidden="{{!isInventory}}">
-            <view class="inventoryItem" wx:for="{{uploadObj.inventory}}">
+            <view class="inventoryItem" wx:for="{{uploadObj.inventory}}" wx:key="ind">
                 <input type='text' placeholder='例：花生' maxlength="10" data-index="{{index}}" bindinput="inventoryInputname"/>
                 <input type='text' placeholder='例：50g' maxlength="10" data-index="{{index}}" bindinput="inventoryInputhow"/>
                 <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory" mode="aspectFill"></image>
@@ -46,8 +46,8 @@
     </view>
     <view class="foodBox step">
         <text>操作步骤</text>
-        <textarea placeholder="如：新鲜的鲫鱼一条收拾干净..." placeholder-style="color:#808080;"  maxlength="200" bindinput="bindKeyInput03"/>
-        <view class="smallTip">{{totalKeyInput03}}/200</view>
+        <textarea placeholder="如：新鲜的鲫鱼一条收拾干净..." placeholder-style="color:#808080;"  maxlength="300" bindinput="bindKeyInput03"/>
+        <view class="smallTip">{{totalKeyInput03}}/300</view>
         <rich-text>完成一步按回车输入下一步操作</rich-text>
     </view>
     <view class="foodBox thumbnail">

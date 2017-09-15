@@ -20,7 +20,8 @@ Page({
       isLoading: false,//正在加载中
       noMore: false,//是否还有更多数据，
       classId:0,
-      pageId:1,
+      className:null,
+      pageId:0,
       keywords:''
   },
     getList:function(that,classId,pageId,keywords){
@@ -110,11 +111,17 @@ Page({
       var that =  this;
       console.log(options);
       if (options.keywordsId){
+          var className = null;
+          if (options.className) {
+              className = options.className;
+          }
           that.setData({
-              classId:options.keywordsId
+              classId:options.keywordsId,
+              className:className
           });
           that.getList(that,that.data.classId,that.data.pageId,that.data.keywords);
-
+          
+          
       }else{
           that.setData({
               noMore:true
@@ -127,6 +134,7 @@ Page({
         var val = e.detail.value;
         if(val!=null&&val!=''){
             that.setData({
+                className:null,
                 classId:0,
                 pageId:1,
                 keywords: val,

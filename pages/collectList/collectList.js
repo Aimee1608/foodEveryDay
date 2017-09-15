@@ -22,7 +22,7 @@ Page({
     isLoading: false,//正在加载中
     noMore: false,//是否还有更多数据
     openid:null,
-    pageId:1,
+    pageId:0,
     isLogin:false,
     isRefresh:false
   },

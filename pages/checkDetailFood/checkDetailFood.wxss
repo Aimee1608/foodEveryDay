@@ -19,7 +19,7 @@
   border-top:1px solid #969696;
   border-bottom:1px solid #969696;
   margin-top:50rpx;
-  margin-bottom:20rpx;
+  margin-bottom:40rpx;
 }
 view{
     color:#636363;
@@ -56,9 +56,10 @@ view{
     /* width:33%; */
     height:100%;
     display: inline-block;
+    font-size: 11pt;
     /* float:left; */
     box-sizing: border-box;
-    font-size: 12pt;
+    /* font-size: 12pt; */
 }
 .like-save-count .like-count{
     text-align: right;
@@ -81,15 +82,17 @@ view{
   /* line-height: 180%; */
 }
 .food-time view{
-  width:50%;
+ 
   color:#969696;
-  font-size:11pt;
+  /* font-size:11pt; */
   /* line-height: 180%; */
 }
 .food-time view:first-child{
+     width:40%;
   float:left;
 }
 .food-time view:last-child{
+     width:60%;
   float:right;
   text-align: right;
 }

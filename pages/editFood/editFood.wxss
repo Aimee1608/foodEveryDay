@@ -14,6 +14,9 @@
 .handle-box view:last-child{
     text-align:right;
 }
+.handle-box view.hidden{
+  display:none;
+}
 .loadMore{
   width:100%;
   text-align: center;

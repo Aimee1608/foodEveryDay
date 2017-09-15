@@ -39,7 +39,7 @@ Page({
       //}
     ],
     newListArr:[],
-    pageId:1,
+    pageId:0,
     isLoading:false,//正在加载中
     noMore:false,//是否还有更多数据
     init:true
@@ -87,7 +87,7 @@ Page({
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 success: function (res) {
                     // success
-                    console.log('列表', res);
+                    console.log('今日列表', res);
 
                     if (res.data.code == 1001) {
                         var arr = res.data.data;
@@ -129,7 +129,7 @@ Page({
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               success: function (res) {
                   // success
-                  console.log('列表', res);
+                  console.log('最新列表', res);
 
                   if (res.data.code == 1001) {
                       var arr = res.data.data;
@@ -142,7 +142,7 @@ Page({
                                   id: arr[i].id
                               });
                           }
-                          if (arr.length < 10) {
+                          if (arr.length < 8) {
                               that.setData({
                                   newListArr: ListArr,
                                   pageId: arr[arr.length-1].id,
@@ -156,10 +156,7 @@ Page({
                               })
                           }
                       }
-
-
                   }
-
               },
               fail: function (res) {
                   // fail
@@ -167,7 +164,6 @@ Page({
               },
               complete: function () {
                   // complete
-
               }
           })
       }
@@ -251,7 +247,6 @@ Page({
           wx.showLoading({
               title: '加载中'
           });
-
           var timer = setTimeout(function () {
               console.log(888);
               that.setData({

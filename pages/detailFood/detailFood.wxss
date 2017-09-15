@@ -19,7 +19,7 @@
   border-top:1px solid #969696;
   border-bottom:1px solid #969696;
   margin-top:50rpx;
-  margin-bottom:20rpx;
+  margin-bottom:40rpx;
 }
 view{
     color:#636363;
@@ -42,7 +42,7 @@ view{
     width:100%;
     height:50rpx;
     line-height: 50rpx;
-     margin-bottom:40rpx;
+     margin-bottom:50rpx;
      text-align: center;
 }
 .like-save-count image{
@@ -81,15 +81,17 @@ view{
   /* line-height: 180%; */
 }
 .food-time view{
-  width:50%;
+ 
   color:#969696;
-  font-size:11pt;
+   font-size:11pt; 
   /* line-height: 180%; */
 }
 .food-time view:first-child{
+     width:40%;
   float:left;
 }
 .food-time view:last-child{
+     width:60%;
   float:right;
   text-align: right;
 }
@@ -229,6 +231,16 @@ view{
 .fixed-box view.add{
     color: #A37011;
 }
-
-
+.fixed-box text{
+    width:2rpx;
+    height:60rpx;
+    position: absolute;
+    left:374rpx;
+    top:20rpx;
+    background:#fff;
+    display: block;
+}
+.fixed-box text.textadd{
+    background: #A37011;
+}
 

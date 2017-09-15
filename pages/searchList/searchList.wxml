@@ -5,6 +5,7 @@
     <input class="search" placeholder-class="phcolor" placeholder="搜索从这里开始" confirm-type="search" bindconfirm="completeFun"/>
     <image src="../img/search.png"></image>
   </view>
+  <view class="className" hidden='{{className==null?true:false}}'>—— 分类：{{className}} ——</view>
   <!-- 搜索列表 -->
   <view class="like-list" >
    <navigator class="like-item" wx:for="{{searchListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}">

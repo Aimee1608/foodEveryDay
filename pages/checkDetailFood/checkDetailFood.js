@@ -214,10 +214,9 @@ Page({
                         url: '../checkList/checkList'
                     })
                 } else if (res.data.code == 1004) {
-                    wx.showLoading({
-                        title: '提交失败',
-                    })
-
+                  wx.showLoading({
+                    title: '提交失败',
+                  })
                     setTimeout(function () {
                         wx.hideLoading()
                     }, 1000)

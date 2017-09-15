@@ -46,12 +46,20 @@ Page({
         //tip:'家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊家就安静安静假假按揭啊'
     },
     addLike:{
-        add:0,
-        url: '../img/like0.png'
+        // add:0,
+        // url: '../img/like0.png',
+        // text:'点赞'
+        add: '',
+        url: '',
+        text: ''
     },
     addSave:{
-        add: 0,
-        url: '../img/save0.png'
+        // add: 0,
+        // url: '../img/save0.png',
+        // text:'收藏'
+        add: '',
+        url: '',
+        text: ''
     },
     foodId:null,
     openid:null
@@ -99,11 +107,20 @@ Page({
                               };
                           //console.log(obj.step);
                           //console.log(ListArr);
+                          var liketext = '点赞',savetext = "收藏";
+                          if(obj.user_like_start==1){
+                              liketext = '已点赞'
+                          }
+                          if(obj.collect_start==1){
+                                savetext = "已收藏";
+                          }
                           that.setData({
                               'addLike.add':obj.user_like_start,
                               'addLike.url':'../img/like'+obj.user_like_start+'.png',
+                              'addLike.text':liketext,
                               'addSave.add':obj.collect_start,
                               'addSave.url':'../img/save'+obj.collect_start+'.png',
+                              'addSave.text':savetext,
                               detail:ListArr
                               //   'swiper.imgUrls': ListArr
                           });
@@ -186,6 +203,7 @@ Page({
       }
   },
   saveLikeFun:function(type,add){
+     wx.showLoading();
       var that = this;
       if(wx.getStorageSync('openid')){
             var url=null;//请求路径
@@ -200,8 +218,9 @@ Page({
                     obj={
                         'detail.like':that.data.detail.like-1,
                         addLike: {
-                            add:0,
-                            url: img01
+                                add:0,
+                                url: img01,
+                                text:'点赞'
                             }
                     }
 
@@ -210,7 +229,8 @@ Page({
                         'detail.like':that.data.detail.like+1,
                         addLike: {
                             add:1,
-                            url: img02
+                            url: img02,
+                            text: '已点赞'
                         }
                     }
                 }
@@ -223,7 +243,8 @@ Page({
                         'detail.collect':that.data.detail.collect-1,
                         addSave:{
                             add:0,
-                            url: img01
+                            url: img01,
+                            text: '收藏'
                         }
                     }
                 }else{
@@ -231,7 +252,8 @@ Page({
                         'detail.collect':that.data.detail.collect+1,
                         addSave:{
                             add:1,
-                            url: img02
+                            url: img02,
+                            text: '已收藏'
                         }
                     }
                 }
@@ -246,6 +268,7 @@ Page({
                       console.log('点赞收藏',lastData);
                       if(lastData.data.code==1001){
                           that.setData(obj);
+                          wx.hideLoading();
                           wx.showToast({
                               title: '成功',
                               icon: 'success',

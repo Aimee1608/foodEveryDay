@@ -1,8 +1,9 @@
 <!--pages/detailFood/detailFood.wxml-->
 <!-- 底部固定喜欢收藏 -->
 <view class="fixed-box">
-    <view class="{{addLike.add==1?'add':''}} like" bindtap="funLike"><image src="{{addLike.url}}"></image>点赞</view>
-    <view class="{{addSave.add==1?'add':''}} save" bindtap="funSave"><image src="{{addSave.url}}"></image>收藏</view>
+    <view class="{{addLike.add==1?'add':''}} like" bindtap="funLike"><image src="{{addLike.url}}"></image>{{addLike.text}}</view>
+    <view class="{{addSave.add==1?'add':''}} save" bindtap="funSave"><image src="{{addSave.url}}"></image>{{addSave.text}}</view>
+    <text class="{{(addLike.add==1||addSave.add==1)?'textadd':''}}"></text>
 </view>
 <!-- 详情 -->
 <view class="content">
@@ -42,7 +43,7 @@
   </view>
   <!-- 食材清单 -->
   <view class="food-listbox01">
-    <view class="food-list-title">——食材清单——</view>
+    <view class="food-list-title">—— 食材清单 ——</view>
     <view class="food-list" >
       <view class="food-item" wx:for="{{detail.inventory}}">
         <text>{{item.food_name}}</text>
@@ -52,7 +53,7 @@
   </view>
   <!-- 做法步骤 -->
   <view class="way-listbox">
-    <view class="food-list-title">——做法步骤——</view>
+    <view class="food-list-title">—— 做法步骤 ——</view>
      <view class="way-list">
       <view class="way-item" wx:for="{{detail.step}}">
         <text>{{index+1}}</text>{{item}}
@@ -61,7 +62,7 @@
   </view>
   <!-- 图片分享 -->
   <view class="pic-listbox">
-     <view class="food-list-title">——图片分享——</view>
+     <view class="food-list-title">—— 图片分享 ——</view>
      <view class="pic-list">
       <view class="pic-item" wx:for="{{detail.thumbnail}}">
         <text>{{index+1}}</text>
@@ -71,7 +72,7 @@
   </view>
   <!-- 烹饪小窍门 -->
   <view class="little-tip">
-    <view class="food-list-title">——烹饪小窍门——</view>
+    <view class="food-list-title">—— 烹饪小窍门 ——</view>
     <view class="tip-content">
         {{detail.tip}}
     </view>
