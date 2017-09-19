@@ -43,7 +43,7 @@
         </navigator>
         <navigator class="user-common" url="../aboutFoodEveryDay/aboutFoodEveryDay">
             <image src="../img/logo.png"></image>
-            <text>关于咿咕噜</text>
+            <text>关于美食美荟</text>
             <image src="../img/r-arrow.png"></image>
         </navigator>
     </view>

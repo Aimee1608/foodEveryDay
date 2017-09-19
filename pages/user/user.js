@@ -77,7 +77,7 @@ Page({
    */
   onShareAppMessage: function (res) {
       return {
-          title: '咿咕噜开启你的美味生活！',
+          title: '美食美荟开启你的美味生活！',
           path: '/pages/index/index',
           imageUrl:'../img/share.png',
           success: function(msg) {

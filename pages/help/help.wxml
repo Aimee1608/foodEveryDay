@@ -4,6 +4,6 @@
     <text>{{userInfo.nickName}}</text>
 </view>
 <view class="content">
-    <text>扫描下方二维码，关注我们的公众号近一步获取更多服务，咿咕噜欢迎您提出宝贵的建议！</text>
+    <text>扫描下方二维码，关注我们的公众号近一步获取更多服务，美食美荟欢迎您提出宝贵的建议！</text>
     <image src="../img/erwm.jpg"></image>
 </view>
