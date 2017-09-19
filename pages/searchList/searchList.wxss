@@ -37,5 +37,6 @@ input.search{
     /* background:#eee; */
     text-align: center;
     color:#666;
+    font-size:11pt;
 }
 

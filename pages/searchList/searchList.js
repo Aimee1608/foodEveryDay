@@ -1,4 +1,4 @@
-// pages/searchList/searchList.js
+0// pages/searchList/searchList.js
 var app = getApp();
 Page({
 

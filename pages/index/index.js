@@ -220,7 +220,7 @@ Page({
           var timer = setTimeout(function () {
               console.log(888);
               that.setData({
-                  pageId:1,
+                  pageId:0,
                   noMore:false,
                   newListArr:[],
                   'swiper.imgUrls':[],
@@ -256,7 +256,7 @@ Page({
               that.getList(that,that.data.noMore,that.data.pageId);
               wx.hideLoading();
               clearTimeout(timer);
-          }, 1000)
+          }, 800)
       }
   },
 

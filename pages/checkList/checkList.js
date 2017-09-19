@@ -129,7 +129,7 @@ Page({
         var that = this;
         if(that.data.isHide){
             that.setData({
-                pageId: 1,
+                pageId: 0,
                 searchListArr: [],
                 isHide:false,
                 totalCollect: 0,
