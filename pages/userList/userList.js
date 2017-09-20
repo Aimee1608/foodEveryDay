@@ -160,7 +160,7 @@ Page({
       var timer = setTimeout(function () {
         console.log(888);
         that.setData({
-          pageId:1,
+          pageId:0,
           searchListArr:[]
         });
         wx.hideLoading();

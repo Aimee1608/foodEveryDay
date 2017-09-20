@@ -136,7 +136,7 @@ Page({
             that.setData({
                 className:null,
                 classId:0,
-                pageId:1,
+                pageId:0,
                 keywords: val,
                 searchListArr:[]
             });
