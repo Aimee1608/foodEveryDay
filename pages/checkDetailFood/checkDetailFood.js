@@ -248,7 +248,7 @@ Page({
             success: function (res) {
                 if (res.confirm) {
                     console.log('用户点击确定')
-                    that.sendAuditFun('audit/greens_adopt');
+                    that.sendAuditFun('audit/greens_reject');
                 } else if (res.cancel) {
                     console.log('用户点击取消')
                 }

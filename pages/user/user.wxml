@@ -48,7 +48,10 @@
         </navigator>
     </view>
 </view>
-<view class="login" hidden="{{isLogin}}" bindtap="loginFun">
-    <view class="clickLogin01">点击登录</view>
-    <view class="clickLogin02">登录后即可收藏喜欢的菜谱</view>
+<view class="login" hidden="{{isLogin}}" >
+<!-- bindtap="loginFun" -->
+    <!-- <view class="clickLogin01">点击登录</view>
+    <view class="clickLogin02">登录后即可收藏喜欢的菜谱</view> -->
+    <view class="clickLogin01">bug修改中</view>
+    <view class="clickLogin02">不好意思哈哈哈~即将回来</view>
 </view>
