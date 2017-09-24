@@ -25,11 +25,19 @@ App({
           },
           success:function(openData){
             console.log('返回openid',openData,openData.data);
-            if(openData.data.code==1001){
-              that.globalData.openid = openData.data.data.openid;
+            var isNew = typeof openData.data == 'string';
+            if(isNew){
+              var ResultUserData = JSON.parse(openData.data.trim());
+            }else{
+              var ResultUserData = openData.data;
+            }
+            console.log('返回openid', openData, ResultUserData);
+            
+            if (ResultUserData.code==1001){
+              that.globalData.openid = ResultUserData.data.openid;
               wx.setStorageSync('openid',that.globalData.openid);
               wx.setStorageSync('userInfo',that.globalData.userInfo);
-              wx.setStorageSync('isManager', openData.data.data.isManager);
+              wx.setStorageSync('isManager', ResultUserData.data.isManager);
               wx.showToast({
                 title: '登录成功',
                 icon: 'success',
