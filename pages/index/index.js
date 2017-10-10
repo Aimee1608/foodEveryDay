@@ -58,7 +58,7 @@ Page({
                 },
                 success: function (res) {
                     // success
-                    console.log('焦点图',res);
+                    // console.log('焦点图',res);
                     if(res.data.code==1001){
                         var arr = res.data.data;
                         if (arr.length > 0) {
@@ -87,7 +87,7 @@ Page({
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 success: function (res) {
                     // success
-                    console.log('今日列表', res);
+                    // console.log('今日列表', res);
 
                     if (res.data.code == 1001) {
                         var arr = res.data.data;
@@ -129,7 +129,7 @@ Page({
               // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
               success: function (res) {
                   // success
-                  console.log('最新列表', res);
+                  // console.log('最新列表', res);
 
                   if (res.data.code == 1001) {
                       var arr = res.data.data;
@@ -173,6 +173,9 @@ Page({
   */
   onLoad: function (options) {
       var that = this;
+      app.getUserInfo(function (userInfo) {
+        console.log('jjjajaj');
+      });
       /**加载列表数据**/
       that.getList(that,that.data.noMore,that.data.pageId);
     

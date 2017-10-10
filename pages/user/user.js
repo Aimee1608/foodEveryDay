@@ -106,6 +106,11 @@ Page({
           //更新数据
           //   console.log(userInfo);
           if (app.globalData.login!=false){
+            wx.showToast({
+              title: '登录成功',
+              icon: 'success',
+              duration: 500
+            });
               that.setData({
                   userInfo: userInfo,
                   isLogin: true,
