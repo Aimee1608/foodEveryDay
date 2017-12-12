@@ -1,100 +1,120 @@
 <!--pages/addFood/addFood.wxml-->
 <view class="container">
     <view class="foodBox bigImg" >
-        <text>主图</text>
-        <image class="foodUrl" src="{{uploadObj.imgUrl}}" mode="aspectFill"/>
-        <view class="r-arrow" bindtap="loadBigImg">
-            <image   src="../img/r-arrow.png"></image>
-        </view>
+        <text class="foodTitle">— 主图 —</text>
+        <view class="content">
+          <image class="foodUrl" src="{{uploadObj.imgUrl}}" mode="aspectFill"/>
+          <view class="r-arrow" bindtap="loadBigImg">
+              <image   src="../img/r-arrow.png"></image>
+          </view>
+         </view>
     </view>
     <view class="foodBox title">
-       <text>菜名</text>
-        <input type='text' placeholder="如鱼香肉丝" maxlength="10" bindinput="bindKeyInput01"/>
-        <view class="smallTip">{{totalKeyInput01}}/10</view>
+       <text class="foodTitle">— 菜名 —</text>
+       <view class="content">
+          <input type='text' placeholder="如鱼香肉丝" maxlength="10" bindinput="bindKeyInput01"/>
+          <view class="smallTip">{{totalKeyInput01}}/10</view>
+      </view>
     </view>
      <view class="foodBox foodText">
-       <text>介绍</text>
+       <text class="foodTitle">— 介绍 —</text>
+       <view class="content">
          <textarea placeholder="如：很喜欢糖醋味的菜..." placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput02"/>
          <view class="smallTip">{{totalKeyInput02}}/100</view>
+        </view>
     </view>
     <view class="foodBox class-name">
-        <text>选择分类</text>
-         <view class="r-arrow" >
-            <image   src="../img/r-arrow.png"></image>
-         </view>
-        <view class="section">
-          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
-            <view class="picker">
-              {{multiArray[0][multiIndex[0]].class_name}}——{{multiArray[1][multiIndex[1]].class_name}}
-            </view>
+        <text class="foodTitle">— 选择分类 —</text>
+        <view class="content">
+          <view class="r-arrow" >
+              <image   src="../img/r-arrow.png"></image>
+          </view>
+          <view class="section">
+            <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
+              <view class="picker">
+                {{multiArray[0][multiIndex[0]].class_name}}——{{multiArray[1][multiIndex[1]].class_name}}
+              </view>
 
-          </picker>
+            </picker>
+          </view>
         </view>
     </view>
     <view class="foodBox inventory">
-        <text>食材</text>
-        <view class="inventory-btn">
-            <button bindtap="addInventory">添加食材</button>
-        </view>
-        <view class="inventoryList" hidden="{{!isInventory}}">
-            <view class="inventoryItem" wx:for="{{uploadObj.inventory}}" wx:key="ind">
-                <input type='text' placeholder='例：花生' maxlength="10" data-index="{{index}}" bindinput="inventoryInputname"/>
-                <input type='text' placeholder='例：50g' maxlength="10" data-index="{{index}}" bindinput="inventoryInputhow"/>
-                <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory" mode="aspectFill"></image>
-            </view>
+        <text class="foodTitle">— 食材 —</text>
+        <view class="content">
+          <view class="inventory-btn">
+              <button bindtap="addInventory">添加食材</button>
+          </view>
+          <view class="inventoryList" hidden="{{!isInventory}}">
+              <view class="inventoryItem" wx:for="{{uploadObj.inventory}}" wx:key="ind">
+                  <input type='text' placeholder='例：花生' maxlength="10" data-index="{{index}}" bindinput="inventoryInputname"/>
+                  <input type='text' placeholder='例：50g' maxlength="10" data-index="{{index}}" bindinput="inventoryInputhow"/>
+                  <image src="../img/less.png" data-index="{{index}}" bindtap="clearInventory" mode="aspectFill"></image>
+              </view>
+          </view>
         </view>
     </view>
     <view class="foodBox step">
-        <text>操作步骤</text>
-        <textarea placeholder="如：新鲜的鲫鱼一条收拾干净..." placeholder-style="color:#808080;"  maxlength="300" bindinput="bindKeyInput03"/>
-        <view class="smallTip">{{totalKeyInput03}}/300</view>
-        <rich-text>完成一步按回车输入下一步操作</rich-text>
+        <text class="foodTitle">— 操作步骤 —</text>
+        <view class="content">
+          <textarea placeholder="如：新鲜的鲫鱼一条收拾干净..." placeholder-style="color:#808080;"  maxlength="300" bindinput="bindKeyInput03"/>
+          <view class="smallTip">{{totalKeyInput03}}/300</view>
+          <rich-text>*完成一步按回车输入下一步操作</rich-text>
+        </view>
     </view>
     <view class="foodBox thumbnail">
-        <text>图片步骤</text>
-        <image class="foodUrl" hidden="{{isLoad}}" src="{{loadImgB}}"/>
-        <view class="r-arrow" bindtap="loadThumbnailImg">
-            <image   src="../img/r-arrow.png"></image>
+        <text class="foodTitle">— 图片步骤 —</text>
+        <view class="content">
+          <image class="foodUrl" hidden="{{isLoad}}" src="{{loadImgB}}"/>
+          <view class="r-arrow" bindtap="loadThumbnailImg">
+              <image   src="../img/r-arrow.png"></image>
+          </view>
+          <view class="inputFile" hidden="{{!isLoad}}">
+              <view class="thumbnailImg" wx:for="{{uploadObj.thumbnailReady}}">
+                  <image  src="{{item}}" mode="aspectFill"/>
+                  <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
+              </view>
+          </view>
+          <rich-text>最多上传10张图</rich-text>
         </view>
-        <view class="inputFile" hidden="{{!isLoad}}">
-            <view class="thumbnailImg" wx:for="{{uploadObj.thumbnailReady}}">
-                <image  src="{{item}}" mode="aspectFill"/>
-                <icon type="clear" size="15" color="#808080" bindtap="clearImg" data-index="{{index}}"/>
-            </view>
-        </view>
-        <rich-text>最多上传10张图</rich-text>
     </view>
     <view class="foodBox tip">
-        <text>小窍门</text>
-        <textarea placeholder="小窍门" placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput04" />
-        <view class="smallTip">{{totalKeyInput04}}/100</view>
+        <text class="foodTitle">— 小窍门 —</text>
+        <view class="content">
+          <textarea placeholder="小窍门" placeholder-style="color:#808080;" maxlength="100" bindinput="bindKeyInput04" />
+          <view class="smallTip">{{totalKeyInput04}}/100</view>
+        </view>
     </view>
     <view class="foodBox complexity">
-        <text>难易程度</text>
-        <radio-group class="radio-group" bindchange="radioChange">
-            <label class="radio" >
-                <radio value="较易" checked="true" color="#FFCC66"/>较易
-            </label>
-            <label class="radio" >
-                <radio value="一般" checked="true" color="#FFCC66"/>一般
-            </label>
+        <text class="foodTitle">— 难易程度 —</text>
+        <view class="content">
+          <radio-group class="radio-group" bindchange="radioChange">
+              <label class="radio" >
+                  <radio value="较易" checked="true" color="#FFCC66"/>较易
+              </label>
+              <label class="radio" >
+                  <radio value="一般" checked="true" color="#FFCC66"/>一般
+              </label>
 
-            <label class="radio" >
-                <radio value="较难" checked="true" color="#FFCC66"/>较难
-            </label>
-        </radio-group>
+              <label class="radio" >
+                  <radio value="较难" checked="true" color="#FFCC66"/>较难
+              </label>
+          </radio-group>
+        </view>
     </view>
     <view class="foodBox handle_time">
-        <text>烹饪时间</text>
-        <view class="r-arrow" >
-            <image   src="../img/r-arrow.png"></image>
-        </view>
-        <view class="section">
-            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-                <view class="picker">
-                {{array[index]}}
-                </view>
-            </picker>
+        <text class="foodTitle">— 烹饪时间 —</text>
+        <view class="content">
+          <view class="r-arrow" >
+              <image   src="../img/r-arrow.png"></image>
+          </view>
+          <view class="section">
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                  <view class="picker">
+                  {{array[index]}}
+                  </view>
+              </picker>
+          </view>
         </view>
     </view>
     <view class="submit">

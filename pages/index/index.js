@@ -174,7 +174,7 @@ Page({
   onLoad: function (options) {
       var that = this;
       app.getUserInfo(function (userInfo) {
-        console.log('jjjajaj');
+        // console.log('jjjajaj');
       });
       /**加载列表数据**/
       that.getList(that,that.data.noMore,that.data.pageId);

@@ -5,7 +5,7 @@ App({
     var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
-    console.log('logs',logs);
+    // console.log('logs',logs);
   },
   getUserInfo:function(cb){
       var that = this;
@@ -15,7 +15,7 @@ App({
         that.globalData.encryptedData = backMsg.encryptedData;
         that.globalData.iv = backMsg.iv;
         that.globalData.login = true;
-        console.log(that.globalData.code);
+        // console.log(that.globalData.code);
         wx.request({/**通过code获取openid**/
           url:that.localUrl+'Login/sendCodeLogin',
           data:{
@@ -24,14 +24,14 @@ App({
             iv:backMsg.iv
           },
           success:function(openData){
-            console.log('返回openid',openData,openData.data);
+            // console.log('返回openid',openData,openData.data);
             var isNew = typeof openData.data == 'string';
             if(isNew){
               var ResultUserData = JSON.parse(openData.data.trim());
             }else{
               var ResultUserData = openData.data;
             }
-            console.log('返回openid', openData, ResultUserData);
+            // console.log('返回openid', openData, ResultUserData);
             
             if (ResultUserData.code==1001){
               that.globalData.openid = ResultUserData.data.openid;
@@ -53,7 +53,7 @@ App({
       }
       wx.login({
         success: function (msg) {
-          console.log('code',msg);
+          // console.log('code',msg);
           if(msg.code){
             that.globalData.code = msg.code;
             if(that.globalData.login==false){
@@ -111,5 +111,5 @@ App({
     openid:null,
     code:null
   },
-  localUrl:'https://h5php.xingyuanauto.com/food/public/index.php/port/'
+  localUrl:'https://h5php.xingyuanauto.com/FlowProject/food/public/index.php/port/'
 });

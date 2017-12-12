@@ -87,7 +87,7 @@ Page({
                   'content-type': 'application/json'
               },
               success: function (msg) {
-                  console.log(msg);
+                  // console.log(msg);
                   if(msg.data.code==1001){
                       if(msg.data.data<3){
                           var userInfo = wx.getStorageSync('userInfo');

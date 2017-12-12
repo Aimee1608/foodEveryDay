@@ -3,33 +3,44 @@
     width:100%;
     box-sizing:border-box;
     border-bottom: 1px solid #ddd;
-    padding:22rpx 0 22rpx 90rpx;
+    padding:60rpx 0;
     color:#000;
     position:relative;
+    /* margin-bottom:30rpx; */
 }
 .foodBox input{
     display:inline-block;
+    border-radius: 5px;
 }
-.foodBox text{
-    width:200rpx;
-    position:absolute;
-    left:0;
-    top:20rpx;
+.foodBox .foodTitle{
+    width:100%;
+    margin-bottom:50rpx;
+    text-align: center;
+    display: block;
+     color:#A37011; 
+    /* position:absolute; */
+     /* left:0;  */
+    /* top:20rpx; */
+}
+.foodBox .content{
+  width:100%;
+   position:relative;
 }
 .foodBox rich-text{
     font-size:10pt;
     color:#808080;
+    padding-top:10rpx; 
+    display: block;
 }
 .foodBox textarea{
     margin:0;
-    padding:0;
-    background:rgba(255,255,255,0.6);
+    padding:4rpx 8rpx;
+    background:rgba(255,255,255,1);
     width:100%;
-    height:200rpx;
-    min-height:200rpx;
-    position:relative;
-    top:-10rpx;
-
+    box-sizing: border-box;
+    height:300rpx;
+    min-height:300rpx;
+    border-radius: 5px;
 }
 .foodBox .smallTip{
     width:100rpx;
@@ -38,23 +49,14 @@
     font-size:10pt;
     text-align:right;
     position:absolute;
-    right:5rpx;
-    bottom:30rpx;
+    right:8rpx;
+    bottom:5rpx;
     color:#808080;
 }
 .step .smallTip{
-    bottom:24rpx;
+    /* bottom:6rpx; */
 }
-.bigImg{
-    width:100%;
-    height:160rpx;
-    /*line-height: 160rpx;*/
-    position: relative;
-}
-.bigImg text{
-    top:50%;
-    transform:translate(0,-50%);
-}
+
 .bigImg image.foodUrl{
     width:120rpx;
     height:120rpx;
@@ -80,26 +82,19 @@
 .foodText{
     position: relative;
 }
-.foodText textarea{
-    width:100%;
-}
 
-.title{
-    height:96rpx;
-}
-.title .smallTip{
-    bottom:33rpx;
-}
+
 .title input{
-    position:relative;
-    height:44rpx;
-    line-height:44rpx;
-    min-height:44rpx;
-    top:6rpx;
+  background:rgba(255,255,255,1);
+  width:100%;
+  box-sizing: border-box;
+  padding-left:8rpx;
+  height: 70rpx;
+  line-height:70rpx;
 }
-.title text{
-    top:50%;
-    transform:translate(0,-50%);
+.title  .smallTip{
+    z-index: 3;
+    bottom:26rpx;
 }
 
 .class-name .picker{
@@ -138,9 +133,6 @@
     vertical-align:middle;
 }
 
-.inventory text{
-    top:30rpx;
-}
 .inventory input{
     padding:0 6rpx;
     box-sizing:border-box;
@@ -166,7 +158,7 @@
     position:relative;
 }
 .inventoryItem input{
-    width:260rpx;
+    width:300rpx;
     height:70rpx;
     line-height:70rpx;
     margin-right:20rpx;
@@ -185,13 +177,6 @@
     right:0;
     top:10rpx;
 }
-
-.step,.complexity ,.thumbnail ,.handle_time ,.class-name{
-    padding-left:146rpx;
-}
-.tip{
-    padding-left:106rpx;
-}
 .submit{
     width:100%;
     margin:40rpx 0;
@@ -205,6 +190,8 @@
 .submit button::after{
     border:none;
 }
-
+.complexity .content{
+  text-align: center;
+}
 
 
