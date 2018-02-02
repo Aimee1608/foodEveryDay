@@ -36,8 +36,8 @@
       {
         "selectedIconPath": "pages/img/guo02.png",
         "iconPath": "pages/img/guo01.png",
-        "pagePath":"pages/select/select",
-        "text":"分类"
+        "pagePath":"pages/addFood/addFood",
+        "text":"发布作品"
       },
       {
         "selectedIconPath": "pages/img/user02.png",

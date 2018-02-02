@@ -3,22 +3,25 @@
 /**搜索框**/
 .section{
   width:100%;
-  height:100rpx;
+  height:80rpx;
   text-align: center;
   vertical-align: middle;
-  line-height: 100rpx;
-   border-radius: 10rpx;
-  /* background:rgba(200,200,200,0.5); */
-  background:#fff;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  border: 1px solid rgba(200,200,200,0.8);   
+  background:#fff; 
   position: relative;
   margin-bottom:20rpx;
 }
-view.search{
+text.search{
+  background:#fff;
   /* padding-top:25rpx; */
   /* padding-right:50rpx; */
-  width:100%;
-  height:100%;
-  line-height: 100rpx;
+   width:100%;
+   /* height:100%;  */
+   border-radius: 10rpx;
+  line-height:80rpx;
    color:#A37011;
 }
 .section image{
@@ -81,7 +84,7 @@ view.search{
   height:auto;
   padding:14rpx;
   padding-bottom:0;
-  margin-bottom:15rpx;
+  margin-bottom:30rpx;
   box-sizing: border-box;
   text-align: center;
   background:#fff;
@@ -109,7 +112,50 @@ view.search{
     text-align: center;
 }
 
+/* 新添加收藏作品和分类模块 */
+.threeBox{
+  width:100%;
+  margin-top: 20rpx;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+.threeBox .collectBox ,.threeBox  .foodsBox,.threeBox .selectBox{
+  width:200rpx;
+  height:220rpx;
+  /* background: #A37011; */
+  margin: 20rpx 20rpx 0 0;
+  display: inline-block;
+  text-align: center;
+}
+.threeBox image{
+  width:80rpx;
+  height:80rpx;
+  border-radius: 50%;
+  padding:20rpx;
+  background: #eeb211;
+   /* border:1px solid #eeb211; */
+  display: inline-block;
+}
+.threeBox text{
+  display: inline-block;
+  text-align: center;
+  width:100%;
+  color:#eeb211;
+  font-size: 11pt;
+}
+.threeBox .collectBox  text{
+  color:#d50f25;
+}
+ .threeBox .selectBox  text{
+  color:#009925;
+}
+   /* .threeBox .collectBox image{
+    border:1px solid #d50f25; 
+   background: #d50f25;
+ }
 
-
-
+.threeBox .selectBox  image{
+    border:1px solid #009925;  
+  background: #009925;
+}    */
 

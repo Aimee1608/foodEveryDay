@@ -29,5 +29,5 @@
 </view>
 <view class="login" hidden="{{isLogin}}" bindtap="loginFun">
     <view class="clickLogin01">点击登录</view>
-    <view class="clickLogin02">登录后即可收藏喜欢的菜谱</view>
+    <view class="clickLogin02">登录后即可查看我的作品</view>
 </view>

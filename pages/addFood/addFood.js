@@ -33,7 +33,8 @@ Page({
       totalKeyInput01:0,//输入框长度-名字
       totalKeyInput02:0,//输入框长度-描述
       totalKeyInput03:0,//输入框长度-步骤
-      totalKeyInput04:0//输入框长度-小贴士
+      totalKeyInput04:0,//输入框长度-小贴士
+      isLogin: false
   },
     /**难易程度的radiao事件**/
     radioChange:function(e){
@@ -78,6 +79,10 @@ Page({
   onLoad: function (options) {
       var that = this;
       if(wx.getStorageSync('openid')){
+          this.setData({
+            userInfo: wx.getStorageSync('userInfo'),
+            isLogin: true
+          });
           wx.request({
               url: app.localUrl+'Webfood/UserMenuCount',
               method: 'GET',
@@ -87,7 +92,7 @@ Page({
                   'content-type': 'application/json'
               },
               success: function (msg) {
-                  // console.log(msg);
+                console.log('UserMenuCount',msg);
                   if(msg.data.code==1001){
                       if(msg.data.data<3){
                           var userInfo = wx.getStorageSync('userInfo');
@@ -157,6 +162,11 @@ Page({
               }
           });
 
+      }else{
+          that.setData({
+            isLogin: false
+          })
+        
       }
 
   },
@@ -178,6 +188,36 @@ Page({
               console.log(msg)
           }
       }
+  },
+  //登录
+  loginFun: function () {
+    //var that = this;
+    ////调用应用实例的方法获取全局数据
+    //app.getUserInfo(function (userInfo) {
+    //    //更新数据
+    //    console.log(userInfo);
+    //    that.setData({
+    //        userInfo: userInfo
+    //    })
+    //})
+    var that = this;
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+
+      //更新数据
+      //   console.log(userInfo);
+      if (app.globalData.login != false) {
+        that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
+        that.setData({
+          userInfo: userInfo,
+          isLogin: true
+        });
+      } else {
+        that.setData({
+          isLogin: false
+        })
+      }
+    })
   },
   /**
    * 上传大的主图

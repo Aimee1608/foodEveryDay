@@ -42,23 +42,7 @@
   width:100%;
   text-align: center;
 }
-.login{
-    width:100%;
-    position: absolute;
-    left:0;
-    top:40%;
-    /* transform: (0,-40%); */
-    text-align: center;
-}
-.clickLogin01{
-    width:100%;
-    font-size:16pt;
-    margin-bottom: 30rpx;
-}
-.clickLogin02{
-    width:100%;
-    font-size:13pt;
-}
+
 page{
     background:#F9F5EC;
 }

@@ -34,7 +34,7 @@ page{
    /* border-bottom:1px solid #c3c3c3; */
   position: relative;
   box-sizing: border-box;
-   margin-bottom:20rpx;
+   margin-bottom:30rpx;
 }
 .like-item image{
   width:250rpx;
@@ -78,4 +78,27 @@ page{
     -webkit-box-orient: vertical;
     font-size:10pt;
      margin-top:12rpx;
+}
+
+/* 未登录状态提示 */
+.login{
+    width:100%;
+    position: absolute;
+    left:0;
+    top:40%;
+    /* transform: (0,-40%); */
+    text-align: center;
+}
+.clickLogin01{
+    width:300rpx;
+    padding: 20rpx ;
+    background: #A37011;
+    color: #fff;
+    border-radius: 5px;
+    font-size:16pt;
+    margin: 30rpx auto;
+}
+.clickLogin02{
+    width:100%;
+    font-size:13pt;
 }

@@ -12,7 +12,7 @@
   </view>
   <!-- 收藏菜品列表 -->
    <view class="like-list " >
-      <view class="like-item " wx:for="{{searchListArr}}" data-id="{{item.id}}">
+      <view class="like-item " wx:for="{{searchListArr}}" wx:key="item" data-id="{{item.id}}">
            <view hidden='{{auditStart==2?false:true}}' class='failed-item'>失效</view>
            <navigator class="edit-item "  url="/pages/checkDetailFood/checkDetailFood?id={{item.id}}&&isCheck=0&&auditStart={{auditStart}}">
                <image src="{{item.img}}" mode="aspectFill"></image>

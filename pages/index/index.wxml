@@ -1,8 +1,8 @@
 <!--index.wxml-->
 <view  class="container" >
   <view class="section">
-   <navigator url="/pages/searchList/searchList" hover-class="navigator-hover">
-    <view class="search" >搜索从这里开始</view>
+   <navigator url="/pages/searchList/searchList" hover-class="none">
+    <text class="search" >搜索从这里开始</text>
     <image src="../img/search.png"/>
     </navigator>
   </view>
@@ -10,7 +10,7 @@
   <view class="swiper-box">
     <swiper indicator-dots="{{swiper.indicatorDots}}" indicator-color="{{swiper.indicatorColor}}" indicator-active-color="{{swiper.indicatorActiveColor}}"
   autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" circular="{{swiper.s}}">
-      <block wx:for="{{swiper.imgUrls}}">
+      <block wx:for="{{swiper.imgUrls}}" wx:key="item">
         <swiper-item>
             <navigator  data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
                 <image src="{{item.img}}" class="slide-image" mode="aspectFill" />
@@ -20,13 +20,28 @@
       </block>
     </swiper>
   </view>
+  
+<view class= "threeBox">
+ <navigator class=" collectBox" url="../collectList/collectList">
+    <image src="../img/save01.png" mode="aspectFill"/>
+    <text>收藏</text>
+  </navigator>
+  <navigator class="foodsBox" url="../userList/userList">
+    <image src="../img/myFood.png" mode="aspectFill"/>
+    <text>作品</text>
+ </navigator>
+ <navigator class="selectBox" url="../select/select">
+    <image src="../img/guo01.png" mode="aspectFill"/>
+    <text>分类</text>
+  </navigator>
+</view> 
   <!-- 今日推荐 -->
   <view class="todayNew">
     <view class="todayTitle">
       —— 今日推荐 ——
     </view>
     <view class="todayList " >
-       <navigator class="todayItem " wx:for="{{todayListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
+       <navigator class="todayItem " wx:for="{{todayListArr}}" wx:key="item" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
             <image src="{{item.img}}" mode="aspectFill"/>
             <text>{{item.name}}</text>
         </navigator>
@@ -37,7 +52,7 @@
       —— 最新菜品 ——
     </view>
     <view class="todayList " >
-       <navigator class="todayItem " wx:for="{{newListArr}}" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
+       <navigator class="todayItem " wx:for="{{newListArr}}"  wx:key="item" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
             <image src="{{item.img}}" mode="aspectFill"/>
             <text>{{item.name}}</text>
         </navigator>
