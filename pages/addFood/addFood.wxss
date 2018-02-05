@@ -64,7 +64,7 @@
     vertical-align: middle;
 }
 .r-arrow{
-    width:60rpx;
+    width:80rpx;
     height:60rpx;
     text-align:right;
     line-height:60rpx;
@@ -99,10 +99,14 @@
 
 .class-name .picker{
     /*color:#ddd;*/
+    z-index: 1;
 }
 .class-name .r-arrow,.handle_time .r-arrow{
     top:50%;
     transform:translate(0,-50%);
+}
+.class-name .r-arrow{
+  z-index: 0;
 }
 .thumbnail .r-arrow{
     top:20rpx;

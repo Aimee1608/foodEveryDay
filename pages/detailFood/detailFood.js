@@ -85,10 +85,9 @@ Page({
               },
               success: function (res) {
                   // success
-                  console.log('菜谱详情', res);
+                  // console.log('菜谱详情', res);
                   if (res.data.code == 1001) {
                       var obj = res.data.data;
-                    
                       if (obj!=null){
                           var ListArr = {
                                   id: obj.id,
@@ -103,7 +102,8 @@ Page({
                                   inventory:obj.inventory,
                                   step:obj.step,
                                   thumbnail:obj.thumbnail,
-                                  tip:obj.tip
+                                  tip:obj.tip,
+                                  headimgurl:obj.headimgurl
                               };
                           //console.log(obj.step);
                           //console.log(ListArr);

@@ -87,7 +87,7 @@ Page({
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 success: function (res) {
                     // success
-                    // console.log('今日列表', res);
+                    console.log('今日列表', res);
 
                     if (res.data.code == 1001) {
                         var arr = res.data.data;
@@ -137,6 +137,8 @@ Page({
                       if (arr.length > 0) {
                           for (var i = 0; i < arr.length; i++) {
                               ListArr.push({
+                                  headimgurl: arr[i].headimgurl,
+                                  nickname: arr[i].nickname,
                                   img: arr[i].img,
                                   name: arr[i].name,
                                   id: arr[i].id

@@ -24,19 +24,7 @@
 view{
     color:#636363;
 }
-/**作者**/
-.author{
-     text-align: right;
-     padding-right:20rpx;
-    font-size: 11pt;
-    /* color:#7E5E48; */
-}
-.author image{
-    width:30rpx;
-    height:30rpx;
-    position: relative;
-    top:5rpx;
-}
+
 /**点赞和收藏数量**/
 .like-save-count{
     width:100%;
@@ -67,6 +55,20 @@ view{
 .like-save-count .save-count{
     text-align: left;
     padding-left:20rpx;
+}
+/**作者**/
+.like-save-count view.author{
+     text-align: right;
+     padding-right:20rpx;
+    font-size: 11pt;
+    /* color:#7E5E48; */
+}
+.author image{
+    width:80rpx;
+    height:80rpx;
+    border-radius: 50%;
+    /* margin-top: 16rpx;  */
+    vertical-align: middle;
 }
 /**菜单说明**/
 .food-text{

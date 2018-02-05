@@ -167,7 +167,7 @@ Page({
           },
           success: function (res) {
               // success
-              console.log('分类', res);
+              // console.log('分类', res);
               if (res.data.code == 1001) {
                   var arr = res.data.data;
                   var ListArr = [];
@@ -176,7 +176,7 @@ Page({
                       if (arr[i].class_names.length > 0) {
                           var material = [];
                           for (var n = 0; n < arr[i].class_names.length; n++) {
-                              material.push({'id':arr[i].class_names[n].id,'keywords':arr[i].class_names[n].class_name});
+                            material.push({ 'id': arr[i].class_names[n].id, 'keywords': arr[i].class_names[n].class_name, 'image': arr[i].class_names[n].image});
                           }
         
                       }

@@ -26,15 +26,15 @@
     <view class="foodBox class-name">
         <text class="foodTitle">— 选择分类 —</text>
         <view class="content">
-          <view class="r-arrow" >
-              <image   src="../img/r-arrow.png"></image>
-          </view>
+          
           <view class="section">
             <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="class_name">
               <view class="picker">
                 {{multiArray[0][multiIndex[0]].class_name}}——{{multiArray[1][multiIndex[1]].class_name}}
               </view>
-
+              <view class="r-arrow" >
+                <image   src="../img/r-arrow.png"></image>
+              </view>
             </picker>
           </view>
         </view>

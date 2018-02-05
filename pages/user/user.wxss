@@ -51,8 +51,8 @@ page{
     height:84rpx;
     position:relative;
     background:#fff;
-    border-top:1px solid #E5E5E7;
-     border-bottom:1px solid #E5E5E7;
+    /* border-top:1px solid #E5E5E7; */
+     /* border-bottom:1px solid #E5E5E7; */
     box-sizing:border-box;
 }
 
@@ -86,22 +86,26 @@ page{
 }
 .one-common{
     margin-bottom:40rpx;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
 }
 .myFood{
     width:100%;
     padding-left:22rpx;
     background:#fff;
     margin-bottom:40rpx;
-    border-top:1px solid #E5E5E7;
-    border-bottom:1px solid #E5E5E7;
+    /* border-top:1px solid #E5E5E7; */
+    /* border-bottom:1px solid #E5E5E7; */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
     box-sizing:border-box;
 }
 .myFood .user-common{
     border-top:none;
+     /* box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);  */
 }
 .myFood .user-common image:first-child{
     left:0rpx;
 }
-.myFood .user-common:last-child{
-    border-bottom:none;
+.myFood .topborder{
+    /* border-bottom:none; */
+    border-top:1px solid #E5E5E7;
 }

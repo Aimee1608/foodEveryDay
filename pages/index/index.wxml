@@ -22,15 +22,15 @@
   </view>
   
 <view class= "threeBox">
- <navigator class=" collectBox" url="../collectList/collectList">
+ <navigator class=" collectBox" url="../collectList/collectList" hover-class="none">
     <image src="../img/save01.png" mode="aspectFill"/>
     <text>收藏</text>
   </navigator>
-  <navigator class="foodsBox" url="../userList/userList">
+  <navigator class="foodsBox" url="../userList/userList" hover-class="none">
     <image src="../img/myFood.png" mode="aspectFill"/>
     <text>作品</text>
  </navigator>
- <navigator class="selectBox" url="../select/select">
+ <navigator class="selectBox" url="../select/select" hover-class="none">
     <image src="../img/guo01.png" mode="aspectFill"/>
     <text>分类</text>
   </navigator>
@@ -38,7 +38,7 @@
   <!-- 今日推荐 -->
   <view class="todayNew">
     <view class="todayTitle">
-      —— 今日推荐 ——
+        <text>今日推荐</text>    
     </view>
     <view class="todayList " >
        <navigator class="todayItem " wx:for="{{todayListArr}}" wx:key="item" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
@@ -49,12 +49,18 @@
   </view>
   <view class="todayNew moreNew">
     <view class="todayTitle">
-      —— 最新菜品 ——
+       <text>最新菜品</text>
     </view>
     <view class="todayList " >
        <navigator class="todayItem " wx:for="{{newListArr}}"  wx:key="item" data-id="{{item.id}}" url="/pages/detailFood/detailFood?id={{item.id}}" hover-class="navigator-hover">
             <image src="{{item.img}}" mode="aspectFill"/>
-            <text>{{item.name}}</text>
+            <view class="textInfoBox">
+              <view class="authInfo">
+                <image src="{{item.headimgurl}}" mode="aspectFill"/>
+                <text>{{item.nickname}}</text>
+              </view>
+               <rich-text>{{item.name}}</rich-text>
+            </view>           
         </navigator>
     </view>
   </view>

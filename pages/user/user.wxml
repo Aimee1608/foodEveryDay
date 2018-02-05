@@ -41,7 +41,7 @@
             <text>帮助和反馈意见</text>
             <image src="../img/r-arrow.png"></image>
         </navigator>
-        <navigator class="user-common" url="../aboutFoodEveryDay/aboutFoodEveryDay">
+        <navigator class="user-common topborder" url="../aboutFoodEveryDay/aboutFoodEveryDay">
             <image src="../img/logo.png"></image>
             <text>关于美食美荟</text>
             <image src="../img/r-arrow.png"></image>
