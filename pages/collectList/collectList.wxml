@@ -27,7 +27,7 @@
   </view>
   <view class="loadMore" hidden="{{!noMore}}">没有更多数据</view>
 </view>
-<view class="login" hidden="{{isLogin}}" bindtap="loginFun">
-    <view class="clickLogin01">点击登录</view>
+<view class="login" hidden="{{isLogin}}" >
+    <button class="clickLogin01" open-type="getUserInfo" bindgetuserinfo="loginFun">点击登录</button> 
     <view class="clickLogin02">登录后即可查看收藏的菜谱</view>
 </view>

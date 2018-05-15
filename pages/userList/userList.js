@@ -231,22 +231,14 @@ Page({
       }
     }
   },
-  loginFun:function(){
-    //var that = this;
-    ////调用应用实例的方法获取全局数据
-    //app.getUserInfo(function (userInfo) {
-    //    //更新数据
-    //    console.log(userInfo);
-    //    that.setData({
-    //        userInfo: userInfo
-    //    })
-    //})
+  loginFun:function(e){
     var that = this;
+    if (!e.detail.userInfo) {
+      return false
+    }
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-
-      //更新数据
-      //   console.log(userInfo);
+    app.getOpenid(e.detail.userInfo, function (userInfo) {
+          //更新数据
       if (app.globalData.login!=false){
         that.getList(that,wx.getStorageSync('openid'),that.data.pageId);
         that.setData({

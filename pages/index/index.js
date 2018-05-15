@@ -87,8 +87,7 @@ Page({
                 // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 success: function (res) {
                     // success
-                    console.log('今日列表', res);
-
+                    // console.log('今日列表', res);
                     if (res.data.code == 1001) {
                         var arr = res.data.data;
                         var ListArr = [];
@@ -120,7 +119,7 @@ Page({
             })
      }
       if(!noMore){
-           console.log(pageId);
+          //  console.log(pageId);
           wx.request({
               url: app.localUrl + 'food/IndexShowList',//audit/IndexShowList
               data:{

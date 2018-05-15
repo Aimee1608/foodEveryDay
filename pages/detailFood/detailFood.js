@@ -62,7 +62,8 @@ Page({
         text: ''
     },
     foodId:null,
-    openid:null
+    openid:null,
+    isLogin: true
   },
 
   /**
@@ -203,7 +204,7 @@ Page({
       }
   },
   saveLikeFun:function(type,add){
-     wx.showLoading();
+      wx.showLoading();
       var that = this;
       if(wx.getStorageSync('openid')){
             var url=null;//请求路径
@@ -278,18 +279,16 @@ Page({
                   }
               })
       }else{
+         wx.hideLoading();
           wx.showModal({
               title: '用户登录',
               content: '登录后即可点赞收藏菜谱哦',
               success: function(res) {
                   if (res.confirm) {
-                      console.log('用户点击确定');
-                      app.getUserInfo(function(userInfo){
-
-                      });
-                      //wx.reLaunch({
-                      //    url:'../user/user'
-                      //})
+                      console.log('用户点击确定');                      
+                      that.setData({
+                        isLogin: false
+                      })
                   } else if (res.cancel) {
                       console.log('用户点击取消');
                   }
@@ -304,5 +303,18 @@ Page({
   funSave: function () {
       var add = this.data.addSave.add;
       this.saveLikeFun('save',add);
+  },
+  loginFun: function(e){
+    var that = this;
+    if (!e.detail.userInfo) {
+      return false
+    }
+    //调用应用实例的方法获取全局数据
+    app.getOpenid(e.detail.userInfo, function (userInfo) {
+      
+    })
+    that.setData({
+      isLogin: true
+    })
   }
 });

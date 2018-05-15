@@ -92,7 +92,6 @@ page{
 }
 .clickLogin01{
     width:300rpx;
-    padding: 20rpx ;
     background: #A37011;
     color: #fff;
     border-radius: 5px;

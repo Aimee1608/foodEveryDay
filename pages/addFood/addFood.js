@@ -190,23 +190,17 @@ Page({
       }
   },
   //登录
-  loginFun: function () {
-    //var that = this;
-    ////调用应用实例的方法获取全局数据
-    //app.getUserInfo(function (userInfo) {
-    //    //更新数据
-    //    console.log(userInfo);
-    //    that.setData({
-    //        userInfo: userInfo
-    //    })
-    //})
-    var that = this;
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
+  loginFun: function (e) {
 
+    var that = this;
+    // console.log(e.detail)
+    if (!e.detail.userInfo){
+      return false
+    }
+    //调用应用实例的方法获取全局数据
+    app.getOpenid(e.detail,function (userInfo) {
       //更新数据
-      //   console.log(userInfo);
-      if (app.globalData.login != false) {
+      if (app.globalData.login) {
         that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
         that.setData({
           userInfo: userInfo,

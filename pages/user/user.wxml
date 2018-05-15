@@ -48,10 +48,7 @@
         </navigator>
     </view>
 </view>
-<view class="login" hidden="{{isLogin}}" bindtap="loginFun">
-<!-- bindtap="loginFun" -->
-       <view class="clickLogin01">点击登录</view>  
+<view class="login" hidden="{{isLogin}}" >
+    <button class="clickLogin01" open-type="getUserInfo" bindgetuserinfo="loginFun">点击登录</button> 
     <view class="clickLogin02">登录后即可管理我的信息</view> 
-    <!-- <view class="clickLogin01">bug修改中</view>
-    <view class="clickLogin02">不好意思哈哈哈~即将回来</view> -->
 </view>

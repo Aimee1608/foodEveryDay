@@ -121,7 +121,8 @@
         <button bindtap="submitFun">提交作品</button>
     </view>
 </view>
-<view class="login" hidden="{{isLogin}}" bindtap="loginFun">
-    <view class="clickLogin01">点击登录</view>
+<view class="login" hidden="{{isLogin}}" >
+ <button class="clickLogin01" open-type="getUserInfo" bindgetuserinfo="loginFun">点击登录</button>
+    <!-- <view class="clickLogin01">点击登录</view> -->
     <view class="clickLogin02">登录后即可发布我的作品</view>
 </view>

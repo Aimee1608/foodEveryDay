@@ -78,3 +78,8 @@
     </view>
   </view>
 </view>
+<view class="dModal" hidden="{{isLogin}}">
+  <button class="clickLogin01" open-type="getUserInfo" bindgetuserinfo="loginFun">点击登录</button>
+</view>
+     
+
