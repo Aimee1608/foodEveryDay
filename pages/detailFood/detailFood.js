@@ -310,7 +310,7 @@ Page({
       return false
     }
     //调用应用实例的方法获取全局数据
-    app.getOpenid(e.detail.userInfo, function (userInfo) {
+    app.getOpenid(e.detail, function (userInfo) {
       
     })
     that.setData({

@@ -201,7 +201,6 @@ Page({
     app.getOpenid(e.detail,function (userInfo) {
       //更新数据
       if (app.globalData.login) {
-        that.getList(that, wx.getStorageSync('openid'), that.data.pageId);
         that.setData({
           userInfo: userInfo,
           isLogin: true

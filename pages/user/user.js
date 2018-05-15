@@ -96,10 +96,11 @@ Page({
     if (!e.detail.userInfo) {
       return false
     }
+    console.log(e.detail)
     //调用应用实例的方法获取全局数据
-    app.getOpenid(e.detail.userInfo,function (userInfo) {
+    app.getOpenid(e.detail,function (userInfo) {
           //更新数据
-          //   console.log(userInfo);
+            console.log(userInfo);
           if (app.globalData.login){
               that.setData({
                   userInfo: userInfo,

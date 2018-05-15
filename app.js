@@ -13,7 +13,7 @@ App({
     that.globalData.userInfo = backMsg.userInfo;
     that.globalData.encryptedData = backMsg.encryptedData;
     that.globalData.iv = backMsg.iv;        
-    // console.log(that.globalData.code);
+    // console.log(that.globalData.userInfo);
     wx.login({
         success: function (msg) {
           // console.log('code',msg);
@@ -27,7 +27,7 @@ App({
                 iv: backMsg.iv
               },
               success: function (openData) {
-                console.log('返回openid',openData,openData.data);
+                // console.log('返回openid',openData,openData.data);
                 var isNew = typeof openData.data == 'string';
                 if (isNew) {
                   var ResultUserData = JSON.parse(openData.data.trim());
