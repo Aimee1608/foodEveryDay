@@ -190,9 +190,9 @@ Page({
   onShareAppMessage: function () {
       var that = this;
       return {
-          title: '美食美荟开启你的美味生活！',
+          title: '美食美荟—' + that.data.detail.name,
           path: '/pages/detailFood/detailFood?id='+that.data.foodId,
-          imageUrl:'../img/share.png',
+          imageUrl: that.data.detail.img,
           success: function(msg) {
               // 转发成功
               console.log(msg)

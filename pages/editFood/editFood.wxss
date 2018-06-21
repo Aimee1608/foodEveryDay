@@ -86,7 +86,7 @@ button::after{
     top:0;
     left:0;
     background:#F3EBDF;
-    
+    z-index: 3;
 }
 .fixed-title view{
     /* width:33.333%; */

@@ -1,9 +1,15 @@
 <!--pages/help/help.wxml-->
 <view class="about-img">
     <image src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text>{{userInfo.nickName}}</text>
+    <rich-text>{{userInfo.nickName}}    </rich-text>
 </view>
 <view class="content">
-    <text>扫描下方二维码，关注我们的公众号近一步获取更多服务，美食美荟欢迎您提出宝贵的建议！</text>
-    <image src="../img/erwm.jpg"></image>
+    <rich-text>扫描下方二维码，关注我们的公众号近一步获取更多服务，美食美荟欢迎您提出宝贵的建议！</rich-text>
+    <view>
+      <image src="../img/erwm.jpg"></image>
+    </view>   
+    <rich-text>可以直接通过微信联系哦！</rich-text>
+    <view>
+      <image src="../img/wechat.jpg"></image>
+    </view>    
 </view>
