@@ -92,5 +92,5 @@ App({
     code:null,
     login: 'init'
   },
-  localUrl:'https://h5php.xingyuanauto.com/FlowProject/food/public/index.php/port/'
+  localUrl:'https://www.qinlh.com/Food/public/index.php/port/'
 });
